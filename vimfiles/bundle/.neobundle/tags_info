@@ -1,0 +1,13 @@
+VimClojure
+lightline.vim
+neobundle.vim
+neocomplete
+neosnippet
+neosnippet-snippets
+syntastic
+unite.vim
+vim-quickrun
+vim-slime
+vimfiler.vim
+vimproc
+vimshell.vim
