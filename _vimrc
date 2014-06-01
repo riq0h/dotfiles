@@ -110,10 +110,7 @@
 
  " デフォルトでneocompleteを有効にする
  let g:neocomplete#enable_at_startup = 1
- 
- "quickrun.vimの起動及び終了
- nnoremap <expr><silent> <C-c> quickrun#is_running()? quickrun#sweep_sessions():"\<C-c>"
- 
+  
  " 日本語用設定
 if &encoding !=# 'utf-8'
   set encoding=japan
@@ -155,11 +152,6 @@ if has('iconv')
   endif
   unlet s:enc_euc
   unlet s:enc_jis
-endif
-
-" MacOS Xメニューの日本語化 (メニュー表示前に行なう必要がある)
-if has('mac')
-  set langmenu=japanese
 endif
 
  " Neobundleの設定
