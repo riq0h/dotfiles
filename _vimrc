@@ -111,7 +111,6 @@
  " デフォルトでneocompleteを有効にする
  let g:neocomplete#enable_at_startup = 1
  
-
  " VimShellの設定
  
  " ,is: シェルを起動
@@ -125,12 +124,33 @@
  " 選択中に,ss: 非同期で開いたインタプリタに選択行を評価させる
  nnoremap <silent> ,ss <S-v>:VimShellSendString<CR>
 
+ " insert から抜けたいコマンドのパータン群
+ let s:leave_insert_patterns = '\%(' . join(map([
+ \   '^git status',
+ \   '^git push',
+ \   '^git submodule add',
+ \   '^foreman start',
+ \   'middleman server',
+ \], '''\%('' . v:val . ''\)'''), '\|') . '\)'
+
+ function! LeaveInsert_in_vimshell(args, context)
+    if a:args =~ s:leave_insert_patterns
+        call feedkeys("\<Esc>")
+    endif
+ endfunction
+
+ augroup my-vimshell
+    autocmd!
+    autocmd FileType vimshell
+ \       call vimshell#hook#add('preexec', 'leave_insert', "LeaveInsert_in_vimshell")
+  augroup END
+
  " 日本語用設定
-if &encoding !=# 'utf-8'
+ if &encoding !=# 'utf-8'
   set encoding=japan
   set fileencoding=japan
-endif
-if has('iconv')
+ endif
+ if has('iconv')
   let s:enc_euc = 'euc-jp'
   let s:enc_jis = 'iso-2022-jp'
   if iconv("\x87\x64\x87\x6a", 'cp932', 'eucjp-ms') ==# "\xad\xc5\xad\xcb"
@@ -166,31 +186,31 @@ if has('iconv')
   endif
   unlet s:enc_euc
   unlet s:enc_jis
-endif
+ endif
 
  " Neobundleの設定
-set nocompatible
+ set nocompatible
 
-filetype plugin indent off
+ filetype plugin indent off
 
-if has('vim_starting')
+ if has('vim_starting')
   set runtimepath+=~/vimfiles/bundle/neobundle.vim
   call neobundle#rc(expand('~/vimfiles/bundle'))
-endif
+ endif
 
-NeoBundle 'Shougo/neobundle.vim'
-NeoBundle 'VimClojure'
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/vimshell.vim'
-NeoBundle 'Shougo/neocomplete'
-NeoBundle 'Shougo/neosnippet'
-NeoBundle 'Shougo/neosnippet-snippets'
-NeoBundle 'jpalardy/vim-slime'
-NeoBundle 'scrooloose/syntastic'
-NeoBundle 'thinca/vim-quickrun'
-NeoBundle 'itchyny/lightline.vim'
-NeoBundle 'Shougo/vimfiler.vim'
-NeoBundle 'Shougo/vimproc', {
+ NeoBundle 'Shougo/neobundle.vim'
+ NeoBundle 'VimClojure'
+ NeoBundle 'Shougo/unite.vim'
+ NeoBundle 'Shougo/vimshell.vim'
+ NeoBundle 'Shougo/neocomplete'
+ NeoBundle 'Shougo/neosnippet'
+ NeoBundle 'Shougo/neosnippet-snippets'
+ NeoBundle 'jpalardy/vim-slime'
+ NeoBundle 'scrooloose/syntastic'
+ NeoBundle 'thinca/vim-quickrun'
+ NeoBundle 'itchyny/lightline.vim'
+ NeoBundle 'Shougo/vimfiler.vim'
+ NeoBundle 'Shougo/vimproc', {
       \ 'build' : {
       \     'windows' : 'make -f make_mingw64.mak',
       \     'cygwin' : 'make -f make_cygwin.mak',
@@ -199,11 +219,11 @@ NeoBundle 'Shougo/vimproc', {
       \    },
       \ }
 
-filetype plugin on
-filetype indent on
+ filetype plugin on
+ filetype indent on
 
  " lightlineの設定
-let g:lightline = {
+ let g:lightline = {
         \ 'mode_map': {'c': 'NORMAL'},
         \ 'active': {
         \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
@@ -220,24 +240,24 @@ let g:lightline = {
         \ }
         \ }
 
-function! MyModified()
+ function! MyModified()
   return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
-endfunction
+ endfunction
 
-function! MyReadonly()
+ function! MyReadonly()
   return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? 'x' : ''
-endfunction
+ endfunction
 
-function! MyFilename()
+ function! MyFilename()
   return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
         \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
         \  &ft == 'unite' ? unite#get_status_string() :
         \  &ft == 'vimshell' ? vimshell#get_status_string() :
         \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
         \ ('' != MyModified() ? ' ' . MyModified() : '')
-endfunction
+ endfunction
 
-function! MyFugitive()
+ function! MyFugitive()
   try
     if &ft !~? 'vimfiler\|gundo' && exists('*fugitive#head')
       return fugitive#head()
@@ -245,20 +265,20 @@ function! MyFugitive()
   catch
   endtry
   return ''
-endfunction
+ endfunction
 
-function! MyFileformat()
+ function! MyFileformat()
   return winwidth(0) > 70 ? &fileformat : ''
-endfunction
+ endfunction
 
-function! MyFiletype()
+ function! MyFiletype()
   return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
-endfunction
+ endfunction
 
-function! MyFileencoding()
+ function! MyFileencoding()
   return winwidth(0) > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
-endfunction
+ endfunction
 
-function! MyMode()
+ function! MyMode()
   return winwidth(0) > 60 ? lightline#mode() : ''
-endfunction
+ endfunction
