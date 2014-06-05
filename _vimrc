@@ -110,7 +110,21 @@
 
  " デフォルトでneocompleteを有効にする
  let g:neocomplete#enable_at_startup = 1
-  
+ 
+
+ " VimShellの設定
+ 
+ " ,is: シェルを起動
+ nnoremap <silent> ,is :VimShell<CR>
+ " ,ipy: pythonを非同期で起動
+ nnoremap <silent> ,ipy :VimShellInteractive python<CR>
+ " ,irb: irbを非同期で起動
+ nnoremap <silent> ,irb :VimShellInteractive irb<CR>
+ " ,ss: 非同期で開いたインタプリタに現在の行を評価させる
+ vmap <silent> ,ss :VimShellSendString<CR>
+ " 選択中に,ss: 非同期で開いたインタプリタに選択行を評価させる
+ nnoremap <silent> ,ss <S-v>:VimShellSendString<CR>
+
  " 日本語用設定
 if &encoding !=# 'utf-8'
   set encoding=japan
