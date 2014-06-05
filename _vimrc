@@ -59,7 +59,7 @@
  set laststatus=2
 
  "フォント
- set guifont=Ricty:h15
+ set guifont=Ricty:h14
  
  " バッファが変更されているとき、コマンドをエラーにするのでなく、保存する
  " かどうか確認を求める
