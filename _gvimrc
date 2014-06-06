@@ -2,8 +2,9 @@
  set lines=30
  set columns=100
 
- " そしてビジュアルベルも無効化する
- set t_vb=
+ " ビープ音とビジュアルベルを無効化する
+ set visualbell t_vb=
+ set noerrorbells
  
- "ウガンダを消す
+ " ウガンダを消す
  set shortmess+=I
