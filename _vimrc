@@ -107,6 +107,9 @@
 
  " 編集中のファイルをリネームする
  command! -nargs=+ -bang -complete=file Rename let pbnr=fnamemodify(bufname('%'), ':p')|exec 'f '.escape(<q-args>, ' ')|w<bang>|call delete(pbnr)
+
+ " neocompleteの常時有効化
+ let g:neocomplete#enable_at_startup = 1
  
  " VimShellの設定
  
