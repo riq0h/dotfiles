@@ -127,7 +127,6 @@
  " insert から抜けたいコマンドのパータン群
  let s:leave_insert_patterns = '\%(' . join(map([
  \   '^git status',
- \   '^git push',
  \   '^git submodule add',
  \   '^foreman start',
  \   'middleman server',
