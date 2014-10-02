@@ -209,14 +209,7 @@
  NeoBundle 'thinca/vim-quickrun'
  NeoBundle 'itchyny/lightline.vim'
  NeoBundle 'Shougo/vimfiler.vim'
- NeoBundle 'Shougo/vimproc', {
-      \ 'build' : {
-      \     'windows' : 'make -f make_mingw64.mak',
-      \     'cygwin' : 'make -f make_cygwin.mak',
-      \     'mac' : 'make -f make_mac.mak',
-      \     'unix' : 'make -f make_unix.mak',
-      \    },
-      \ }
+ NeoBundle 'Shougo/vimproc'
 
  filetype plugin on
  filetype indent on
