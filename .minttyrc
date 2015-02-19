@@ -1,0 +1,16 @@
+BoldAsFont=no
+Transparency=off
+CursorType=underscore
+Font=Inconsolata
+FontHeight=12
+Locale=C
+Charset=UTF-8
+Columns=100
+Rows=30
+Scrollbar=none
+FontSmoothing=partial
+ForegroundColour=220,220,220
+CursorColour=220,220,220
+BackspaceSendsBS=yes
+Term=xterm-256color
+ScrollMod=ctrl
