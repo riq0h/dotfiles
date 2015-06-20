@@ -187,6 +187,10 @@
   unlet s:enc_jis
  endif
 
+ "IMEを勝手に切り替えない"
+ set iminsert=0
+ set imsearch=0
+
  " Neobundleの設定
  set nocompatible
 
@@ -198,7 +202,6 @@
  endif
 
  NeoBundle 'Shougo/neobundle.vim'
- NeoBundle 'VimClojure'
  NeoBundle 'Shougo/unite.vim'
  NeoBundle 'Shougo/vimshell.vim'
  NeoBundle 'Shougo/neocomplete'
