@@ -15,6 +15,9 @@ setopt auto_cd
 alias ...='cd ../..'
 alias ....='cd ../../..'
 
+# 上位階層に移動するコマンド
+function up(){ cpath=./; for i in `seq 1 1 $1`; do cpath=$cpath../; done; cd $cpath;}
+
 # cd した先のディレクトリをディレクトリスタックに追加する
 # ディレクトリスタックとは今までに行ったディレクトリの履歴のこと
 # `cd +<Tab>` でディレクトリの履歴が表示され、そこに移動できる
