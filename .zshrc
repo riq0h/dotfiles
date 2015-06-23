@@ -10,11 +10,6 @@ autoload -U compinit; compinit -u
 # 例： /usr/bin と入力すると /usr/bin ディレクトリに移動
 setopt auto_cd
 
-# ↑を設定すると、 .. とだけ入力したら1つ上のディレクトリに移動できるので……
-# 2つ上、3つ上にも移動できるようにする
-alias ...='cd ../..'
-alias ....='cd ../../..'
-
 # 上位階層に移動するコマンド
 function up(){ cpath=./; for i in `seq 1 1 $1`; do cpath=$cpath../; done; cd $cpath;}
 
