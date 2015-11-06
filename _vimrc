@@ -202,17 +202,15 @@
  endif
 
  NeoBundle 'Shougo/neobundle.vim'
- NeoBundle 'Shougo/unite.vim'
- NeoBundle 'Shougo/vimshell.vim'
- NeoBundle 'Shougo/neocomplete'
- NeoBundle 'Shougo/neosnippet'
+ NeoBundle 'Shougo/neocomplete.vim'
+ NeoBundle 'Shougo/neosnippet.vim'
  NeoBundle 'Shougo/neosnippet-snippets'
- NeoBundle 'jpalardy/vim-slime'
  NeoBundle 'scrooloose/syntastic'
  NeoBundle 'thinca/vim-quickrun'
  NeoBundle 'itchyny/lightline.vim'
- NeoBundle 'Shougo/vimfiler.vim'
- NeoBundle 'Shougo/vimproc'
+ NeoBundle 'Shougo/vimproc.vim'
+ NeoBundle 'Shougo/vimshell'
+
 
  filetype plugin on
  filetype indent on
