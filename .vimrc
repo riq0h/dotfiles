@@ -9,9 +9,6 @@
 
  " Space+ドットで.vimrcを開く
  nnoremap <Space>. :<C-u>tabedit $MYVIMRC<CR>
-
- " Ctrl+xでNormalモードに移行する
- inoremap <C-x> <Esc>
  
  " バッファを保存しなくても他のバッファを表示できるようにする
  set hidden
@@ -55,7 +52,7 @@
  " メニューバーを非表示にする
  set guioptions-=m
  
- " ステータスラインを常に表示する
+ " ステータスラインを表示する。
  set laststatus=2
 
  "フォント
@@ -110,39 +107,6 @@
 
  " neocompleteの常時有効化
  let g:neocomplete#enable_at_startup = 1
- 
- " VimShellの設定
- 
- " ,is: シェルを起動
- nnoremap <silent> ,is :VimShell<CR>
- " ,ipy: pythonを非同期で起動
- nnoremap <silent> ,ipy :VimShellInteractive python<CR>
- " ,irb: irbを非同期で起動
- nnoremap <silent> ,irb :VimShellInteractive irb<CR>
- " ,ss: 非同期で開いたインタプリタに現在の行を評価させる
- vmap <silent> ,ss :VimShellSendString<CR>
- " 選択中に,ss: 非同期で開いたインタプリタに選択行を評価させる
- nnoremap <silent> ,ss <S-v>:VimShellSendString<CR>
-
- " insert から抜けたいコマンドのパータン群
- let s:leave_insert_patterns = '\%(' . join(map([
- \   '^git status',
- \   '^git submodule add',
- \   '^foreman start',
- \   'middleman server',
- \], '''\%('' . v:val . ''\)'''), '\|') . '\)'
-
- function! LeaveInsert_in_vimshell(args, context)
-    if a:args =~ s:leave_insert_patterns
-        call feedkeys("\<Esc>")
-    endif
- endfunction
-
- augroup my-vimshell
-    autocmd!
-    autocmd FileType vimshell
- \       call vimshell#hook#add('preexec', 'leave_insert', "LeaveInsert_in_vimshell")
-  augroup END
 
  " 日本語用設定
  if &encoding !=# 'utf-8'
@@ -202,12 +166,9 @@
  endif
 
  NeoBundle 'Shougo/neobundle.vim'
- NeoBundle 'Shougo/unite.vim'
- NeoBundle 'Shougo/vimshell.vim'
  NeoBundle 'Shougo/neocomplete'
  NeoBundle 'Shougo/neosnippet'
  NeoBundle 'Shougo/neosnippet-snippets'
- NeoBundle 'jpalardy/vim-slime'
  NeoBundle 'scrooloose/syntastic'
  NeoBundle 'thinca/vim-quickrun'
  NeoBundle 'itchyny/lightline.vim'
