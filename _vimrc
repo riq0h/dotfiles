@@ -52,7 +52,7 @@
  " メニューバーを非表示にする
  set guioptions-=m
  
- " ステータスラインを常に表示する
+ " ステータスラインを表示する
  set laststatus=2
 
  "フォント
@@ -163,14 +163,14 @@
  endif
 
  NeoBundle 'Shougo/neobundle.vim'
- NeoBundle 'Shougo/neocomplete.vim'
- NeoBundle 'Shougo/neosnippet.vim'
+ NeoBundle 'Shougo/neocomplete'
+ NeoBundle 'Shougo/neosnippet'
  NeoBundle 'Shougo/neosnippet-snippets'
  NeoBundle 'scrooloose/syntastic'
  NeoBundle 'thinca/vim-quickrun'
  NeoBundle 'itchyny/lightline.vim'
  NeoBundle 'Shougo/vimfiler.vim'
- NeoBundle 'Shougo/vimproc.vim'
+ NeoBundle 'Shougo/vimproc'
  NeoBundle 'tomasr/molokai'
 
  filetype plugin on
