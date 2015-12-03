@@ -71,7 +71,7 @@ tmp_prompt2="%{${fg[green]}%}%_> %{${reset_color}%}"
 tmp_rprompt="%{${fg[green]}%}[%~]%{${reset_color}%}"
 tmp_sprompt="%{${fg[yellow]}%}%r is correct? [Yes, No, Abort, Edit]:%{${reset_color}%}"
 
-# rootユーザ時(太字にし、アンダーバーをつける)
+# rootユーザ時
 if [ ${UID} -eq 0 ]; then
   tmp_prompt="%B${tmp_prompt}%b"
   tmp_prompt2="%B${tmp_prompt2}%b"
