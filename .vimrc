@@ -169,7 +169,6 @@
  NeoBundle 'scrooloose/syntastic'
  NeoBundle 'thinca/vim-quickrun'
  NeoBundle 'itchyny/lightline.vim'
- NeoBundle 'Shougo/vimfiler.vim'
  NeoBundle 'Shougo/vimproc'
  NeoBundle 'tomasr/molokai'
 
