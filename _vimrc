@@ -96,9 +96,6 @@
  set fileencoding=japan
  set fileencodings=utf-8,iso-2022-jpm,euc-jp,ucs-2le,ucs-2,cp932
 
- " カラースキームの設定
- colorscheme molokai
-
  " スワップファイルの生成を行わない
  set noswapfile
 
@@ -151,7 +148,7 @@
   unlet s:enc_jis
  endif
 
- "IMEを勝手に切り替えない"
+ " IMEを勝手に切り替えない
  set iminsert=0
  set imsearch=0
 
@@ -174,10 +171,14 @@
  NeoBundle 'itchyny/lightline.vim'
  NeoBundle 'Shougo/vimfiler.vim'
  NeoBundle 'Shougo/vimproc.vim'
+ NeoBundle 'tomasr/molokai'
 
  filetype plugin on
  filetype indent on
  call neobundle#end()
+
+ " カラースキームの設定
+ colorscheme molokai
 
  " lightlineの設定
  let g:lightline = {
