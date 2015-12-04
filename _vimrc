@@ -170,6 +170,7 @@
  NeoBundle 'thinca/vim-quickrun'
  NeoBundle 'itchyny/lightline.vim'
  NeoBundle 'Shougo/vimproc'
+ NeoBundle 'Shougo/vimshell.vim'
  NeoBundle 'tomasr/molokai'
 
  filetype plugin on
@@ -239,3 +240,6 @@
  function! MyMode()
   return winwidth(0) > 60 ? lightline#mode() : ''
  endfunction
+
+ " 従来のモード表示をOFFにする
+ set noshowmode
