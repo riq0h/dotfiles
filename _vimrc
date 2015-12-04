@@ -170,7 +170,7 @@
  NeoBundle 'thinca/vim-quickrun'
  NeoBundle 'itchyny/lightline.vim'
  NeoBundle 'Shougo/vimproc'
- NeoBundle 'Shougo/vimshell.vim'
+ NeoBundle 'Shougo/unite.vim'
  NeoBundle 'tomasr/molokai'
 
  filetype plugin on
