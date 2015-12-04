@@ -9,7 +9,7 @@
 
  " Space+ドットで.vimrcを開く
  nnoremap <Space>. :<C-u>tabedit $MYVIMRC<CR>
- 
+
  " バッファを保存しなくても他のバッファを表示できるようにする
  set hidden
  
@@ -51,7 +51,7 @@
 
  " メニューバーを非表示にする
  set guioptions-=m
- 
+
  " ステータスラインを表示する
  set laststatus=2
 
@@ -239,3 +239,6 @@
  function! MyMode()
   return winwidth(0) > 60 ? lightline#mode() : ''
  endfunction
+
+ " 従来のモード表示をOFFにする
+ set noshowmode
