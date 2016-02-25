@@ -1,5 +1,8 @@
  " Vi互換モードをオフ（Vimの拡張機能を有効）
  set nocompatible
+
+ "undoを生成しない
+ set noundofile
  
  " ファイル名と内容によってファイルタイプを判別し、ファイルタイププラグインを有効にする
  filetype indent plugin on
