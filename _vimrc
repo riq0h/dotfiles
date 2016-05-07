@@ -126,11 +126,8 @@
  NeoBundle 'Shougo/neocomplete'
  NeoBundle 'Shougo/neosnippet'
  NeoBundle 'Shougo/neosnippet-snippets'
- NeoBundle 'scrooloose/syntastic'
- NeoBundle 'thinca/vim-quickrun'
  NeoBundle 'itchyny/lightline.vim'
  NeoBundle 'Shougo/vimproc'
- NeoBundle 'Shougo/unite.vim'
  NeoBundle 'tomasr/molokai'
 
  filetype plugin on
