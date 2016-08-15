@@ -253,3 +253,6 @@ endif
 
  " 従来のモード表示をOFFにする
  set noshowmode
+ 
+ " ファイル認識機能を再起動
+ filetype indent plugin on
