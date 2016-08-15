@@ -153,29 +153,39 @@
  set imsearch=0
 
  " Neobundleの設定
- set nocompatible
+ let s:dein_dir = expand('~/.cache/dein')
+" dein.vim 本体
+let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 
- filetype plugin indent off
+" dein.vim がなければ github から落としてくる
+if &runtimepath !~# '/dein.vim'
+  if !isdirectory(s:dein_repo_dir)
+    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+  endif
+  execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
+endif
 
- if has('vim_starting')
-  set runtimepath+=~/.vim/bundle/neobundle.vim
-  call neobundle#begin(expand('~/.vim/bundle'))
- endif
+" 設定開始
+if dein#load_state(s:dein_dir)
+  call dein#begin(s:dein_dir)
 
- NeoBundle 'Shougo/neobundle.vim'
- NeoBundle 'Shougo/neocomplete'
- NeoBundle 'Shougo/neosnippet'
- NeoBundle 'Shougo/neosnippet-snippets'
- NeoBundle 'scrooloose/syntastic'
- NeoBundle 'thinca/vim-quickrun'
- NeoBundle 'itchyny/lightline.vim'
- NeoBundle 'Shougo/vimproc'
- NeoBundle 'Shougo/unite.vim'
- NeoBundle 'tomasr/molokai'
+  " プラグインリストを収めた TOML ファイル
+  " 予め TOML ファイル（後述）を用意しておく
+  let g:rc_dir    = expand('~/.vim/rc')
+  let s:toml      = g:rc_dir . '/dein.toml'
+  
+  " TOML を読み込み、キャッシュしておく
+  call dein#load_toml(s:toml,      {'lazy': 0})
+  
+  " 設定終了
+  call dein#end()
+  call dein#save_state()
+endif
 
- filetype plugin on
- filetype indent on
- call neobundle#end()
+" もし、未インストールものものがあったらインストール
+if dein#check_install()
+  call dein#install()
+endif
 
  " カラースキームの設定
  colorscheme molokai
