@@ -112,28 +112,49 @@
  set iminsert=0
  set imsearch=0
 
- " Neobundleの設定
- set nocompatible
+ "dein.vimの設定
+ " deinパス設定
+ let s:dein_dir = fnamemodify('~/.vim/dein/', ':p') "<-お好きな場所
+ let s:dein_repo_dir = s:dein_dir . 'repos/github.com/Shougo/dein.vim' "<-固定
 
- filetype plugin indent off
-
- if has('vim_starting')
-  set runtimepath+=~/vimfiles/bundle/neobundle.vim
-  call neobundle#begin(expand('~/vimfiles/bundle'))
+ " dein.vim本体の存在チェックとインストール
+ if !isdirectory(s:dein_repo_dir)
+    execute '!git clone https://github.com/Shougo/dein.vim' shellescape(s:dein_repo_dir)
  endif
 
- NeoBundle 'Shougo/neobundle.vim'
- NeoBundle 'Shougo/neocomplete'
- NeoBundle 'Shougo/neosnippet'
- NeoBundle 'Shougo/neosnippet-snippets'
- NeoBundle 'itchyny/lightline.vim'
- NeoBundle 'Shougo/vimproc'
- NeoBundle 'tomasr/molokai'
+ " dein.vim本体をランタイムパスに追加
+ if &runtimepath !~# '/dein.vim'
+    execute 'set runtimepath^=' . s:dein_repo_dir
+ endif
 
- filetype plugin on
- filetype indent on
- call neobundle#end()
+ call dein#begin(s:dein_dir)
+ 
+ call dein#add('Shougo/neocomplete.vim')
+ call dein#add('Shougo/neosnippet.vim')
+ call dein#add('Shougo/neosnippet-snippets')
+ call dein#add('itchyny/lightline.vim')
+ call dein#add('Shougo/unite.vim')
+ call dein#add('Shougo/vimproc' , {
+   \ 'build' : {
+      \     'windows' : 'make -f make_mingw64.mak',
+      \     'cygwin' : 'make -f make_cygwin.mak',
+      \     'mac' : 'make -f make_mac.mak',
+      \     'unix' : 'make -f make_unix.mak',
+      \    },
+      \ })
+ call dein#add('thinca/vim-quickrun')
+ call dein#add('tomasr/molokai')
 
+ " 必須
+ call dein#end()
+ filetype plugin indent on
+ syntax enable
+
+ " プラグインのインストール
+ if dein#check_install()
+  call dein#install()
+ endif
+ 
  " カラースキームの設定
  colorscheme molokai
 
@@ -200,3 +221,6 @@
 
  " 従来のモード表示をOFFにする
  set noshowmode
+
+ " ファイル認識機能を再起動
+ filetype indent plugin on
