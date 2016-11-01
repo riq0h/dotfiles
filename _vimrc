@@ -134,14 +134,7 @@
  call dein#add('Shougo/neosnippet-snippets')
  call dein#add('itchyny/lightline.vim')
  call dein#add('Shougo/unite.vim')
- call dein#add('Shougo/vimproc' , {
-   \ 'build' : {
-      \     'windows' : 'make -f make_mingw64.mak',
-      \     'cygwin' : 'make -f make_cygwin.mak',
-      \     'mac' : 'make -f make_mac.mak',
-      \     'unix' : 'make -f make_unix.mak',
-      \    },
-      \ })
+ call dein#add('Shougo/vimproc')
  call dein#add('thinca/vim-quickrun')
  call dein#add('tomasr/molokai')
 

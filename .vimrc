@@ -1,5 +1,8 @@
  " Vi互換モードをオフ（Vimの拡張機能を有効）
  set nocompatible
+
+ "undoを生成しない
+ set noundofile
  
  " ファイル名と内容によってファイルタイプを判別し、ファイルタイププラグインを有効にする
  filetype indent plugin on
@@ -9,7 +12,7 @@
 
  " Space+ドットで.vimrcを開く
  nnoremap <Space>. :<C-u>tabedit $MYVIMRC<CR>
-
+ 
  " バッファを保存しなくても他のバッファを表示できるようにする
  set hidden
  
@@ -51,7 +54,7 @@
 
  " メニューバーを非表示にする
  set guioptions-=m
-
+ 
  " ステータスラインを表示する
  set laststatus=2
 
@@ -93,8 +96,8 @@
  set nobackup
 
  " エンコード設定
- set fileencoding=japan
- set fileencodings=utf-8,iso-2022-jpm,euc-jp,ucs-2le,ucs-2,cp932
+ set encoding=utf-8
+ set fileencodings=iso-2022-jp,cp932,sjis,euc-jp,utf-8
 
  " スワップファイルの生成を行わない
  set noswapfile
@@ -105,88 +108,46 @@
  " neocompleteの常時有効化
  let g:neocomplete#enable_at_startup = 1
 
- " 日本語用設定
- if &encoding !=# 'utf-8'
-  set encoding=japan
-  set fileencoding=japan
- endif
- if has('iconv')
-  let s:enc_euc = 'euc-jp'
-  let s:enc_jis = 'iso-2022-jp'
-  if iconv("\x87\x64\x87\x6a", 'cp932', 'eucjp-ms') ==# "\xad\xc5\xad\xcb"
-    let s:enc_euc = 'eucjp-ms'
-    let s:enc_jis = 'iso-2022-jp-3'
-  elseif iconv("\x87\x64\x87\x6a", 'cp932', 'euc-jisx0213') ==# "\xad\xc5\xad\xcb"
-    let s:enc_euc = 'euc-jisx0213'
-    let s:enc_jis = 'iso-2022-jp-3'
-  endif
-  if &encoding ==# 'utf-8'
-    let s:fileencodings_default = &fileencodings
-    if has('mac')
-      let &fileencodings = s:enc_jis .','. s:enc_euc
-      let &fileencodings = &fileencodings .','. s:fileencodings_default
-    else
-      let &fileencodings = s:enc_jis .','. s:enc_euc .',cp932'
-      let &fileencodings = &fileencodings .','. s:fileencodings_default
-    endif
-    unlet s:fileencodings_default
-  else
-    let &fileencodings = &fileencodings .','. s:enc_jis
-    set fileencodings+=utf-8,ucs-2le,ucs-2
-    if &encoding =~# '^\(euc-jp\|euc-jisx0213\|eucjp-ms\)$'
-      set fileencodings+=cp932
-      set fileencodings-=euc-jp
-      set fileencodings-=euc-jisx0213
-      set fileencodings-=eucjp-ms
-      let &encoding = s:enc_euc
-      let &fileencoding = s:enc_euc
-    else
-      let &fileencodings = &fileencodings .','. s:enc_euc
-    endif
-  endif
-  unlet s:enc_euc
-  unlet s:enc_jis
- endif
-
  " IMEを勝手に切り替えない
  set iminsert=0
  set imsearch=0
 
- " Neobundleの設定
- let s:dein_dir = expand('~/.cache/dein')
-" dein.vim 本体
-let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+ "dein.vimの設定
+ " deinパス設定
+ let s:dein_dir = fnamemodify('~/.vim/dein/', ':p') "<-お好きな場所
+ let s:dein_repo_dir = s:dein_dir . 'repos/github.com/Shougo/dein.vim' "<-固定
 
-" dein.vim がなければ github から落としてくる
-if &runtimepath !~# '/dein.vim'
-  if !isdirectory(s:dein_repo_dir)
-    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
-  endif
-  execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
-endif
+ " dein.vim本体の存在チェックとインストール
+ if !isdirectory(s:dein_repo_dir)
+    execute '!git clone https://github.com/Shougo/dein.vim' shellescape(s:dein_repo_dir)
+ endif
 
-" 設定開始
-if dein#load_state(s:dein_dir)
-  call dein#begin(s:dein_dir)
+ " dein.vim本体をランタイムパスに追加
+ if &runtimepath !~# '/dein.vim'
+    execute 'set runtimepath^=' . s:dein_repo_dir
+ endif
 
-  " プラグインリストを収めた TOML ファイル
-  " 予め TOML ファイル（後述）を用意しておく
-  let g:rc_dir    = expand('~/.vim/rc')
-  let s:toml      = g:rc_dir . '/dein.toml'
-  
-  " TOML を読み込み、キャッシュしておく
-  call dein#load_toml(s:toml,      {'lazy': 0})
-  
-  " 設定終了
-  call dein#end()
-  call dein#save_state()
-endif
+ call dein#begin(s:dein_dir)
+ 
+ call dein#add('Shougo/neocomplete.vim')
+ call dein#add('Shougo/neosnippet.vim')
+ call dein#add('Shougo/neosnippet-snippets')
+ call dein#add('itchyny/lightline.vim')
+ call dein#add('Shougo/unite.vim')
+ call dein#add('Shougo/vimproc')
+ call dein#add('thinca/vim-quickrun')
+ call dein#add('tomasr/molokai')
 
-" もし、未インストールものものがあったらインストール
-if dein#check_install()
+ " 必須
+ call dein#end()
+ filetype plugin indent on
+ syntax enable
+
+ " プラグインのインストール
+ if dein#check_install()
   call dein#install()
-endif
-
+ endif
+ 
  " カラースキームの設定
  colorscheme molokai
 
@@ -253,6 +214,6 @@ endif
 
  " 従来のモード表示をOFFにする
  set noshowmode
- 
+
  " ファイル認識機能を再起動
  filetype indent plugin on
