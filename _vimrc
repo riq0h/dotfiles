@@ -135,15 +135,14 @@
  call dein#add('Shougo/unite.vim')
  call dein#add('Shougo/vimproc')
  call dein#add('thinca/vim-quickrun')
- call dein#add('Shougo/vimfiler.vim')
  call dein#add('Yggdroot/indentLine')
  call dein#add('thinca/vim-visualstar')
- call dein#add('ctrlpvim/ctrlp.vim')
  call dein#add('t9md/vim-textmanip')
  call dein#add('bronson/vim-trailing-whitespace')
  call dein#add('rhysd/accelerated-jk')
  call dein#add('ervandew/supertab')
  call dein#add('plasticboy/vim-markdown')
+ call dein#add('cohama/lexima.vim')
  call dein#add('tomasr/molokai')
 
  " 必須
@@ -158,9 +157,6 @@
 
  " ファイル保存時に余分なスペースを削除
  autocmd BufWritePre * :FixWhitespace
-
- " 検索モード
- nmap <Leader>f :Ctrlp<CR>
 
  " エディタの分割方向を設定する
  set splitbelow
