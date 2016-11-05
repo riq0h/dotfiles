@@ -132,8 +132,8 @@
  call dein#add('Shougo/neosnippet.vim')
  call dein#add('Shougo/neosnippet-snippets')
  call dein#add('itchyny/lightline.vim')
- call dein#add('Shougo/unite.vim')
  call dein#add('Shougo/vimproc')
+ call dein#add('Shougo/vimfiler')
  call dein#add('thinca/vim-quickrun')
  call dein#add('Yggdroot/indentLine')
  call dein#add('thinca/vim-visualstar')
@@ -141,7 +141,6 @@
  call dein#add('bronson/vim-trailing-whitespace')
  call dein#add('rhysd/accelerated-jk')
  call dein#add('ervandew/supertab')
- call dein#add('plasticboy/vim-markdown')
  call dein#add('cohama/lexima.vim')
  call dein#add('tomasr/molokai')
 
@@ -165,12 +164,6 @@
  " j/kによる移動を高速化
  nmap j <plug>(accelerated_jk_gj)
  nmap k <plug>(accelerated_jk_gk)
-
- "vim-markdownの設定
- let g:vim_markdown_math = 1
- let g:vim_markdown_frontmatter = 1
- let g:vim_markdown_toc_autofit = 1
- let g:vim_markdown_folding_style_pythonic = 1
 
  " カラースキームの設定
  colorscheme molokai
