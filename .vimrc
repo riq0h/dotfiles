@@ -133,6 +133,7 @@
  call dein#add('Shougo/neosnippet-snippets')
  call dein#add('itchyny/lightline.vim')
  call dein#add('Shougo/vimproc')
+ call dein#add('Shougo/unite.vim')
  call dein#add('Shougo/vimfiler')
  call dein#add('thinca/vim-quickrun')
  call dein#add('Yggdroot/indentLine')
