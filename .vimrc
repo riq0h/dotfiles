@@ -166,9 +166,6 @@
  nmap j <plug>(accelerated_jk_gj)
  nmap k <plug>(accelerated_jk_gk)
 
- " カラースキームの設定
- colorscheme molokai
-
  " lightlineの設定
  let g:lightline = {
         \ 'mode_map': {'c': 'NORMAL'},
@@ -232,6 +229,9 @@
 
  " 従来のモード表示をOFFにする
  set noshowmode
+
+ " カラースキームの設定
+ colorscheme molokai
 
  " ファイル認識機能を再起動
  filetype indent plugin on
