@@ -135,7 +135,6 @@
  call dein#add('Shougo/vimproc')
  call dein#add('Shougo/unite.vim')
  call dein#add('Shougo/vimfiler')
- call dein#add('thinca/vim-quickrun')
  call dein#add('Yggdroot/indentLine')
  call dein#add('thinca/vim-visualstar')
  call dein#add('t9md/vim-textmanip')
