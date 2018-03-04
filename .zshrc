@@ -51,8 +51,10 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 
 # デフォルトエディタをVimにする
-export EDITOR=vim
-alias v=vim
+export EDITOR=nvim
+alias v=nvim
+alias vim=nvim
+export VTE_VERSION="100"
 
 # 履歴関連
 HISTFILE=~/.zsh_history   # ヒストリを保存するファイル
