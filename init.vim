@@ -105,7 +105,7 @@
  " スワップファイルの生成を行わない
  set noswapfile
 
- " 編集中のファイルをリネームする
+" 編集中のファイルをリネームする
  command! -nargs=+ -bang -complete=file Rename let pbnr=fnamemodify(bufname('%'), ':p')|exec 'f '.escape(<q-args>, ' ')|w<bang>|call delete(pbnr)
 
  " IMEを勝手に切り替えない
@@ -133,7 +133,6 @@
  call dein#add('Shougo/neosnippet-snippets')
  call dein#add('vim-airline/vim-airline')
  call dein#add('vim-airline/vim-airline-themes')
- call dein#add('Yggdroot/indentLine')
  call dein#add('bronson/vim-trailing-whitespace')
  call dein#add('rhysd/accelerated-jk')
  call dein#add('ervandew/supertab')
@@ -161,14 +160,14 @@
  nmap j <plug>(accelerated_jk_gj)
  nmap k <plug>(accelerated_jk_gk)
 
- " ラストスタッツ
- set laststatus=2
  " パワーラインでかっこよく
  let g:airline_powerline_fonts = 1
  " カラーテーマ指定してかっこよく
  let g:airline_theme = 'badwolf'
  " タブバーをかっこよく
  let g:airline#extensions#tabline#enabled = 1
+ let g:airline#extensions#tabline#show_buffers = 0
+
 
  " 従来のモード表示をOFFにする
  set noshowmode
