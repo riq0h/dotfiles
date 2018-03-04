@@ -161,12 +161,14 @@
  nmap j <plug>(accelerated_jk_gj)
  nmap k <plug>(accelerated_jk_gk)
 
-" パワーラインでかっこよく
-let g:airline_powerline_fonts = 1
-" カラーテーマ指定してかっこよく
-let g:airline_theme = 'badwolf'
-" タブバーをかっこよく
-let g:airline#extensions#tabline#enabled = 1
+ " ラストスタッツ
+ set laststatus=2
+ " パワーラインでかっこよく
+ let g:airline_powerline_fonts = 1
+ " カラーテーマ指定してかっこよく
+ let g:airline_theme = 'badwolf'
+ " タブバーをかっこよく
+ let g:airline#extensions#tabline#enabled = 1
 
  " 従来のモード表示をOFFにする
  set noshowmode
