@@ -108,9 +108,6 @@
  " 編集中のファイルをリネームする
  command! -nargs=+ -bang -complete=file Rename let pbnr=fnamemodify(bufname('%'), ':p')|exec 'f '.escape(<q-args>, ' ')|w<bang>|call delete(pbnr)
 
- " neocompleteの常時有効化
- let g:neocomplete#enable_at_startup = 1
-
  " IMEを勝手に切り替えない
  set iminsert=0
  set imsearch=0
@@ -171,9 +168,6 @@ let g:airline_powerline_fonts = 1
 let g:airline_theme = 'badwolf'
 " タブバーをかっこよく
 let g:airline#extensions#tabline#enabled = 1
-
-" 選択行列の表示をカスタム(デフォルトだと長くて横幅を圧迫するので最小限に)
-let g:airline_section_z = airline#section#create(['windowswap', '%3p%% ', 'linenr', ':%3v'])
 
  " 従来のモード表示をOFFにする
  set noshowmode
