@@ -10,9 +10,6 @@
  " 色づけをオン
  syntax on
 
- " カラースキーム
- colorscheme molokai
-
  " Space+ドットで.vimrcを開く
  nnoremap <Space>. :<C-u>tabedit $MYVIMRC<CR>
 
