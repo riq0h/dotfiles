@@ -135,7 +135,6 @@
  call dein#add('vim-airline/vim-airline-themes')
  call dein#add('bronson/vim-trailing-whitespace')
  call dein#add('rhysd/accelerated-jk')
- call dein#add('ervandew/supertab')
  call dein#add('cohama/lexima.vim')
  call dein#add('tomasr/molokai')
 
