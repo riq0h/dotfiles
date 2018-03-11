@@ -43,6 +43,9 @@
  " 移動コマンドを使ったとき、行頭に移動しない
  set nostartofline
 
+ " ウガンダを消す
+ set shortmess+=I
+
  " 左右のスクロールバーを非表示にする
  set guioptions-=r
  set guioptions-=R

@@ -159,7 +159,6 @@
  nmap j <plug>(accelerated_jk_gj)
  nmap k <plug>(accelerated_jk_gk)
 
-
  " lightlineの設定
  let g:lightline = {
         \ 'mode_map': {'c': 'NORMAL'},
