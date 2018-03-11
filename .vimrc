@@ -133,10 +133,8 @@
  call dein#add('Shougo/neosnippet-snippets')
  call dein#add('itchyny/lightline.vim')
  call dein#add('Shougo/vimproc')
- call dein#add('Yggdroot/indentLine')
  call dein#add('bronson/vim-trailing-whitespace')
  call dein#add('rhysd/accelerated-jk')
- call dein#add('ervandew/supertab')
  call dein#add('cohama/lexima.vim')
  call dein#add('tomasr/molokai')
 
