@@ -16,3 +16,7 @@ Term=xterm-256color
 ScrollMod=ctrl
 ConfirmExit=no
 BellType=0
+WindowShortcuts=no
+SwitchShortcuts=no
+ZoomShortcuts=no
+ThemeFile=xterm
