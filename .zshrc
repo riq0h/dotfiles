@@ -52,9 +52,9 @@ WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 
 # デフォルトエディタをVimにする
 export EDITOR=nvim
+alias sudo='sudo -E '
 alias v=nvim
 alias vim=nvim
-export VTE_VERSION="100"
 
 # 履歴関連
 HISTFILE=~/.zsh_history   # ヒストリを保存するファイル
