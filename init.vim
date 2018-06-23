@@ -129,8 +129,8 @@
 
  call dein#begin(s:dein_dir)
  call dein#add('Shougo/deoplete.nvim')
- call dein#add('Shougo/neosnippet.vim')
- call dein#add('Shougo/neosnippet-snippets')
+ call dein#add('Shougo/neco-vim')
+ call dein#add('Shougo/neco-syntax')
  call dein#add('itchyny/lightline.vim')
  call dein#add('vim-airline/vim-airline-themes')
  call dein#add('bronson/vim-trailing-whitespace')
@@ -146,7 +146,10 @@
  " プラグインのインストール
  if dein#check_install()
   call dein#install()
- endif
+endif
+
+ " deoplete有効化
+ let g:deoplete#enable_at_startup = 1
 
  " ファイル保存時に余分なスペースを削除
  autocmd BufWritePre * :FixWhitespace

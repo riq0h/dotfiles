@@ -132,8 +132,6 @@
 
  call dein#begin(s:dein_dir)
  call dein#add('Shougo/neocomplete.vim')
- call dein#add('Shougo/neosnippet.vim')
- call dein#add('Shougo/neosnippet-snippets')
  call dein#add('itchyny/lightline.vim')
  call dein#add('Shougo/vimproc')
  call dein#add('bronson/vim-trailing-whitespace')
