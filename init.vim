@@ -92,6 +92,9 @@
  " Yの動作をDやCと同じにする
  map Y y$
 
+ " クリップボード保持
+ set clipboard+=unnamedplus
+
  " <C-L>で検索後の強調表示を解除する
  nnoremap <C-L> :nohl<CR><C-L>
 
@@ -150,6 +153,14 @@ endif
 
  " deoplete有効化
  let g:deoplete#enable_at_startup = 1
+ let g:deoplete#auto_complete_delay = 0
+ let g:deoplete#auto_complete_start_length = 1
+ let g:deoplete#enable_camel_case = 0
+ let g:deoplete#enable_ignore_case = 0
+ let g:deoplete#enable_refresh_always = 0
+ let g:deoplete#enable_smart_case = 1
+ let g:deoplete#file#enable_buffer_path = 1
+ let g:deoplete#max_list = 10000
 
  " ファイル保存時に余分なスペースを削除
  autocmd BufWritePre * :FixWhitespace
