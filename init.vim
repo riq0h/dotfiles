@@ -83,12 +83,6 @@
  " <F11>キーで'paste'と'nopaste'を切り替える
  set pastetoggle=<F11>
 
- " タブ文字の代わりにスペース2個を使う場合の設定。
- " この場合、'tabstop'はデフォルトの8から変えない。
- set shiftwidth=2
- set softtabstop=2
- set expandtab
-
  " Yの動作をDやCと同じにする
  map Y y$
 
@@ -115,53 +109,6 @@
  set iminsert=0
  set imsearch=0
 
- " dein.vimの設定
- " deinパス設定
- let s:dein_dir = fnamemodify('~/.config/nvim/', ':p') "<-お好きな場所
- let s:dein_repo_dir = s:dein_dir . 'repos/github.com/Shougo/dein.vim' "<-固定
-
- " dein.vim本体の存在チェックとインストール
- if !isdirectory(s:dein_repo_dir)
-    execute '!git clone https://github.com/Shougo/dein.vim' shellescape(s:dein_repo_dir)
- endif
-
- " dein.vim本体をランタイムパスに追加
- if &runtimepath !~# '/dein.vim'
-    execute 'set runtimepath^=' . s:dein_repo_dir
- endif
-
- call dein#begin(s:dein_dir)
- call dein#add('Shougo/deoplete.nvim')
- call dein#add('Shougo/neco-vim')
- call dein#add('Shougo/neco-syntax')
- call dein#add('itchyny/lightline.vim')
- call dein#add('vim-airline/vim-airline-themes')
- call dein#add('bronson/vim-trailing-whitespace')
- call dein#add('rhysd/accelerated-jk')
- call dein#add('cohama/lexima.vim')
- call dein#add('tomasr/molokai')
-
- " 必須
- call dein#end()
- filetype plugin indent on
- syntax enable
-
- " プラグインのインストール
- if dein#check_install()
-  call dein#install()
-endif
-
- " deoplete有効化
- let g:deoplete#enable_at_startup = 1
- let g:deoplete#auto_complete_delay = 0
- let g:deoplete#auto_complete_start_length = 1
- let g:deoplete#enable_camel_case = 0
- let g:deoplete#enable_ignore_case = 0
- let g:deoplete#enable_refresh_always = 0
- let g:deoplete#enable_smart_case = 1
- let g:deoplete#file#enable_buffer_path = 1
- let g:deoplete#max_list = 10000
-
  " ファイル保存時に余分なスペースを削除
  autocmd BufWritePre * :FixWhitespace
 
@@ -172,6 +119,63 @@ endif
  " j/kによる移動を高速化
  nmap j <plug>(accelerated_jk_gj)
  nmap k <plug>(accelerated_jk_gk)
+
+if !&compatible
+  set nocompatible
+endif
+
+
+" dein.vim 関連 {{{
+" インストールディレクトリの指定 {{{
+let s:dein_dir = expand('~/.config/nvim/.cache/dein')
+let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+" }}}
+
+" deinがインストールされているか確認 {{{
+if &runtimepath !~# '/dein.vim'
+  if !isdirectory(s:dein_repo_dir)
+    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+  endif
+  execute 'set runtimepath^=' . s:dein_repo_dir
+endif
+" }}}
+
+" deinの読み込み開始 {{{
+if dein#load_state(s:dein_dir)
+  call dein#begin(s:dein_dir)
+
+  " .tomlファイルの場所
+  let s:rc_dir = expand('~/.config/nvim/')
+  if !isdirectory(s:rc_dir)
+    call mkdir(s:rc_dir, 'p')
+  endif
+  let s:toml = s:rc_dir . '/dein.toml'
+
+  " .tomlファイルを読み込む
+  call dein#load_toml(s:toml, {'lazy': 0})
+
+  " 終了
+  call dein#end()
+  call dein#save_state()
+endif
+" }}}
+
+" プラグインが不足していればインストールする {{{
+if dein#check_install()
+  call dein#install()
+endif
+" }}}
+
+" .tomlファイルに記述されていないプラグインを削除する {{{
+let s:removed_plugins = dein#check_clean()
+if len(s:removed_plugins) > 0
+  call map(s:removed_plugins, "delete(v:val, 'rf')")
+  call dein#recache_runtimepath()
+endif
+" }}}
+
+" カラースキームの設定
+ colorscheme molokai
 
  " lightlineの設定
  let g:lightline = {
@@ -234,11 +238,14 @@ endif
   return winwidth(0) > 60 ? lightline#mode() : ''
  endfunction
 
+ " NERDTree開閉
+ map <Leader>n <plug>NERDTreeTabsToggle<CR>
+
+ " deoplete起動
+ let g:deopelete#enable_at_startup = 1
+
  " 従来のモード表示をOFFにする
  set noshowmode
-
- " カラースキームの設定
- colorscheme molokai
 
  " ファイル認識機能を再起動
  filetype indent plugin on

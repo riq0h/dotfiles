@@ -1,0 +1,50 @@
+[[plugins]]
+ repo = 'Shougo/deoplete.nvim'
+
+ [[plugins]]
+ repo = 'Shougo/neco-vim'
+
+[[plugins]]
+ repo = 'Shougo/neco-syntax'
+
+[[plugins]]
+ repo = 'itchyny/lightline.vim'
+
+[[plugins]]
+ repo = 'bronson/vim-trailing-whitespace'
+
+[[plugins]]
+ repo = 'vim-airline/vim-airline-themes'
+
+[[plugins]]
+ repo = 'cohama/lexima.vim'
+
+[[plugins]]
+ repo = 'preservim/nerdtree'
+
+[[plugins]]
+ repo = 'Xuyuanp/nerdtree-git-plugin'
+
+[[plugins]]
+ repo = 'jistr/vim-nerdtree-tabs'
+
+[[plugins]]
+ repo = 'ryanoasis/vim-devicons'
+
+[[plugins]]
+ repo = 'previm/previm'
+
+[[plugins]]
+ repo = 'mattn/vim-maketable'
+
+ [[plugins]]
+repo = 'junegunn/fzf'
+build_on = '''
+./install -all
+'''
+
+[[plugins]]
+repo = 'junegunn/fzf.vim'
+
+ [[plugins]]
+ repo = 'tomasr/molokai'
