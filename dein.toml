@@ -31,15 +31,6 @@
 [[plugins]]
  repo = 'ryanoasis/vim-devicons'
 
-[[plugins]]
- repo = 'previm/previm'
-
-[[plugins]]
- repo = 'tyru/open-browser.vim'
-
-[[plugins]]
- repo = 'mattn/vim-maketable'
-
  [[plugins]]
 repo = 'junegunn/fzf'
 build_on = '''
