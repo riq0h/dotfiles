@@ -1,5 +1,16 @@
 [[plugins]]
  repo = 'Shougo/deoplete.nvim'
+ hook_add = '''
+   let g:deoplete#enable_at_startup = 1
+   let g:deoplete#enable_ignore_case = 1
+'''
+# deoplete on vim requires plugin 1/2
+[[plugins]]
+repo = 'roxma/nvim-yarp'
+
+# deoplete on vim requires plugin 2/2
+[[plugins]]
+repo = 'roxma/vim-hug-neovim-rpc'
 
  [[plugins]]
  repo = 'Shougo/neco-vim'
@@ -24,9 +35,6 @@
 
 [[plugins]]
  repo = 'Xuyuanp/nerdtree-git-plugin'
-
-[[plugins]]
- repo = 'jistr/vim-nerdtree-tabs'
 
 [[plugins]]
  repo = 'ryanoasis/vim-devicons'

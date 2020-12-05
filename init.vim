@@ -238,12 +238,6 @@ endif
   return winwidth(0) > 60 ? lightline#mode() : ''
  endfunction
 
- " NERDTree開閉
- map <Leader>n <plug>NERDTreeTabsToggle<CR>
-
- " deoplete起動
- let g:deopelete#enable_at_startup = 1
-
  " 従来のモード表示をOFFにする
  set noshowmode
 
