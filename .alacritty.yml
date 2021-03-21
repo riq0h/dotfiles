@@ -78,12 +78,17 @@ font:
     family: 'Ricty'
     style: Bold Italic
 
+# ウインドウ
 window:
   decorations: full
   dimensions:
           columms: 120
           line: 100
 
+# 透過
+background_opacity: 0.9
+
+# 環境変数
 env:
   TERM: alacritty
 
