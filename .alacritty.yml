@@ -1,5 +1,17 @@
 shell:
   program: /usr/bin/zsh
+  args:
+    - --login
+
+# カーソル
+cursor:
+  text: '#ffffff'
+  cursor: '#00ff00'
+  style:
+    shape: Underline
+    blinking: On
+  unfocused_hollow: false
+  blink_interval: 470
 
 # テーマ
 # KDE Breeze (Ported from Konsole)
@@ -47,9 +59,12 @@ colors:
     cyan: '#186c60'
     white: '#63686d'
 
+# タブスペース
+tabspaces: 4
+
 # フォント
 font:
-  size: 15
+  size: 14
   normal:
     family: 'Ricty'
     style: Regular

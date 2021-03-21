@@ -64,37 +64,6 @@ setopt bang_hist          # !を使ったヒストリ展開を行う(d)
 setopt extended_history   # ヒストリに実行時間も保存する
 setopt hist_reduce_blanks # 余分なスペースを削除してヒストリに保存する
 
-### Prompt ###
-# プロンプトに色を付ける
-autoload -U colors; colors
-# 一般ユーザ時
-tmp_prompt="%{${fg[green]}%}%n%# %{${reset_color}%}"
-tmp_prompt2="%{${fg[green]}%}%_> %{${reset_color}%}"
-tmp_rprompt="%{${fg[green]}%}[%~]%{${reset_color}%}"
-tmp_sprompt="%{${fg[yellow]}%}%r is correct? [Yes, No, Abort, Edit]:%{${reset_color}%}"
-
-# rootユーザ時
-if [ ${UID} -eq 0 ]; then
-  tmp_prompt="%B${tmp_prompt}%b"
-  tmp_prompt2="%B${tmp_prompt2}%b"
-  tmp_rprompt="%B${tmp_rprompt}%b"
-  tmp_sprompt="%B${tmp_sprompt}%b"
-fi
-
-PROMPT=$tmp_prompt    # 通常のプロンプト
-PROMPT2=$tmp_prompt2  # セカンダリのプロンプト(コマンドが2行以上の時に表示される)
-RPROMPT=$tmp_rprompt  # 右側のプロンプト
-SPROMPT=$tmp_sprompt  # スペル訂正用プロンプト
-# SSHログイン時のプロンプト
-[ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
-  PROMPT="%{${fg[white]}%}${HOST%%.*} ${PROMPT}"
-
-#ls関連
-alias ls='ls --color'
-export LS_COLORS=exfxcxdxbxegedabagacad
-# 補完時の色の設定
-export LS_COLORS='di=01;34:ln=01;35:so=01;32:ex=01;31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
-# 補完候補に色を付ける
-if [ -n "$LS_COLORS" ]; then
-  zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-fi
+# Pure
+autoload -U promptinit; promptinit
+prompt pure

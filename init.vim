@@ -16,6 +16,9 @@
  " バッファを保存しなくても他のバッファを表示できるようにする
  set hidden
 
+ " カーソル
+ set guicursor=
+
  " コマンドライン補完を便利に
  set wildmenu
 
@@ -115,10 +118,6 @@
  " エディタの分割方向を設定する
  set splitbelow
  set splitright
-
- " j/kによる移動を高速化
- nmap j <plug>(accelerated_jk_gj)
- nmap k <plug>(accelerated_jk_gk)
 
 if !&compatible
   set nocompatible
