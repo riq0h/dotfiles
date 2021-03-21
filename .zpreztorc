@@ -20,12 +20,3 @@ zstyle ':prezto:module:editor' key-bindings 'emacs'
 
 # テーマ
 zstyle ':prezto:module:prompt' theme 'pure'
-
-# シンタックスハイライト
- zstyle ':prezto:module:syntax-highlighting' highlighters \
-   'main' \
-   'brackets' \
-   'pattern' \
-   'line' \
-   'cursor' \
-   'root'
