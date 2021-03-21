@@ -13,6 +13,41 @@ cursor:
   unfocused_hollow: false
   blink_interval: 470
 
+
+
+# タブスペース
+tabspaces: 4
+
+# フォント
+font:
+  size: 13.5
+  normal:
+    family: 'Ricty'
+    style: Regular
+  bold:
+    family: 'Ricty'
+    style: Bold
+  italic:
+    family: 'Ricty'
+    style: Italic
+  bold_italic:
+    family: 'Ricty'
+    style: Bold Italic
+
+# ウインドウ
+window:
+  decorations: full
+  dimensions:
+          columms: 120
+          line: 100
+
+# 透過
+background_opacity: 0.99
+
+# 環境変数
+env:
+  TERM: alacritty
+
 # テーマ
 # KDE Breeze (Ported from Konsole)
 colors:
@@ -58,37 +93,3 @@ colors:
     magenta: '#614a73'
     cyan: '#186c60'
     white: '#63686d'
-
-# タブスペース
-tabspaces: 4
-
-# フォント
-font:
-  size: 14
-  normal:
-    family: 'Ricty'
-    style: Regular
-  bold:
-    family: 'Ricty'
-    style: Bold
-  italic:
-    family: 'Ricty'
-    style: Italic
-  bold_italic:
-    family: 'Ricty'
-    style: Bold Italic
-
-# ウインドウ
-window:
-  decorations: full
-  dimensions:
-          columms: 120
-          line: 100
-
-# 透過
-background_opacity: 0.99
-
-# 環境変数
-env:
-  TERM: alacritty
-
