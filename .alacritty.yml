@@ -1,6 +1,6 @@
 shell:
   program: /usr/bin/zsh
-  
+
 # テーマ
 # KDE Breeze (Ported from Konsole)
 colors:
@@ -49,7 +49,7 @@ colors:
 
 # フォント
 font:
-  size: 14
+  size: 15
   normal:
     family: 'Ricty'
     style: Regular
@@ -65,7 +65,10 @@ font:
 
 window:
   decorations: full
+  dimensions:
+          columms: 120
+          line: 100
 
 env:
   TERM: alacritty
-  
+
