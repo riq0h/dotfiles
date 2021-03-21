@@ -86,7 +86,7 @@ window:
           line: 100
 
 # 透過
-background_opacity: 0.9
+background_opacity: 0.99
 
 # 環境変数
 env:

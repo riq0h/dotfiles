@@ -83,9 +83,6 @@
  " キーコードはすぐにタイムアウト。マッピングはタイムアウトしない
  set notimeout ttimeout ttimeoutlen=200
 
- " <F11>キーで'paste'と'nopaste'を切り替える
- set pastetoggle=<F11>
-
  " Yの動作をDやCと同じにする
  map Y y$
 
@@ -122,7 +119,6 @@
 if !&compatible
   set nocompatible
 endif
-
 
 " dein.vim 関連 {{{
 " インストールディレクトリの指定 {{{

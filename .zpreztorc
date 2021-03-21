@@ -13,6 +13,8 @@ zstyle ':prezto:load' pmodule \
   'completion' \
   'syntax-highlighting' \
   'git' \
+  'archive' \
+  'command-not-found' \
   'prompt'
 
 # キーマップ
