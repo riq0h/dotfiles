@@ -1,3 +1,4 @@
+# シェル
 shell:
   program: /usr/bin/zsh
   args:
@@ -12,8 +13,6 @@ cursor:
     blinking: On
   unfocused_hollow: false
   blink_interval: 470
-
-
 
 # タブスペース
 tabspaces: 4
