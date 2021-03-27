@@ -102,7 +102,7 @@
  " スワップファイルの生成を行わない
  set noswapfile
 
-" 編集中のファイルをリネームする
+ " 編集中のファイルをリネームする
  command! -nargs=+ -bang -complete=file Rename let pbnr=fnamemodify(bufname('%'), ':p')|exec 'f '.escape(<q-args>, ' ')|w<bang>|call delete(pbnr)
 
  " IMEを勝手に切り替えない
@@ -115,28 +115,27 @@
  " エディタの分割方向を設定する
  set splitbelow
  set splitright
-
-if !&compatible
-  set nocompatible
+  if !&compatible
+ set nocompatible
 endif
 
-" dein.vim 関連 {{{
-" インストールディレクトリの指定 {{{
-let s:dein_dir = expand('~/.config/nvim/.cache/dein')
-let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
-" }}}
+ " dein.vim 関連 {{{
+ " インストールディレクトリの指定 {{{
+ let s:dein_dir = expand('~/.config/nvim/.cache/dein')
+ let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+ " }}}
 
-" deinがインストールされているか確認 {{{
-if &runtimepath !~# '/dein.vim'
+ "  deinがインストールされているか確認 {{{
+ if &runtimepath !~# '/dein.vim'
   if !isdirectory(s:dein_repo_dir)
     execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
   endif
   execute 'set runtimepath^=' . s:dein_repo_dir
 endif
-" }}}
+ " }}}
 
-" deinの読み込み開始 {{{
-if dein#load_state(s:dein_dir)
+ " deinの読み込み開始 {{{
+ if dein#load_state(s:dein_dir)
   call dein#begin(s:dein_dir)
 
   " .tomlファイルの場所
@@ -155,21 +154,24 @@ if dein#load_state(s:dein_dir)
 endif
 " }}}
 
-" プラグインが不足していればインストールする {{{
-if dein#check_install()
+ " プラグインが不足していればインストールする {{{
+ if dein#check_install()
   call dein#install()
 endif
-" }}}
+ " }}}
 
-" .tomlファイルに記述されていないプラグインを削除する {{{
-let s:removed_plugins = dein#check_clean()
-if len(s:removed_plugins) > 0
+ " .tomlファイルに記述されていないプラグインを削除する {{{
+ let s:removed_plugins = dein#check_clean()
+  if len(s:removed_plugins) > 0
   call map(s:removed_plugins, "delete(v:val, 'rf')")
   call dein#recache_runtimepath()
 endif
-" }}}
+ " }}}
 
-" カラースキームの設定
+ " 発色
+ set termguicolors
+
+ " カラースキームの設定
  colorscheme molokai
 
  " lightlineの設定
