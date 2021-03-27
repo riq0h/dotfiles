@@ -6,13 +6,13 @@
 '''
 # deoplete on vim requires plugin 1/2
 [[plugins]]
-repo = 'roxma/nvim-yarp'
+ repo = 'roxma/nvim-yarp'
 
 # deoplete on vim requires plugin 2/2
 [[plugins]]
-repo = 'roxma/vim-hug-neovim-rpc'
+ repo = 'roxma/vim-hug-neovim-rpc'
 
- [[plugins]]
+[[plugins]]
  repo = 'Shougo/neco-vim'
 
 [[plugins]]
@@ -39,14 +39,17 @@ repo = 'roxma/vim-hug-neovim-rpc'
 [[plugins]]
  repo = 'ryanoasis/vim-devicons'
 
- [[plugins]]
-repo = 'junegunn/fzf'
-build_on = '''
-./install -all
+[[plugins]]
+ repo = 'junegunn/fzf'
+ build_on = '''
+ ./install -all
 '''
 
 [[plugins]]
-repo = 'junegunn/fzf.vim'
+ repo = 'junegunn/fzf.vim'
 
- [[plugins]]
+[[plugins]]
+ repo = 'lambdalisue/suda.vim'
+
+[[plugins]]
  repo = 'tomasr/molokai'
