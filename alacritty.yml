@@ -6,7 +6,7 @@ cursor:
   text: '#ffffff'
   cursor: '#00ff00'
   style:
-    shape: Underline
+    shape: Block
     blinking: On
   unfocused_hollow: false
   blink_interval: 470
