@@ -53,3 +53,6 @@
 
 [[plugins]]
  repo = 'tomasr/molokai'
+ 
+[[plugins]]
+ repo = 'chriskempson/base16-vim'

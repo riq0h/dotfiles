@@ -172,7 +172,7 @@ endif
  set termguicolors
 
  " カラースキームの設定
- colorscheme molokai
+ colorscheme base16-eighties
 
  " lightlineの設定
  let g:lightline = {
