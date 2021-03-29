@@ -47,48 +47,46 @@ background_opacity: 0.99
 env:
   TERM: alacritty
 
-# テーマ
-# KDE Breeze (Ported from Konsole)
+# Base16 Eighties 256 - alacritty color config
+# Chris Kempson (http://chriskempson.com)
 colors:
   # Default colors
   primary:
-    background: '#232627'
-    foreground: '#fcfcfc'
+    background: '0x2d2d2d'
+    foreground: '0xd3d0c8'
 
-    dim_foreground: '#eff0f1'
-    bright_foreground: '#ffffff'
-    dim_background: '#31363b'
-    bright_background: '#000000'
+  # Colors the cursor will use if `custom_cursor_colors` is true
+  cursor:
+    text: '0x2d2d2d'
+    cursor: '0xd3d0c8'
 
   # Normal colors
   normal:
-    black: '#232627'
-    red: '#ed1515'
-    green: '#11d116'
-    yellow: '#f67400'
-    blue: '#1d99f3'
-    magenta: '#9b59b6'
-    cyan: '#1abc9c'
-    white: '#fcfcfc'
+    black:   '0x2d2d2d'
+    red:     '0xf2777a'
+    green:   '0x99cc99'
+    yellow:  '0xffcc66'
+    blue:    '0x6699cc'
+    magenta: '0xcc99cc'
+    cyan:    '0x66cccc'
+    white:   '0xd3d0c8'
 
   # Bright colors
   bright:
-    black: '#7f8c8d'
-    red: '#c0392b'
-    green: '#1cdc9a'
-    yellow: '#fdbc4b'
-    blue: '#3daee9'
-    magenta: '#8e44ad'
-    cyan: '#16a085'
-    white: '#ffffff'
+    black:   '0x747369'
+    red:     '0xf2777a'
+    green:   '0x99cc99'
+    yellow:  '0xffcc66'
+    blue:    '0x6699cc'
+    magenta: '0xcc99cc'
+    cyan:    '0x66cccc'
+    white:   '0xf2f0ec'
 
-  # Dim colors
-  dim:
-    black: '#31363b'
-    red: '#783228'
-    green: '#17a262'
-    yellow: '#b65619'
-    blue: '#1b668f'
-    magenta: '#614a73'
-    cyan: '#186c60'
-    white: '#63686d'
+  indexed_colors:
+    - { index: 16, color: '0xf99157' }
+    - { index: 17, color: '0xd27b53' }
+    - { index: 18, color: '0x393939' }
+    - { index: 19, color: '0x515151' }
+    - { index: 20, color: '0xa09f93' }
+    - { index: 21, color: '0xe8e6df' }
+
