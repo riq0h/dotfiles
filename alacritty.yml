@@ -1,3 +1,4 @@
+# シェル
 shell:
   program: /Windows/System32/wsl.exe ~ -d Ubuntu-20.04
 
@@ -16,73 +17,59 @@ tabspaces: 4
 
 # フォント
 font:
-  size: 13
+  size: 12
   normal:
-    family: 'HackGenNerd Console'
+    family: 'HackGen35Nerd'
     style: Regular
   bold:
-    family: 'HackGenNerd Console'
+    family: 'HackGen35Nerd'
     style: Bold
   italic:
-    family: 'HackGenNerd Console'
+    family: 'HackGen35Nerd'
     style: Italic
   bold_italic:
-    family: 'HackGenNerd Console'
+    family: 'HackGen35Nerd'
     style: Bold Italic
 
 # ウインドウ
 window:
-  decorations: full
   dimensions:
           columms: 120
           line: 100
+  decorations: full
+
+# 透過
+background_opacity: 0.99
 
 # 環境変数
 env:
   TERM: alacritty
 
-# テーマ
-# KDE Breeze (Ported from Konsole)
+# Colors (Horizon Dark)
 colors:
-  # Default colors
+  # Primary colors
   primary:
-    background: '#232627'
-    foreground: '#fcfcfc'
-
-    dim_foreground: '#eff0f1'
-    bright_foreground: '#ffffff'
-    dim_background: '#31363b'
-    bright_background: '#000000'
+    background: '0x1c1e26'
+    foreground: '0xe0e0e0'
 
   # Normal colors
   normal:
-    black: '#232627'
-    red: '#ed1515'
-    green: '#11d116'
-    yellow: '#f67400'
-    blue: '#1d99f3'
-    magenta: '#9b59b6'
-    cyan: '#1abc9c'
-    white: '#fcfcfc'
+    black: '0x16161c'
+    red: '0xe95678'
+    green: '0x29d398'
+    yellow: '0xfab795'
+    blue: '0x26bbd9'
+    magenta: '0xee64ac'
+    cyan: '0x59e1e3'
+    white: '0xd5d8da'
 
   # Bright colors
   bright:
-    black: '#7f8c8d'
-    red: '#c0392b'
-    green: '#1cdc9a'
-    yellow: '#fdbc4b'
-    blue: '#3daee9'
-    magenta: '#8e44ad'
-    cyan: '#16a085'
-    white: '#ffffff'
-
-  # Dim colors
-  dim:
-    black: '#31363b'
-    red: '#783228'
-    green: '#17a262'
-    yellow: '#b65619'
-    blue: '#1b668f'
-    magenta: '#614a73'
-    cyan: '#186c60'
-    white: '#63686d'
+    black: '0x5b5858'
+    red: '0xec6a88'
+    green: '0x3fdaa4'
+    yellow: '0xfbc3a7'
+    blue: '0x3fc4de'
+    magenta: '0xf075b5'
+    cyan: '0x6be4e6'
+    white: '0xd5d8da'
