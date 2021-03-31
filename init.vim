@@ -13,6 +13,9 @@
  " Space+ドットで.vimrcを開く
  nnoremap <Space>. :<C-u>tabedit $MYVIMRC<CR>
 
+ " 前タブ移動をやりやすくする
+ nnoremap gr :tabprevious
+
  " バッファを保存しなくても他のバッファを表示できるようにする
  set hidden
 
@@ -81,7 +84,7 @@
  set number
 
  " キーコードはすぐにタイムアウト。マッピングはタイムアウトしない
- set notimeout ttimeout ttimeoutlen=200
+ set notimeout ttimeout ttimeoutlen=50
 
  " Yの動作をDやCと同じにする
  map Y y$
@@ -170,27 +173,55 @@ endif
 
  " 発色
  set termguicolors
+ set t_Co=256
 
  " カラースキームの設定
- colorscheme base16-eighties
+ colorscheme horizon
 
- " lightlineの設定
- let g:lightline = {
-      \ 'colorscheme': 'powerline',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ 'component_function': {
-      \   'gitbranch': 'FugitiveHead'
-      \ },
-      \ }
+ " airlineの設定
+ set showtabline=2
+ let g:airline_powerline_font = 1
+ let g:airline#extensions#tabline#enabled = 1
+ let g:airline#extensions#tabline#show_close_button = 0
+ let g:airline#extensions#tabline#tabs_label = ''
+ let g:airline#extensions#tabline#buffers_label = ''
+ let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#tabline#show_tab_count = 0
+ let g:airline#extensions#tabline#show_buffers = 0
+ let g:airline#extensions#tabline#tab_min_count = 2
+ let g:airline#extensions#tabline#show_splits = 0
+ let g:airline#extensions#tabline#show_tab_nr = 0
+ let g:airline#extensions#tabline#show_tab_type = 0
+ let g:airline_theme = 'deus'
 
- function! LightlineFilename()
-  let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
-  let modified = &modified ? ' +' : ''
-  return filename . modified
-endfunction
+ if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+
+ let g:airline_left_sep = '»'
+ let g:airline_left_sep = '▶'
+ let g:airline_right_sep = '«'
+ let g:airline_right_sep = '◀'
+ let g:airline_symbols.crypt = '🔒'
+ let g:airline_symbols.linenr = '␊'
+ let g:airline_symbols.linenr = '␤'
+ let g:airline_symbols.linenr = '¶'
+ let g:airline_symbols.maxlinenr = '☰'
+ let g:airline_symbols.maxlinenr = ''
+ let g:airline_symbols.branch = '⎇'
+ let g:airline_symbols.paste = 'ρ'
+ let g:airline_symbols.paste = 'Þ'
+ let g:airline_symbols.paste = '∥'
+ let g:airline_symbols.spell = 'Ꞩ'
+ let g:airline_symbols.notexists = '∄'
+ let g:airline_symbols.whitespace = 'Ξ'
+ let g:airline_left_sep = ''
+ let g:airline_left_alt_sep = ''
+ let g:airline_right_sep = ''
+ let g:airline_right_alt_sep = ''
+ let g:airline_symbols.branch = ''
+ let g:airline_symbols.readonly = ''
+ let g:airline_symbols.linenr = ''
 
  " 従来のモード表示をOFFにする
  set noshowmode

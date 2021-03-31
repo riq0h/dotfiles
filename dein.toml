@@ -19,7 +19,10 @@
  repo = 'Shougo/neco-syntax'
 
 [[plugins]]
- repo = 'itchyny/lightline.vim'
+ repo = 'vim-airline/vim-airline'
+
+[[plugins]]
+ repo = 'vim-airline/vim-airline-themes'
 
 [[plugins]]
  repo = 'bronson/vim-trailing-whitespace'
@@ -52,7 +55,13 @@
  repo = 'tpope/vim-fugitive'
 
 [[plugins]]
- repo = 'tomasr/molokai'
- 
+ repo = 'airblade/vim-gitgutter'
+
 [[plugins]]
- repo = 'chriskempson/base16-vim'
+ repo = 'tomasr/molokai'
+
+[[plugins]]
+ repo = 'ntk148v/vim-horizon'
+
+[[plugins]]
+ repo = 'sheerun/vim-polyglot'

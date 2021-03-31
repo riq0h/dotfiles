@@ -47,46 +47,31 @@ background_opacity: 0.99
 env:
   TERM: alacritty
 
-# Base16 Eighties 256 - alacritty color config
-# Chris Kempson (http://chriskempson.com)
+# Colors (Horizon Dark)
 colors:
-  # Default colors
+  # Primary colors
   primary:
-    background: '0x2d2d2d'
-    foreground: '0xd3d0c8'
-
-  # Colors the cursor will use if `custom_cursor_colors` is true
-  cursor:
-    text: '0x2d2d2d'
-    cursor: '0xd3d0c8'
+    background: '0x1c1e26'
+    foreground: '0xe0e0e0'
 
   # Normal colors
   normal:
-    black:   '0x2d2d2d'
-    red:     '0xf2777a'
-    green:   '0x99cc99'
-    yellow:  '0xffcc66'
-    blue:    '0x6699cc'
-    magenta: '0xcc99cc'
-    cyan:    '0x66cccc'
-    white:   '0xd3d0c8'
+    black: '0x16161c'
+    red: '0xe95678'
+    green: '0x29d398'
+    yellow: '0xfab795'
+    blue: '0x26bbd9'
+    magenta: '0xee64ac'
+    cyan: '0x59e1e3'
+    white: '0xd5d8da'
 
   # Bright colors
   bright:
-    black:   '0x747369'
-    red:     '0xf2777a'
-    green:   '0x99cc99'
-    yellow:  '0xffcc66'
-    blue:    '0x6699cc'
-    magenta: '0xcc99cc'
-    cyan:    '0x66cccc'
-    white:   '0xf2f0ec'
-
-  indexed_colors:
-    - { index: 16, color: '0xf99157' }
-    - { index: 17, color: '0xd27b53' }
-    - { index: 18, color: '0x393939' }
-    - { index: 19, color: '0x515151' }
-    - { index: 20, color: '0xa09f93' }
-    - { index: 21, color: '0xe8e6df' }
-
+    black: '0x5b5858'
+    red: '0xec6a88'
+    green: '0x3fdaa4'
+    yellow: '0xfbc3a7'
+    blue: '0x3fc4de'
+    magenta: '0xf075b5'
+    cyan: '0x6be4e6'
+    white: '0xd5d8da'
