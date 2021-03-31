@@ -12,6 +12,17 @@ alias sudo='sudo -E '
 alias v=nvim
 alias vim=nvim
 
+# paruを短縮する
+alias poo=paru
+
+# exaをls代わりにする
+alias ls=exa
+
+# fzf関連
+export PATH="$PATH:$HOME/.fzf/bin"
+export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git"'
+export FZF_DEFAULT_OPTS='--height 30% --border'
+
 # 履歴関連
 HISTFILE=~/.zsh_history   # ヒストリを保存するファイル
 HISTSIZE=10000            # メモリに保存されるヒストリの件数

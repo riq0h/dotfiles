@@ -13,8 +13,11 @@
  " Space+ドットで.vimrcを開く
  nnoremap <Space>. :<C-u>tabedit $MYVIMRC<CR>
 
- " 前タブ移動をやりやすくする
- nnoremap gr :tabprevious
+ " fernの起動
+ nnoremap <C-n> :Fern . -reveal=% -drawer -toggle -width=40<CR>
+
+ " fernのフォント
+ let g:fern#renderer = 'nerdfont'
 
  " バッファを保存しなくても他のバッファを表示できるようにする
  set hidden
@@ -43,8 +46,17 @@
  " 削除できるようにする。
  set backspace=indent,eol,start
 
- " オートインデント
+ " インデント
  set autoindent smartindent
+ set expandtab
+ set tabstop=2
+ set softtabstop=2
+ set shiftwidth=2
+ au FileType go setlocal sw=4 ts=4 noet
+ set list listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
+
+ " タブ削除
+ nnoremap bd :bd<CR>
 
  " 移動コマンドを使ったとき、行頭に移動しない
  set nostartofline
@@ -67,9 +79,6 @@
  " ステータスラインを表示する
  set laststatus=2
 
- "フォント
- set guifont=Ricty:h14
-
  " バッファが変更されているとき、コマンドをエラーにするのでなく、保存する
  " かどうか確認を求める
  set confirm
@@ -90,7 +99,7 @@
  map Y y$
 
  " クリップボード保持
- set clipboard+=unnamedplus
+ set clipboard+=unnamed
 
  " <C-L>で検索後の強調表示を解除する
  nnoremap <C-L> :nohl<CR><C-L>
@@ -112,15 +121,12 @@
  set iminsert=0
  set imsearch=0
 
- " ファイル保存時に余分なスペースを削除
- autocmd BufWritePre * :FixWhitespace
-
- " エディタの分割方向を設定する
- set splitbelow
- set splitright
-  if !&compatible
- set nocompatible
-endif
+ " ウインドウ分割関連
+ nnoremap sk <C-w>k
+ nnoremap sl <C-w>l
+ nnoremap sh <C-w>h
+ nnoremap ss :<C-u>sp<CR><C-w>j
+ nnoremap sv :<C-u>vs<CR><C-w>l
 
  " dein.vim 関連 {{{
  " インストールディレクトリの指定 {{{
@@ -171,6 +177,10 @@ endif
 endif
  " }}}
 
+ " なぜかこれがないと自動起動しない
+ let g:deoplete#enable_at_startup = 1
+ inoremap <silent><expr> <TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
  " 発色
  set termguicolors
  set t_Co=256
@@ -179,33 +189,33 @@ endif
  colorscheme horizon
 
  " airlineの設定
- set showtabline=2
  let g:airline_powerline_font = 1
  let g:airline#extensions#tabline#enabled = 1
  let g:airline#extensions#tabline#show_close_button = 0
  let g:airline#extensions#tabline#tabs_label = ''
  let g:airline#extensions#tabline#buffers_label = ''
  let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline#extensions#tabline#show_tab_count = 0
+ let g:airline#extensions#tabline#show_tab_count = 0
  let g:airline#extensions#tabline#show_buffers = 0
- let g:airline#extensions#tabline#tab_min_count = 2
+ let g:airline#extensions#tabline#tab_nr_type = 0
+ let g:airline#extensions#tabline#tab_min_count = 1
  let g:airline#extensions#tabline#show_splits = 0
  let g:airline#extensions#tabline#show_tab_nr = 0
- let g:airline#extensions#tabline#show_tab_type = 0
- let g:airline_theme = 'deus'
+ let g:airline_theme ='deus'
 
  if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
 
- let g:airline_left_sep = '»'
- let g:airline_left_sep = '▶'
- let g:airline_right_sep = '«'
- let g:airline_right_sep = '◀'
+ " Unicode
+ " let g:airline_left_sep = '»'
+ " let g:airline_left_sep = '▶'
+ " let g:airline_right_sep = '«'
+ " let g:airline_right_sep = '◀'
  let g:airline_symbols.crypt = '🔒'
  let g:airline_symbols.linenr = '␊'
  let g:airline_symbols.linenr = '␤'
- let g:airline_symbols.linenr = '¶'
+ " let g:airline_symbols.linenr = '¶'
  let g:airline_symbols.maxlinenr = '☰'
  let g:airline_symbols.maxlinenr = ''
  let g:airline_symbols.branch = '⎇'
@@ -215,13 +225,15 @@ endif
  let g:airline_symbols.spell = 'Ꞩ'
  let g:airline_symbols.notexists = '∄'
  let g:airline_symbols.whitespace = 'Ξ'
- let g:airline_left_sep = ''
- let g:airline_left_alt_sep = ''
- let g:airline_right_sep = ''
- let g:airline_right_alt_sep = ''
+
+ " Powerline
+ " let g:airline_left_sep = ''
+ " let g:airline_left_alt_sep = ''
+ " let g:airline_right_sep = ''
+ " let g:airline_right_alt_sep = ''
  let g:airline_symbols.branch = ''
  let g:airline_symbols.readonly = ''
- let g:airline_symbols.linenr = ''
+ " let g:airline_symbols.linenr = ''
 
  " 従来のモード表示をOFFにする
  set noshowmode

@@ -1,10 +1,7 @@
 [[plugins]]
- repo = 'Shougo/deoplete.nvim'
- hook_add = '''
-   let g:deoplete#enable_at_startup = 1
-   let g:deoplete#enable_ignore_case = 1
-'''
-# deoplete on vim requires plugin 1/2
+repo = 'Shougo/deoplete.nvim'
+
+#deoplete on vim requires plugin 1/2
 [[plugins]]
  repo = 'roxma/nvim-yarp'
 
@@ -31,10 +28,16 @@
  repo = 'cohama/lexima.vim'
 
 [[plugins]]
- repo = 'preservim/nerdtree'
+ repo = 'lambdalisue/fern.vim'
 
 [[plugins]]
- repo = 'Xuyuanp/nerdtree-git-plugin'
+ repo = 'lambdalisue/fern-git-status.vim'
+
+[[plugins]]
+ repo = 'lambdalisue/nerdfont.vim'
+
+[[plugins]]
+ repo = 'lambdalisue/fern-renderer-nerdfont.vim'
 
 [[plugins]]
  repo = 'ryanoasis/vim-devicons'
@@ -56,9 +59,15 @@
 
 [[plugins]]
  repo = 'airblade/vim-gitgutter'
-
-[[plugins]]
- repo = 'tomasr/molokai'
+ hook_add = '''
+    set signcolumn=yes
+    let g:gitgutter_async = 1
+    let g:gitgutter_sign_modified = 'rw'
+    highlight GitGutterAdd ctermfg=green
+    highlight GitGutterChange ctermfg=yellow
+    highlight GitGutterDelete ctermfg=red
+    highlight GitGutterChangeDelete ctermfg=yellow
+'''
 
 [[plugins]]
  repo = 'ntk148v/vim-horizon'
@@ -68,3 +77,12 @@
 
 [[plugins]]
  repo = 'gko/vim-coloresque'
+
+[[plugins]]
+ repo = 'tomtom/tcomment_vim'
+ hook_add = '''
+    vnoremap ? :'<,'>TComment<CR>
+'''
+
+[[plugins]]
+ repo = 'simeji/winresizer'
