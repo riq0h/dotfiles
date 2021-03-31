@@ -51,7 +51,7 @@
 [[plugins]]
  repo = 'lambdalisue/suda.vim'
 
-[[pliugins]]
+[[plugins]]
  repo = 'tpope/vim-fugitive'
 
 [[plugins]]
@@ -65,3 +65,6 @@
 
 [[plugins]]
  repo = 'sheerun/vim-polyglot'
+
+[[plugins]]
+ repo = 'gko/vim-coloresque'
