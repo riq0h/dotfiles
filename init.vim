@@ -13,12 +13,6 @@
  " Space+ドットで.vimrcを開く
  nnoremap <Space>. :<C-u>tabedit $MYVIMRC<CR>
 
- " fernの起動
- nnoremap <C-n> :Fern . -reveal=% -drawer -toggle -width=40<CR>
-
- " fernのフォント
- let g:fern#renderer = 'nerdfont'
-
  " バッファを保存しなくても他のバッファを表示できるようにする
  set hidden
 
@@ -64,23 +58,10 @@
  " ウガンダを消す
  set shortmess+=I
 
- " 左右のスクロールバーを非表示にする
- set guioptions-=r
- set guioptions-=R
- set guioptions-=l
- set guioptions-=L
-
- " ツールバーを非表示にする
- set guioptions-=T
-
- " メニューバーを非表示にする
- set guioptions-=m
-
  " ステータスラインを表示する
  set laststatus=2
 
- " バッファが変更されているとき、コマンドをエラーにするのでなく、保存する
- " かどうか確認を求める
+ " バッファが変更されているとき、コマンドをエラーにするのでなく、保存するかどうか確認を求める
  set confirm
 
  " 全モードでマウスを有効化
@@ -109,7 +90,7 @@
 
  " エンコード設定
  set encoding=utf-8
- set fileencodings=iso-2022-jp,cp932,sjis,euc-jp,utf-8
+ set fileencodings=utf-8,iso-2022-jp,cp932,euc-jp,sjis
 
  " スワップファイルの生成を行わない
  set noswapfile
@@ -122,7 +103,7 @@
  set imsearch=0
 
  " ウインドウ分割関連
- nnoremap sk <C-w>k
+ nnoremap sk <C-w>j
  nnoremap sl <C-w>l
  nnoremap sh <C-w>h
  nnoremap ss :<C-u>sp<CR><C-w>j
@@ -177,13 +158,8 @@ endif
 endif
  " }}}
 
- " なぜかこれがないと自動起動しない
- let g:deoplete#enable_at_startup = 1
- inoremap <silent><expr> <TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-
- " 発色
+  " 発色
  set termguicolors
- set t_Co=256
 
  " カラースキームの設定
  colorscheme horizon
@@ -208,7 +184,7 @@ endif
   let g:airline_symbols = {}
 endif
 
- " Unicode
+ " Unicode ラインは尖らせない方がカッコいいのでは？
  " let g:airline_left_sep = '»'
  " let g:airline_left_sep = '▶'
  " let g:airline_right_sep = '«'

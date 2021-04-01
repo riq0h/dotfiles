@@ -1,5 +1,9 @@
 [[plugins]]
 repo = 'Shougo/deoplete.nvim'
+hook_add = '''
+ let g:deoplete#enable_at_startup = 1
+ inoremap <silent><expr> <TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+'''
 
 #deoplete on vim requires plugin 1/2
 [[plugins]]
@@ -11,9 +15,6 @@ repo = 'Shougo/deoplete.nvim'
 
 [[plugins]]
  repo = 'Shougo/neco-vim'
-
-[[plugins]]
- repo = 'Shougo/neco-syntax'
 
 [[plugins]]
  repo = 'vim-airline/vim-airline'
@@ -29,6 +30,10 @@ repo = 'Shougo/deoplete.nvim'
 
 [[plugins]]
  repo = 'lambdalisue/fern.vim'
+ hook_add = '''
+ nnoremap <C-n> :Fern . -reveal=% -drawer -toggle -width=40<CR>
+ let g:fern#renderer = 'nerdfont'
+'''
 
 [[plugins]]
  repo = 'lambdalisue/fern-git-status.vim'
@@ -83,6 +88,12 @@ repo = 'Shougo/deoplete.nvim'
  hook_add = '''
     vnoremap ? :'<,'>TComment<CR>
 '''
+
+[[plugins]]
+ repo = 'tpope/vim-commentary'
+
+[[plugins]]
+ repo = 'nathanaelkane/vim-indent-guides'
 
 [[plugins]]
  repo = 'simeji/winresizer'
