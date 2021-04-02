@@ -80,7 +80,7 @@
  map Y y$
 
  " クリップボード保持
- set clipboard+=unnamed
+ set clipboard+=unnamedplus
 
  " <C-L>で検索後の強調表示を解除する
  nnoremap <C-L> :nohl<CR><C-L>
