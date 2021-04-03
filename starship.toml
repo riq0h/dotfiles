@@ -1,0 +1,19 @@
+[character]
+format = "[❯](bold purple) "
+
+[package]
+disabled = true
+
+[hostname]
+ssh_only = true
+format = "[$hostname](bold red)"
+trim_at = ".companyname.com"
+
+[cmd_duration]
+disabled = true
+
+[battery]
+disabled = true
+
+[git_branch]
+format = "[$symbol$branch]($style) "
