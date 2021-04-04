@@ -21,16 +21,16 @@ tabspaces: 4
 font:
   size: 13.5
   normal:
-    family: 'Ricty'
+    family: 'Ricty for Powerline'
     style: Regular
   bold:
-    family: 'Ricty'
+    family: 'Ricty for Powerline'
     style: Bold
   italic:
-    family: 'Ricty'
+    family: 'Ricty for Powerline'
     style: Italic
   bold_italic:
-    family: 'Ricty'
+    family: 'Ricty for Powerline'
     style: Bold Italic
 
 # ウインドウ
