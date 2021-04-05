@@ -1,0 +1,60 @@
+! -----------------------------------------------------------------------------
+! File: gruvbox-dark.xresources
+! Description: Retro groove colorscheme generalized
+! Author: morhetz <morhetz@gmail.com>
+! Source: https://github.com/morhetz/gruvbox-generalized
+! Last Modified: 6 Sep 2014
+! -----------------------------------------------------------------------------
+
+#define S_background    #282828
+#define S_foreground    #ebdbb2
+
+#define S_black         #282828
+#define S_darkgrey      #928374
+
+#define S_white         #ebdbb2
+#define S_lightgrey     #a89984
+
+#define S_darkred       #cc241d
+#define S_red           #fb4934
+#define S_darkgreen     #98971a
+#define S_green         #b8bb26
+#define S_darkyellow    #d79921
+#define S_yellow        #fabd2f
+#define S_darkblue      #458588
+#define S_blue          #83a598
+#define S_darkmagenta   #b16286
+#define S_magenta       #d3869b
+#define S_darkcyan      #689d6a
+#define S_cyan          #8ec07c
+
+! ! hard contrast: *background: #1d2021
+! *background: #282828
+! ! *background: #ffffff
+! ! soft contrast: *background: #32302f
+! *foreground: #ebdbb2
+! ! *foreground: #000000
+! ! Black + DarkGrey
+! *color0:  #282828
+! *color8:  #928374
+! ! DarkRed + Red
+! *color1:  #cc241d
+! *color9:  #fb4934
+! ! DarkGreen + Green
+! *color2:  #98971a
+! *color10: #b8bb26
+! ! DarkYellow + Yellow
+! *color3:  #d79921
+! *color11: #fabd2f
+! ! DarkBlue + Blue
+! *color4:  #458588
+! *color12: #83a598
+! ! DarkMagenta + Magenta
+! *color5:  #b16286
+! *color13: #d3869b
+! ! DarkCyan + Cyan
+! *color6:  #689d6a
+! *color14: #8ec07c
+! ! LightGrey + White
+! *color7:  #a89984
+! *color15: #ebdbb2

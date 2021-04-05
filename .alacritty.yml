@@ -33,16 +33,6 @@ font:
     family: 'Ricty for Powerline'
     style: Bold Italic
 
-# ウインドウ
-window:
-  dimensions:
-          columms: 120
-          line: 100
-  decorations: full
-
-# 透過
-background_opacity: 0.99
-
 # 環境変数
 env:
   TERM: alacritty

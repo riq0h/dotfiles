@@ -1,0 +1,19 @@
+
+#define S_background    #2F3846
+#define S_foreground    #DFDFF2
+#define S_black         #3E4755
+#define S_darkred       #E28479
+#define S_darkgreen     #70B791
+#define S_darkyellow    #C9C76B
+#define S_darkblue      #839AEC
+#define S_darkmagenta   #C184B3
+#define S_darkcyan      #78B3C5
+#define S_lightgrey     #D2D2D4
+#define S_darkgrey      #5D6473
+#define S_red           #EC8E83
+#define S_green         #7AC19B
+#define S_yellow        #D3D175
+#define S_blue          #8DA4F6
+#define S_magenta       #CB8EBD
+#define S_cyan          #82BDCF
+#define S_white         #D1D1D3

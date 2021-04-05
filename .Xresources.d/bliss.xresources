@@ -1,0 +1,21 @@
+! Bliss colour scheme
+! From https://www.reddit.com/r/unixporn/comments/hy8h94/openbox_bliss/
+
+#define S_background  #1a1b1b
+#define S_foreground  #f0e0e5
+#define S_black       #1a1b1b
+#define S_red         #de8d9c
+#define S_green       #9ddeaf
+#define S_yellow      #dac878
+#define S_blue        #9dacde
+#define S_magenta     #af9dde
+#define S_cyan        #9dccde
+#define S_lightgrey   #838585
+#define S_darkgrey    #494b4b
+#define S_darkred     #efaf9d
+#define S_darkgreen   #9deeb0
+#define S_darkyellow  #dfd373
+#define S_darkblue    #9fa7fe
+#define S_darkmagenta #d09dde
+#define S_darkcyan    #99d8df
+#define S_white       #f0e0e5

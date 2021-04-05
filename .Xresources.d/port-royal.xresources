@@ -1,0 +1,39 @@
+! port_royal
+! From https://www.reddit.com/r/unixporn/comments/ihww3b/bspwm_noob_learning_some_rust/
+! special
+#define S_foreground    #dedede
+#define S_background    #181818
+
+! black
+#define S_black         #38393a
+#define S_darkgrey      #525252
+
+! red
+#define S_darkred       #894747
+#define S_red           #c26862
+
+! green
+#define S_darkgreen     #c5a85e
+#define S_green         #dfba6f
+
+! yellow
+#define S_darkyellow    #528f9e
+#define S_yellow        #6baec1
+
+! blue
+#define S_darkblue      #63757f
+#define S_blue          #7397a1
+
+! magenta
+#define S_darkmagenta   #864049
+#define S_magenta       #a3535e
+
+! cyan
+#define S_darkcyan      #aa904d
+#define S_cyan          #c9b06a
+
+! white
+#define S_lightgrey     #dedede
+#define S_white         #d1cbb1
+
+*.cursorColor:  #dedede

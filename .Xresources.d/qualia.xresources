@@ -1,0 +1,21 @@
+! Qualia colour scheme
+! From https://www.reddit.com/r/unixporn/comments/hjzw5f/oc_qualitative_color_palette_for_ansi_terminal/
+
+#define S_background    #1A1A1A
+#define S_foreground    #C0C0C0
+#define S_black         #454545
+#define S_darkred       #E0AF85
+#define S_darkgreen     #80C990
+#define S_darkyellow    #A69460
+#define S_darkblue      #93C3F2
+#define S_darkmagenta   #D6b1EA
+#define S_darkcyan      #50CACD
+#define S_lightgrey     #808080
+#define S_darkgrey      #454545
+#define S_red           #FF9894
+#define S_green         #5ACCAF
+#define S_yellow        #C8C874
+#define S_blue          #B5B5FD
+#define S_magenta       #E2A9D0
+#define S_cyan          #74C3E4
+#define S_white         #C0C0C0

@@ -1,0 +1,21 @@
+! Forest-night colour scheme
+! From https://www.reddit.com/r/unixporn/comments/by66r3/ocvim_forest_night_comfortable_pleasant_vim_color/
+
+#define S_foreground      #c1cacc
+#define S_background      #222d28
+#define S_black           #465258
+#define S_red             #e68183
+#define S_green           #a7c080
+#define S_yellow          #d9bb80
+#define S_blue            #89bed5
+#define S_magenta         #d3a0bc
+#define S_cyan            #87b6b8
+#define S_darkred         #e98f92
+#define S_darkgreen       #aabe8f
+#define S_darkyellow      #d9cb90
+#define S_darkblue        #7cadc5
+#define S_darkmagenta     #e3b9dc
+#define S_darkcyan        #9ab9ba
+#define S_darkgrey        #576268
+#define S_lightgrey       #868d80
+#define S_white           #c1cacc
