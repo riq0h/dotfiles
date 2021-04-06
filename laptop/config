@@ -12,7 +12,7 @@ floating_modifier $mod
 bindsym $mod+Return exec --no-startup-id alacritty
 
 # ファイラー
-bindsym $mod+m exec --no-startup-id nautilus
+bindsym $mod+m exec --no-startup-id thunar
 
 # スクリーンショット
 for_window [instance="gscreenshot" class="gscreenshot"] floating enable
