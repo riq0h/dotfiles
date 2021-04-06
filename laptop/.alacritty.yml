@@ -1,0 +1,67 @@
+# シェル
+shell:
+  program: /usr/bin/zsh
+  args:
+    - --login
+
+# カーソル
+cursor:
+  text: '#ffffff'
+  cursor: '#00ff00'
+  style:
+    shape: Block
+    blinking: On
+  unfocused_hollow: false
+  blink_interval: 470
+
+# タブスペース
+tabspaces: 4
+
+# フォント
+font:
+  size: 14
+  normal:
+    family: 'Ricty for Powerline'
+    style: Regular
+  bold:
+    family: 'Ricty for Powerline'
+    style: Bold
+  italic:
+    family: 'Ricty for Powerline'
+    style: Italic
+  bold_italic:
+    family: 'Ricty for Powerline'
+    style: Bold Italic
+
+# 環境変数
+env:
+  TERM: alacritty
+
+# Colors (Horizon Dark)
+colors:
+  # Primary colors
+  primary:
+    background: '0x1c1e26'
+    foreground: '0xe0e0e0'
+
+  # Normal colors
+  normal:
+    black: '0x16161c'
+    red: '0xe95678'
+    green: '0x29d398'
+    yellow: '0xfab795'
+    blue: '0x26bbd9'
+    magenta: '0xee64ac'
+    cyan: '0x59e1e3'
+    white: '0xd5d8da'
+
+  # Bright colors
+  bright:
+    black: '0x5b5858'
+    red: '0xec6a88'
+    green: '0x3fdaa4'
+    yellow: '0xfbc3a7'
+    blue: '0x3fc4de'
+    magenta: '0xf075b5'
+    cyan: '0x6be4e6'
+    white: '0xd5d8da'
