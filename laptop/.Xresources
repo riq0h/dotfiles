@@ -1,0 +1,30 @@
+!! Import colorscheme
+#include ".Xresources.d/horizon.xresources"
+
+!! Set colors
+*background:    S_background
+*foreground:    S_foreground
+*color0:        S_black
+*color8:        S_darkgrey
+*color1:        S_darkred
+*color9:        S_red
+*color2:        S_darkgreen
+*color10:       S_green
+*color3:        S_darkyellow
+*color11:       S_yellow
+*color4:        S_darkblue
+*color12:       S_blue
+*color5:        S_darkmagenta
+*color13:       S_magenta
+*color6:        S_darkcyan
+*color14:       S_cyan
+*color7:        S_lightgrey
+*color15:       S_white
+
+!! Set DPI
+Xft.dpi: 170
+Xft.auohint: 0
+Xft.lcdfilter: lcddefault
+Xft.hintstyle: hintfull
+Xft.antialias: 1
+Xft.rgba: rgb

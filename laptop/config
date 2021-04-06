@@ -1,0 +1,243 @@
+
+# すべてのはじまり
+set $mod Mod4
+
+# ウインドウタイトル
+font pango:Noto Sans CJK JP 8
+
+# フローティングウインドウ操作
+floating_modifier $mod
+
+# ターミナル
+bindsym $mod+Return exec --no-startup-id alacritty
+
+# ファイラー
+bindsym $mod+m exec --no-startup-id nautilus
+
+# スクリーンショット
+for_window [instance="gscreenshot" class="gscreenshot"] floating enable
+
+# タスクキル
+bindsym $mod+q kill
+
+# ランチャー
+bindsym $mod+z exec --no-startup-id "rofi -show drun"
+
+
+# ウインドウフォーカス
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# 代替ウインドウフォーカス
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# ウインドウ交換
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# 代替ウインドウ交換
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# 水平ウインドウ分割
+bindsym $mod+s split h
+
+# 垂直ウインドウ分割
+bindsym $mod+v split v
+
+# フルスクリーン
+bindsym $mod+f fullscreen toggle
+
+# ウインドウのタブ化、分割位置の変更
+bindsym $mod+t layout tabbed
+bindsym $mod+e layout toggle split
+
+# ウインドウのフローティング
+bindsym $mod+Shift+space floating toggle
+
+# フローティングウインドウとのフォーカス
+bindsym $mod+space focus mode_toggle
+
+# 親コンテナへのフォーカス
+bindsym $mod+a focus parent
+
+# 子コンテナへのフォーカス
+bindsym $mod+b focus child
+
+# ワークスペース変数
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# ワークスペースの移動
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+# フォーカスウインドウをワークスペースに移動させる
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+# 設定の再読込み
+bindsym $mod+Shift+c reload
+# 再起動
+bindsym $mod+Shift+r restart
+
+# ウインドウリサイズ
+mode "RESIZE" {
+        # リサイズキー
+        bindsym h resize shrink width 10 px or 5 ppt
+        bindsym j resize grow height 10 px or 5 ppt
+        bindsym k resize shrink height 10 px or 5 ppt
+        bindsym l resize grow width 10 px or 5 ppt
+
+        # 代替リサイズキー
+        bindsym Left resize shrink width 10 px or 5 ppt
+        bindsym Down resize grow height 10 px or 5 ppt
+        bindsym Up resize shrink height 10 px or 5 ppt
+        bindsym Right resize grow width 10 px or 5 ppt
+
+        # ノーマルモードへ遷移
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+
+bindsym $mod+r mode "RESIZE"
+
+bindsym $mod+c mode "CMD"
+mode "CMD"{
+    bindsym p exec gscreenshot; mode "default"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+c mode "default"
+}
+
+# i3blocksの色
+set $background #2b303b
+set $foreground #c0c5ce
+set $secondary #3f4751
+set $black #2b303b
+set $red #bf616a
+set $green #a3be8c
+set $yellow #ebcb8b
+set $blue #8fa1b3
+set $magenta #b48ead
+set $cyan #96b5b4
+set $white #c0c5ce
+set $pink #ffb6c1
+set $orange #f08080
+
+# メニューバー関連
+bar {
+    status_command i3blocks
+    font pango:HackGenNerd 11
+    mode dock
+    position top
+    workspace_buttons yes
+    strip_workspace_numbers yes
+    binding_mode_indicator yes
+    tray_output none
+    tray_padding 0
+    colors {
+        background $background
+        focused_background $background
+        statusline $red
+        focused_statusline $red
+        separator $secondary
+        focused_separator $secondary
+        # 左からborder, bg, fg
+        focused_workspace  $orange $orange $background
+        active_workspace $background $background $foreground
+        inactive_workspace $background $background $foreground
+        urgent_workspace   $green $green $background
+        binding_mode       $green $green $background
+    }
+    status_command /usr/bin/bumblebee-status -m nic pasink pasource datetime battery \
+    -p nic.format="{ssid}" datetime.format="%m/%d %H:%M" -t nord-powerline
+}
+
+# i3の色 Xresource.dのカラースキームを参照している
+set_from_resource $bg           color0  #1C1E27
+set_from_resource $fg           color15 #cacacc
+set_from_resource $darkred      color1  #D95882
+set_from_resource $red          color9  #E4436F
+set_from_resource $darkgreen    color2  #68DDC4
+set_from_resource $green        color10 #24e39d
+set_from_resource $darkyellow   color3  #E8AEAA
+set_from_resource $yellow       color11 #EDA685 
+set_from_resource $darkblue     color4  #64A4BF
+set_from_resource $blue         color12 #2095B4
+set_from_resource $darkmagenta  color5  #B382CF
+set_from_resource $darkcyan     color6  #54AEB8
+set_from_resource $cyan         color14 #00A5AF
+set_from_resource $darkwhite    color7  #cacacc
+set_from_resource $white        color15 #cacaca
+set $darkgrey     #6C6F93
+
+
+# フォーカスカラー
+# class                     border      background      text        indicator       child_border
+client.focused              $bg         $darkgrey       $fg         $yellow         $darkyellow
+client.unfocused            $bg         $bg             $fg         $yellow         $bg 
+
+# ウインドウ枠の太さ
+for_window [class="^.*"] border pixel 2
+
+# gaps
+gaps top 5
+gaps bottom 5
+gaps right 5
+gaps left 5
+gaps inner 5
+
+# マウスでフォーカスされるのを防ぐ
+focus_follows_mouse no
+
+# 音量調整
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5% 
+bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle
+
+# 輝度調整
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10
+
+# 自動起動
+exec --no-startup-id xfce4-power-manager
+exec --no-startup-id "libinput-gestures-setup start"
+exec --no-startup-id fcitx
+exec --no-startup-id light-locker --lock-on-suspend
+exec --no-startup-id "feh --bg-scale ~/Wallpaper.png"
+exec --no-startup-id "xset r rate 200 30"

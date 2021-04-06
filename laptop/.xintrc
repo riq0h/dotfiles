@@ -4,7 +4,6 @@ export XMODIFIER="@im=fcitx"
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export DefaultIMModule=fcitx
-xset -b
-
 export QT_QPA_PLATFORMTHEME=qt5ct
-QT_QPA_PLATFORMTHEME='gtk2'
+export QT_QPA_PLATFORMTHEME='gtk2'
+xrdb -merge ~/.Xresources
