@@ -213,7 +213,7 @@ set $darkgrey     #6C6F93
 client.focused              $bg         $darkgrey       $fg         $yellow         $darkyellow
 client.unfocused            $bg         $bg             $fg         $yellow         $bg
 
-# ボーダーの太さ
+# ウインドウ枠の太さ
 for_window [class="^.*"] border pixel 2
 
 # gaps
@@ -225,7 +225,7 @@ gaps inner 5
 
 # シャットダウンその他
 bindsym $mod+Shift+e exec --no-startup-id \
-        "i3-nagbar -t warning -m 'Do you really want to exit i3?' -b 'Shutdown' 'systemctl poweroff' -b 'Reboot' 'systemctl reboot' -b 'Logout' 'i3-msg exit'"
+        "i3-nagbar -t warning -m 'Do you really want to exit i3?' -b 'Shutdown' 'systemctl poweroff' -b 'Reboot' 'systemctl reboot'"
 
 # マウスでフォーカスしない
 focus_follows_mouse no
