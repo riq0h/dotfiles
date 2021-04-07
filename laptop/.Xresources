@@ -22,7 +22,8 @@
 *color15:       S_white
 
 !! Set DPI
-Xft.dpi: 170
+Xft.dpi: 160
+Xcursor.size:32
 Xft.auohint: 0
 Xft.lcdfilter: lcddefault
 Xft.hintstyle: hintfull

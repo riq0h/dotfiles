@@ -14,15 +14,12 @@ bindsym $mod+Return exec --no-startup-id alacritty
 # ファイラー
 bindsym $mod+m exec --no-startup-id thunar
 
-# スクリーンショット
-for_window [instance="gscreenshot" class="gscreenshot"] floating enable
-
 # タスクキル
 bindsym $mod+q kill
 
 # ランチャー
 bindsym $mod+z exec --no-startup-id "rofi -show drun"
-
+bindsym $mod+x exec --no-startup-id "rofi -show run"
 
 # ウインドウフォーカス
 bindsym $mod+h focus left
@@ -48,10 +45,10 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-# 水平ウインドウ分割
+# 垂直ウインドウ分割
 bindsym $mod+s split h
 
-# 垂直ウインドウ分割
+# 水平ウインドウ分割
 bindsym $mod+v split v
 
 # フルスクリーン
@@ -162,7 +159,7 @@ set $orange #f08080
 # メニューバー関連
 bar {
     status_command i3blocks
-    font pango:HackGenNerd 11
+    font pango:Ricty for Powerline 13
     mode dock
     position top
     workspace_buttons yes
@@ -184,8 +181,8 @@ bar {
         urgent_workspace   $green $green $background
         binding_mode       $green $green $background
     }
-    status_command /usr/bin/bumblebee-status -m nic pasink pasource datetime battery \
-    -p nic.format="{ssid}" datetime.format="%m/%d %H:%M" -t nord-powerline
+    status_command /usr/bin/bumblebee-status -m pasink pasource datetime battery \
+    -p datetime.format="%m/%d %H:%M" -t nord-powerline
 }
 
 # i3の色 Xresource.dのカラースキームを参照している
@@ -229,6 +226,7 @@ focus_follows_mouse no
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5%
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5% 
 bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle
+bindsym XF86AudioMicMute exec pactl set-source-mute 1 toggle
 
 # 輝度調整
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10
@@ -241,3 +239,10 @@ exec --no-startup-id fcitx
 exec --no-startup-id light-locker --lock-on-suspend
 exec --no-startup-id "feh --bg-scale ~/Wallpaper.png"
 exec --no-startup-id "xset r rate 200 30"
+
+# フローティング起動一覧
+for_window [class="Lxappearance"] floating enable, resize set 600 400
+for_window [class="Pavucontrol"] floating enable, resize set 600 400
+for_window [class="Fcitx-config-gtk3"] floating enable, resize set 600 400
+for_window [class="mozc_tool"] floating enable, resize set 600 400
+for_window [class="Gscreenshot"] floating enable, resize set 600 400

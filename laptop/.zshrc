@@ -18,6 +18,9 @@ alias poo=paru
 # exaをls代わりにする
 alias ls=exa
 
+# clearを短縮する
+alias cls=clear
+
 # fzf関連
 export PATH="$PATH:$HOME/.fzf/bin"
 export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git"'
