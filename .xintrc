@@ -4,6 +4,6 @@ export XMODIFIER="@im=fcitx"
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export DefaultIMModule=fcitx
-xset r rate 200 50
+export QT_QPA_PLATFORMTHEME=qt5ct
+export QT_QPA_PLATFORMTHEME='gtk2'
 xset -b
-

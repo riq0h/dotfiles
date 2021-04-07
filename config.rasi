@@ -1,9 +1,9 @@
 configuration {
 	modi: "drun,run";
 	width: 20;
-	lines: 10;
+	lines: 5;
 /*	columns: 1;*/
-	font: "Noto Sans CJK JP 15";
+	font: "Noto Sans CJK JP 11";
 	bw: 2;
 	location: 0;
 	padding: 20;
@@ -23,7 +23,7 @@ configuration {
 /*	drun-match-fields: "name,generic,exec,categories,keywords";*/
 /*	drun-categories: */
 /*	drun-show-actions: false;*/
-/*	drun-display-format: "{name} [<span weight='light' size='small'></span>]";*/
+	drun-display-format: "{name}";
 /*	drun-url-launcher: "xdg-open";*/
 	disable-history: false;
 /*	ignored-prefixes: "";*/
