@@ -246,6 +246,7 @@ exec --no-startup-id "xset r rate 200 30"
 exec --no-startup-id "xrandr --output DVI-D-0 --mode 1920x1080 --rate 144.00"
 
 # フローティング起動一覧
+for_window [class="Thunar"] floating enable, resize set 800 600
 for_window [class="QjackCtl"] floating enable
 for_window [class="Gscreenshot"] floating enable, resize set 600 400
 for_window [class="Lxappearance"] floating enable, resize set 600 400
