@@ -118,7 +118,7 @@ mode "RESIZE" {
         bindsym j resize grow height 10 px or 5 ppt
         bindsym k resize shrink height 10 px or 5 ppt
         bindsym l resize grow width 10 px or 5 ppt
-        
+
         # 代替
         bindsym Left resize shrink width 10 px or 5 ppt
         bindsym Down resize grow height 10 px or 5 ppt
@@ -139,6 +139,7 @@ mode "CMD"{
     bindsym g exec google-chrome-stable; mode "default"
     bindsym p exec gscreenshot; mode "default"
     bindsym j exec qjackctl; mode "default"
+    bindsym t exec thunderbird; mode "default"
     bindsym Return mode "default"
     bindsym Escape mode "default"
     bindsym $mod+c mode "default"
@@ -259,3 +260,4 @@ for_window [class="Io.github.celluloid_player.Celluloid"] floating enable
 for_window [class="Sxiv"] floating enable, resize set 800 600
 for_window [class="Transmission-gtk"] floating enable, resize set 600 300
 for_window [class="stacer"] floating enable
+for_window [class="Thunderbird"] floating enable, resize set 1024 800
