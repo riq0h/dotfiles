@@ -219,7 +219,11 @@ gaps right 5
 gaps left 5
 gaps inner 5
 
-# マウスでフォーカスされるのを防ぐ
+# シャットダウンその他
+bindsym $mod+Shift+e exec --no-startup-id \
+        "i3-nagbar -t warning -m 'Do you really want to exit i3?' -b 'Shutdown' 'systemctl poweroff' -b 'Reboot' 'systemctl reboot'"
+
+# マウスでフォーカスしない
 focus_follows_mouse no
 
 # 音量調整
