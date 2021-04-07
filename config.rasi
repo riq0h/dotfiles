@@ -3,7 +3,7 @@ configuration {
 	width: 20;
 	lines: 5;
 /*	columns: 1;*/
-	font: "Noto Sans CJK JP 11";
+	font: "Noto Sans CJK JP 12";
 	bw: 2;
 	location: 0;
 	padding: 20;

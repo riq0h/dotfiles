@@ -257,3 +257,4 @@ for_window [class="VirtualBox Manager"] floating enable, resize set 800 600
 for_window [class="VirtualBox Machine"] floating enable, resize set 1480 1224
 for_window [class="Io.github.celluloid_player.Celluloid"] floating enable
 for_window [class="Sxiv"] floating enable, resize set 800 600
+for_window [class="Transmission-gtk"] floating enable, resize set 600 300
