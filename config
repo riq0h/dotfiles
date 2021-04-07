@@ -185,7 +185,7 @@ bar {
         urgent_workspace   $green $green $background
         binding_mode       $green $green $background
     }
-    status_command /usr/bin/bumblebee-status -m spotify nic pasink pasource  datetime \
+    status_command /usr/bin/bumblebee-status -m spotify nic datetime \
     -p spotify.layout="spotify.song" nic.format="{ssid}" datetime.format="%m/%d %H:%M" -t nord-powerline
 }
 
