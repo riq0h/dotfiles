@@ -177,8 +177,6 @@ bar {
         focused_background $background
         statusline $red
         focused_statusline $red
-        separator $secondary
-        focused_separator $secondary
         # 左からborder, bg, fg
         focused_workspace  $orange $orange $background
         active_workspace $background $background $foreground
@@ -186,7 +184,7 @@ bar {
         urgent_workspace   $green $green $background
         binding_mode       $green $green $background
     }
-    status_command /usr/bin/bumblebee-status -m spotify nic datetime \
+    status_command /usr/bin/bumblebee-status -m spotify nic dunst datetime \
     -p spotify.layout="spotify.song" nic.format="{ssid}" datetime.format="%m/%d %H:%M" -t monotone
 }
 
@@ -232,6 +230,8 @@ bindsym $mod+Shift+e exec --no-startup-id \
 focus_follows_mouse no
 
 # 自動起動
+exec --no-startup-id dunst
+exec --no-startup-id "picom -b"
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id fcitx
 exec --no-startup-id light-locker --lock-on-suspend
