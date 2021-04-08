@@ -49,7 +49,7 @@ bindsym $mod+Shift+Right move right
 # 垂直ウインドウ分割
 bindsym $mod+s split h
 
-# 水平ウインドウう分割
+# 水平ウインドウ分割
 bindsym $mod+v split v
 
 # フルスクリーン
@@ -109,6 +109,7 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 
 # 設定再読込み
 bindsym $mod+Shift+c reload
+
 # 再起動
 bindsym $mod+Shift+r restart
 
@@ -147,7 +148,7 @@ mode "CMD"{
 
 # メニューバーの色
 set $background #2b303b
-set $foreground #c0c5ce
+set $foreground #D8DEE9
 set $secondary #3f4751
 set $black #2b303b
 set $red #bf616a
@@ -166,7 +167,6 @@ bar {
     font pango:Hack 13
     mode dock
     position top
-    separator_symbol " │ "
     workspace_buttons yes
     strip_workspace_numbers yes
     binding_mode_indicator yes
@@ -187,7 +187,7 @@ bar {
         binding_mode       $green $green $background
     }
     status_command /usr/bin/bumblebee-status -m spotify nic datetime \
-    -p spotify.layout="spotify.song" nic.format="{ssid}" datetime.format="%m/%d %H:%M" -t nord-powerline
+    -p spotify.layout="spotify.song" nic.format="{ssid}" datetime.format="%m/%d %H:%M" -t monotone
 }
 
 # i3wm全体の色――これらの定義は.Xresources.dのテーマファイルを参照している
