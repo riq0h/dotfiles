@@ -195,7 +195,7 @@ set_from_resource $red          color9  #E4436F
 set_from_resource $darkgreen    color2  #68DDC4
 set_from_resource $green        color10 #24e39d
 set_from_resource $darkyellow   color3  #E8AEAA
-set_from_resource $yellow       color11 #EDA685 
+set_from_resource $yellow       color11 #EDA685
 set_from_resource $darkblue     color4  #64A4BF
 set_from_resource $blue         color12 #2095B4
 set_from_resource $darkmagenta  color5  #B382CF
@@ -209,7 +209,7 @@ set $darkgrey     #6C6F93
 # フォーカスカラー
 # class                     border      background      text        indicator       child_border
 client.focused              $bg         $darkgrey       $fg         $yellow         $darkyellow
-client.unfocused            $bg         $bg             $fg         $yellow         $bg 
+client.unfocused            $bg         $bg             $fg         $yellow         $bg
 
 # ウインドウ枠の太さ
 for_window [class="^.*"] border pixel 1
@@ -230,7 +230,7 @@ focus_follows_mouse no
 
 # 音量調整
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5%
-bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5% 
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5%
 bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle
 bindsym XF86AudioMicMute exec pactl set-source-mute 1 toggle
 
@@ -249,6 +249,7 @@ exec --no-startup-id "feh --bg-scale ~/Wallpaper.png"
 exec --no-startup-id "xset r rate 200 30"
 
 # フローティング起動一覧
+for_window [class="Bitwarden"] floating enable
 for_window [class="Thunar"] floating enable, resize set 1024 800
 for_window [class="Lxappearance"] floating enable, resize set 600 400
 for_window [class="Pavucontrol"] floating enable, resize set 600 400
