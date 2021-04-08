@@ -183,7 +183,7 @@ bar {
         urgent_workspace   $green $green $background
         binding_mode       $green $green $background
     }
-    status_command /usr/bin/bumblebee-status -m spotify pasink pasource datetime battery \
+    status_command /usr/bin/bumblebee-status -m spotify pasink pasource dunst datetime battery \
     -p spotify.layout="spotify.song" datetime.format="%m/%d %H:%M" -t monotone
 }
 
