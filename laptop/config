@@ -212,7 +212,7 @@ client.focused              $bg         $darkgrey       $fg         $yellow     
 client.unfocused            $bg         $bg             $fg         $yellow         $bg
 
 # ウインドウ枠の太さ
-for_window [class="^.*"] border pixel 1
+for_window [class="^.*"] border pixel 2
 
 # gaps
 gaps top 5
