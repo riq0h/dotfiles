@@ -174,8 +174,6 @@ bar {
         focused_background $background
         statusline $red
         focused_statusline $red
-        separator $secondary
-        focused_separator $secondary
         # 左からborder, bg, fg
         focused_workspace  $orange $orange $background
         active_workspace $background $background $foreground
