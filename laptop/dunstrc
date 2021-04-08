@@ -154,7 +154,7 @@ max_icon_size = 40
 # Paths to default icons.
 icon_path = /usr/share/icons/Qogir/symbolic/status
 
-frame_width = 1
+frame_width = 2
 frame_color = "#a3be8c"
 
 [shortcuts]
