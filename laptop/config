@@ -145,7 +145,7 @@ mode "CMD"{
 
 # i3blocksの色
 set $background #2b303b
-set $foreground #c0c5ce
+set $foreground #D8DEE9
 set $secondary #3f4751
 set $black #2b303b
 set $red #bf616a
@@ -184,7 +184,7 @@ bar {
         binding_mode       $green $green $background
     }
     status_command /usr/bin/bumblebee-status -m spotify pasink pasource datetime battery \
-    -p spotify.layout="spotify.song" datetime.format="%m/%d %H:%M" -t nord-powerline
+    -p spotify.layout="spotify.song" datetime.format="%m/%d %H:%M" -t monotone
 }
 
 # i3の色 Xresource.dのカラースキームを参照している
