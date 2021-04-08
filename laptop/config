@@ -45,11 +45,11 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-# 垂直ウインドウ分割
-bindsym $mod+s split h
-
 # 水平ウインドウ分割
-bindsym $mod+v split v
+bindsym $mod+s split v
+
+# 垂直ウインドウ分割
+bindsym $mod+v split h
 
 # フルスクリーン
 bindsym $mod+f fullscreen toggle
@@ -108,6 +108,7 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 
 # 設定の再読込み
 bindsym $mod+Shift+c reload
+
 # 再起動
 bindsym $mod+Shift+r restart
 
