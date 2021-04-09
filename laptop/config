@@ -144,9 +144,19 @@ mode "CMD"{
     bindsym $mod+c mode "default"
 }
 
-# i3blocksの色
+# シャットダウンシークエンス
+bindsym $mod+Shift+e mode "SHUTDOWN SEQUENCE"
+mode "SHUTDOWN SEQUENCE"{
+    bindsym p exec "systemctl poweroff"
+    bindsym r exec "systemctl reboot"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+Shift+e mode "default"
+}
+
+# メニューバーの色
 set $background #2b303b
-set $foreground #D8DEE9
+set $foreground #c0c5ce
 set $secondary #3f4751
 set $black #2b303b
 set $red #bf616a
@@ -221,10 +231,6 @@ gaps bottom 5
 gaps right 5
 gaps left 5
 gaps inner 5
-
-# シャットダウンその他
-bindsym $mod+Shift+e exec --no-startup-id \
-        "i3-nagbar -t warning -m 'Do you really want to exit i3?' -b 'Shutdown' 'systemctl poweroff' -b 'Reboot' 'systemctl reboot'"
 
 # マウスでフォーカスしない
 focus_follows_mouse no
