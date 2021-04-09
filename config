@@ -159,10 +159,8 @@ mode "SHUTDOWN SEQUENCE"{
 # メニューバーの色
 set $background #2b303b
 set $foreground #c0c5ce
-set $secondary #3f4751
-set $black #2b303b
 set $red #bf616a
-set $green #a3be8c
+set $lightgreen #a3be8c
 set $yellow #ebcb8b
 set $blue #8fa1b3
 set $magenta #b48ead
@@ -181,7 +179,7 @@ bar {
     strip_workspace_numbers yes
     binding_mode_indicator yes
     tray_output primary
-    tray_padding 0
+    tray_padding 1
     colors {
         background $background
         focused_background $background
