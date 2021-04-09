@@ -46,11 +46,11 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-# 垂直ウインドウ分割
-bindsym $mod+s split h
-
 # 水平ウインドウ分割
-bindsym $mod+v split v
+bindsym $mod+s split v
+
+# 垂直ウインドウ分割
+bindsym $mod+v split h
 
 # フルスクリーン
 bindsym $mod+f fullscreen toggle
@@ -146,9 +146,19 @@ mode "CMD"{
     bindsym $mod+c mode "default"
 }
 
+# シャットダウンシークエンス
+bindsym $mod+Shift+e mode "SHUTDOWN SEQUENCE"
+mode "SHUTDOWN SEQUENCE"{
+    bindsym p exec "systemctl poweroff"
+    bindsym r exec "systemctl reboot"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+Shift+e mode "default"
+}
+
 # メニューバーの色
 set $background #2b303b
-set $foreground #D8DEE9
+set $foreground #c0c5ce
 set $secondary #3f4751
 set $black #2b303b
 set $red #bf616a
@@ -222,10 +232,6 @@ gaps right 5
 gaps left 5
 gaps inner 5
 
-# シャットダウンその他
-bindsym $mod+Shift+e exec --no-startup-id \
-        "i3-nagbar -t warning -m 'Do you really want to exit i3?' -b 'Shutdown' 'systemctl poweroff' -b 'Reboot' 'systemctl reboot'"
-
 # マウスでフォーカスしない
 focus_follows_mouse no
 
@@ -247,6 +253,7 @@ exec --no-startup-id "xset r rate 200 30"
 exec --no-startup-id "xrandr --output DVI-D-0 --mode 1920x1080 --rate 144.00"
 
 # フローティング起動一覧
+for_window [class="Bitwarden"] floating enable
 for_window [class="Thunar"] floating enable, resize set 800 600
 for_window [class="QjackCtl"] floating enable
 for_window [class="Gscreenshot"] floating enable, resize set 600 400

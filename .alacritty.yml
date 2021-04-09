@@ -17,6 +17,9 @@ cursor:
 # タブスペース
 tabspaces: 4
 
+# 透過
+background_opacity: 0.95
+
 # フォント
 font:
   size: 13.5

@@ -79,7 +79,7 @@ shrink = no
 # The transparency of the window.  Range: [0; 100].
 # This option will only work if a compositing windowmanager is
 # present (e.g. xcompmgr, compiz, etc.).
-transparency = 5
+transparency = 7
 
 # Don't remove messages, if the user is idle (no mouse or keyboard input)
 # for longer than idle_threshold seconds.
@@ -149,7 +149,7 @@ browser = /usr/bin/google-chrome-stable -new-tab
 
 # Align icons left/right/off
 icon_position = left
-max_icon_size = 40
+max_icon_size = 80
 
 # Paths to default icons.
 icon_path = /usr/share/icons/Qogir/symbolic/status
