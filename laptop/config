@@ -260,5 +260,6 @@ for_window [class="mozc_tool"] floating enable, resize set 600 400
 for_window [class="Gscreenshot"] floating enable, resize set 600 400
 for_window [class="Sxiv"] floating enable, resize set 1024 800
 for_window [class="Blueman-manager"] floating enable, resize set 800 600
+for_window [class="L3afpad"] floating enable, resize set 800 600
 for_window [class="qt5ct"] floating enable, resize set 800 600
 for_window [class="Qtconfig-qt4"] floating enable, resize set 800 600
