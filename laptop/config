@@ -157,21 +157,18 @@ mode "SHUTDOWN SEQUENCE"{
 # メニューバーの色
 set $background #2b303b
 set $foreground #c0c5ce
-set $secondary #3f4751
-set $black #2b303b
-set $red #bf616a
-set $green #a3be8c
-set $yellow #ebcb8b
-set $blue #8fa1b3
-set $magenta #b48ead
-set $cyan #96b5b4
-set $white #c0c5ce
+set $lightred #bf616a
+set $lightgreen #a3be8c
+set $lightyellow #ebcb8b
+set $lightblue #8fa1b3
+set $lightmagenta #b48ead
+set $lightcyan #96b5b4
+set $lightwhite #c0c5ce
 set $pink #ffb6c1
 set $orange #f08080
 
 # メニューバー関連
 bar {
-    status_command i3blocks
     font pango:Ricty for Powerline 13
     mode dock
     position top
@@ -183,10 +180,8 @@ bar {
     colors {
         background $background
         focused_background $background
-        statusline $red
-        focused_statusline $red
-        separator $secondary
-        focused_separator $secondary
+        statusline $lightred
+        focused_statusline $lightred
         # 左からborder, bg, fg
         focused_workspace  $orange $orange $background
         active_workspace $background $background $foreground
