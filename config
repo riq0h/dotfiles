@@ -267,3 +267,5 @@ for_window [class="stacer"] floating enable
 for_window [class="Thunderbird"] floating enable, resize set 1024 800
 for_window [class="L3afpad"] floating enable, resize set 800 600
 for_window [class="Xfce4-power-manager-settings"] floating enable, resize 600 400
+for_window [class="qt5ct"] floating enable, resize set 800 600
+for_window [class="Qtconfig-qt4"] floating enable, resize set 800 600
