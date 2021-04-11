@@ -22,8 +22,8 @@
 
     background-color: @background;
     background: #1C1E27;
-    foreground: #CACACC;
-    border-color: #B5B5BA;
+    foreground: #cacacc;
+    border-color: #E8AEAA;
     spacing: 4;
 }
 
