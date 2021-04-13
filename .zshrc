@@ -21,6 +21,9 @@ alias ls=exa
 # clearを短縮する
 alias cls=clear
 
+# 天気情報
+alias wttr='() { curl -H "Accept-Language: ${LANG%_ja}" wttr.in/"${1:-Saitama}" }'
+
 # fzf関連
 export PATH="$PATH:$HOME/.fzf/bin"
 export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git"'
