@@ -169,7 +169,7 @@ set $orange #f08080
 
 # メニューバー関連
 bar {
-    font pango:Ricty for Powerline 13
+    font pango:HackGenNerd 12
     mode dock
     position top
     workspace_buttons yes
