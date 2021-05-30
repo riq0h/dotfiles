@@ -97,24 +97,31 @@ endif
  repo = 'ryanoasis/vim-devicons'
 
 [[plugins]]
- repo = 'nvim-lua/popup.nvim'
-
-[[plugins]]
- repo = 'nvim-lua/plenary.nvim'
-
-[[plugins]]
- repo = 'nvim-telescope/telescope.nvim'
- hook_add = '''
- nnoremap <leader>ff <cmd>Telescope find_files<CR>
- nnoremap <leader>fg <cmd>Telescope live_grep<CR>
- nnoremap <leader>fb <cmd>Telescope buffers<CR>
- nnoremap <leader>fh <cmd>Telescope help_tags<CR>
-
- nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<CR>
- nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<CR>
- nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<CR>
- nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<CR>
+ repo = 'junegunn/fzf'
+ build_on = '''
+ ./install -all
 '''
+
+[[plugins]]
+ repo = 'junegunn/fzf.vim'
+ hook_add = '''
+ command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0)
+'''
+
+[[plugins]]
+ repo = 'thinca/vim-quickrun'
+
+[[plugins]]
+ repo = 'markonm/traces.vim'
+
+[[plugins]]
+ repo = 'mattn/vim-maketable'
+
 [[plugins]]
  repo = 'osyo-manga/vim-anzu'
 
