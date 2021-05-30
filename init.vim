@@ -10,8 +10,9 @@
  " 色づけをオン
  syntax on
 
- " Space+ドットで.vimrcを開く
+ " Space+ドットでinit.vimを開く
  nnoremap <Space>. :<C-u>tabedit $MYVIMRC<CR>
+ nnoremap <Space>, :<C-u>tabedit ~/.config/nvim/dein.toml<CR>
 
  " バッファを保存しなくても他のバッファを表示できるようにする
  set hidden

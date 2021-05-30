@@ -75,6 +75,9 @@ endif
  repo = 'cohama/lexima.vim'
 
 [[plugins]]
+ repo = 'mattn/emmet-vim'
+
+[[plugins]]
  repo = 'lambdalisue/fern.vim'
  hook_add = '''
  nnoremap <C-n> :Fern . -reveal=% -drawer -toggle -width=40<CR>
@@ -94,13 +97,26 @@ endif
  repo = 'ryanoasis/vim-devicons'
 
 [[plugins]]
- repo = 'junegunn/fzf'
- build_on = '''
- ./install -all
-'''
+ repo = 'nvim-lua/popup.nvim'
 
 [[plugins]]
- repo = 'junegunn/fzf.vim'
+ repo = 'nvim-lua/plenary.nvim'
+
+[[plugins]]
+ repo = 'nvim-telescope/telescope.nvim'
+ hook_add = '''
+ nnoremap <leader>ff <cmd>Telescope find_files<CR>
+ nnoremap <leader>fg <cmd>Telescope live_grep<CR>
+ nnoremap <leader>fb <cmd>Telescope buffers<CR>
+ nnoremap <leader>fh <cmd>Telescope help_tags<CR>
+
+ nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<CR>
+ nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<CR>
+ nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<CR>
+ nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<CR>
+'''
+[[plugins]]
+ repo = 'osyo-manga/vim-anzu'
 
 [[plugins]]
  repo = 'lambdalisue/suda.vim'
@@ -124,7 +140,16 @@ endif
  repo = 'ntk148v/vim-horizon'
 
 [[plugins]]
+ repo = 'arcticicestudio/nord-vim'
+
+[[plugins]]
  repo = 'sheerun/vim-polyglot'
+
+[[plugins]]
+ repo = 'tpope/vim-surround'
+
+[[plugins]]
+ repo = 'tpope/vim-repeat'
 
 [[plugins]]
  repo = 'gko/vim-coloresque'
@@ -143,3 +168,4 @@ endif
 
 [[plugins]]
  repo = 'simeji/winresizer'
+

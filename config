@@ -251,7 +251,7 @@ exec --no-startup-id "xrandr --output DVI-D-0 --mode 1920x1080 --rate 144.00"
 
 # フローティング起動一覧
 for_window [class="Bitwarden"] floating enable
-for_window [class="Thunar"] floating enable, resize set 800 600
+for_window [class="Thunar"] floating enable
 for_window [class="QjackCtl"] floating enable
 for_window [class="Gscreenshot"] floating enable, resize set 600 400
 for_window [class="Lxappearance"] floating enable, resize set 600 400
@@ -262,7 +262,7 @@ for_window [class="VirtualBox Manager"] floating enable, resize set 800 600
 for_window [class="VirtualBox Machine"] floating enable
 for_window [class="Io.github.celluloid_player.Celluloid"] floating enable
 for_window [class="Sxiv"] floating enable, resize set 800 600
-for_window [class="Transmission-gtk"] floating enable, resize set 600 300
+for_window [class="Transmission-gtk"] floating enable
 for_window [class="stacer"] floating enable
 for_window [class="Thunderbird"] floating enable
 for_window [class="L3afpad"] floating enable, resize set 800 600
