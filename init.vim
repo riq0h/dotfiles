@@ -1,14 +1,8 @@
- " Vi互換モードをオフ（Vimの拡張機能を有効）
- set nocompatible
-
  " undoを生成しない
  set noundofile
 
  " ファイル名と内容によってファイルタイプを判別し、ファイルタイププラグインを有効にする
  filetype indent plugin on
-
- " 色づけをオン
- syntax on
 
  " Space+ドットでinit.vimを開く
  nnoremap <Space>. :<C-u>tabedit $MYVIMRC<CR>
@@ -19,6 +13,9 @@
 
  " カーソル
  set guicursor=
+
+ " カーソルライン
+ set cursorline
 
  " コマンドライン補完を便利に
  set wildmenu
@@ -55,7 +52,7 @@
  " 移動コマンドを使ったとき、行頭に移動しない
  set nostartofline
 
- " ウガンダを消す
+ " ウガンダ君さようなら
  set shortmess+=I
 
  " ステータスラインを表示する
@@ -169,3 +166,6 @@ endif
 
  " ファイル認識機能を再起動
  filetype indent plugin on
+
+ " ハイライト
+ syntax on
