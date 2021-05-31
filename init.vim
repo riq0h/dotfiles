@@ -1,12 +1,15 @@
 " undoを生成しない
  set noundofile
 
+ "  Leaderキーの再定義
+ let mapleader = "\<Space>"
+
  " ファイル名と内容によってファイルタイプを判別し、ファイルタイププラグインを有効にする
  filetype indent plugin on
 
  " Space+ドットでinit.vimを開く
- nnoremap <Space>. :<C-u>tabedit $MYVIMRC<CR>
- nnoremap <Space>, :<C-u>tabedit ~/.config/nvim/dein.toml<CR>
+ nnoremap <Leader>. :<C-u>tabedit $MYVIMRC<CR>
+ nnoremap <Leader>, :<C-u>tabedit ~/.config/nvim/dein.toml<CR>
 
  " バッファを保存しなくても他のバッファを表示できるようにする
  set hidden

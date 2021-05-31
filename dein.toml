@@ -1,8 +1,8 @@
 [[plugins]]
  repo = 'neoclide/coc.nvim'
  hook_add = '''
- nmap <silent> <space><space><space> :<C-u>CocFzfList<cr>
- nmap <silent> <space>h :<C-u>call CocAction('doHover')<cr>
+ nmap <silent> <Leader>\ :<C-u>CocFzfList<cr>
+ nmap <silent> <Leader>h :<C-u>call CocAction('doHover')<cr>
  nmap <silent> gd <Plug>(coc-definition)
  nmap <silent> gy <Plug>(coc-type-definition)
  nmap <silent> gi <Plug>(coc-implementation)
@@ -126,6 +126,9 @@ endif
   \   <bang>0 ? fzf#vim#with_preview('up:60%')
   \           : fzf#vim#with_preview('right:50%:hidden', '?'),
   \   <bang>0)
+
+ nmap <silent> <Leader><Leader><Leader> :<C-u>Rg<cr>
+
 '''
 [[plugins]]
  repo = 'antoinemadec/coc-fzf'
@@ -138,6 +141,15 @@ endif
 
 [[plugins]]
  repo = 'mattn/vim-maketable'
+
+[[plugins]]
+ repo = 'easymotion/vim-easymotion'
+ hook_add = '''
+ map <Leader>s <Plug>(easymotion-bd-f2)
+ nmap <Leader>s <Plug>(easymotion-overwin-f2)
+ map <Leader>l <Plug>(easymotion-bd-jk)
+ nmap <Leader>l <Plug>(easymotion-overwin-line)
+'''
 
 [[plugins]]
  repo = 'lambdalisue/suda.vim'
@@ -189,4 +201,3 @@ endif
 
 [[plugins]]
  repo = 'simeji/winresizer'
-
