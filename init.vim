@@ -1,4 +1,4 @@
- " undoを生成しない
+" undoを生成しない
  set noundofile
 
  " ファイル名と内容によってファイルタイプを判別し、ファイルタイププラグインを有効にする
@@ -94,10 +94,6 @@
 
  " 編集中のファイルをリネームする
  command! -nargs=+ -bang -complete=file Rename let pbnr=fnamemodify(bufname('%'), ':p')|exec 'f '.escape(<q-args>, ' ')|w<bang>|call delete(pbnr)
-
- " IMEを勝手に切り替えない
- set iminsert=0
- set imsearch=0
 
  " ウインドウ分割関連
  nnoremap sk <C-w>j

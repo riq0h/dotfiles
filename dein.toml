@@ -130,7 +130,6 @@ endif
 [[plugins]]
  repo = 'antoinemadec/coc-fzf'
 
-
 [[plugins]]
  repo = 'thinca/vim-quickrun'
 
@@ -147,7 +146,7 @@ endif
  repo = 'lambdalisue/suda.vim'
 
 [[plugins]]
- repo = 'tpope/vim-fugitive'
+ repo = 'lambdalisue/gina.vim'
 
 [[plugins]]
  repo = 'airblade/vim-gitgutter'
