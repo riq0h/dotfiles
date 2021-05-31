@@ -140,9 +140,6 @@ endif
  repo = 'mattn/vim-maketable'
 
 [[plugins]]
- repo = 'osyo-manga/vim-anzu'
-
-[[plugins]]
  repo = 'lambdalisue/suda.vim'
 
 [[plugins]]

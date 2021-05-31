@@ -34,6 +34,9 @@
  set ignorecase
  set smartcase
 
+ " 検索総数を非表示
+ set shortmess+=S
+
  " オートインデント、改行、インサートモード開始直後にバックスペースキーで削除できるようにする
  set backspace=indent,eol,start
 
@@ -43,7 +46,6 @@
  set tabstop=2
  set softtabstop=2
  set shiftwidth=2
- au FileType go setlocal sw=4 ts=4 noet
  set list listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
 
  " タブ削除
@@ -54,6 +56,27 @@
 
  " ウガンダ君さようなら
  set shortmess+=I
+
+ " ミドルクリック抹殺
+ map <MiddleMouse>   <Nop>
+ map <2-MiddleMouse> <Nop>
+ map <3-MiddleMouse> <Nop>
+ map <4-MiddleMouse> <Nop>
+ imap <MiddleMouse>   <Nop>
+ imap <2-MiddleMouse> <Nop>
+ imap <3-MiddleMouse> <Nop>
+ imap <4-MiddleMouse> <Nop>
+
+ " 挿入モード時の移動
+ inoremap <C-a> <C-o>^
+ inoremap <C-e> <C-o>$
+ inoremap <C-f> <C-o>w
+ inoremap <C-b> <C-o>b
+ inoremap <C-d> <C-o>x
+ inoremap <C-h> <C-o>h
+ inoremap <C-j> <C-o>j
+ inoremap <C-k> <C-o>k
+ inoremap <C-l> <C-o>l
 
  " ステータスラインを表示する
  set laststatus=2
@@ -71,7 +94,7 @@
  set number
 
  " キーコードはすぐにタイムアウト。マッピングはタイムアウトしない
- set notimeout ttimeout ttimeoutlen=50
+ set notimeout ttimeout ttimeoutlen=10
 
  " Yの動作をDやCと同じにする
  map Y y$
@@ -95,12 +118,15 @@
  " 編集中のファイルをリネームする
  command! -nargs=+ -bang -complete=file Rename let pbnr=fnamemodify(bufname('%'), ':p')|exec 'f '.escape(<q-args>, ' ')|w<bang>|call delete(pbnr)
 
- " ウインドウ分割関連
- nnoremap sk <C-w>j
- nnoremap sl <C-w>l
- nnoremap sh <C-w>h
+ " ウインドウ分割
  nnoremap ss :<C-u>sp<CR><C-w>j
  nnoremap sv :<C-u>vs<CR><C-w>l
+
+ " ウインドウリサイズ
+ nnoremap <S-Left>  <C-w><<CR>
+ nnoremap <S-Right> <C-w>><CR>
+ nnoremap <S-Up>    <C-w>-<CR>
+ nnoremap <S-Down>  <C-w>+<CR>
 
  " dein.vim 関連 {{{
  " インストールディレクトリの指定 {{{
