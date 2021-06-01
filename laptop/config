@@ -245,7 +245,7 @@ exec --no-startup-id dunst
 exec --no-startup-id "picom -b"
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id "libinput-gestures-setup start"
-exec --no-startup-id fcitx
+exec --no-startup-id fcitx5
 exec --no-startup-id light-locker --lock-on-suspend
 exec --no-startup-id "feh --bg-scale ~/Wallpaper.png"
 exec --no-startup-id "xset r rate 200 30"
@@ -255,7 +255,7 @@ for_window [class="Bitwarden"] floating enable
 for_window [class="Thunar"] floating enable
 for_window [class="Lxappearance"] floating enable, resize set 800 600
 for_window [class="Pavucontrol"] floating enable, resize set 800 600
-for_window [class="Fcitx-config-gtk3"] floating enable, resize set 600 400
+for_window [class="fcitx5-config-qt"] floating enable
 for_window [class="mozc_tool"] floating enable, resize set 600 400
 for_window [class="Gscreenshot"] floating enable, resize set 600 400
 for_window [class="Sxiv"] floating enable, resize set 1024 800
