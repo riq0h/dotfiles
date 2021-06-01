@@ -1,4 +1,7 @@
-" undoを生成しない
+ " ヘルプ日本語化
+ set helplang=ja,en
+
+ " undoを生成しない
  set noundofile
 
  "  Leaderキーの再定義
@@ -6,10 +9,6 @@
 
  " ファイル名と内容によってファイルタイプを判別し、ファイルタイププラグインを有効にする
  filetype indent plugin on
-
- " Space+ドットでinit.vimを開く
- nnoremap <Leader>. :<C-u>tabedit $MYVIMRC<CR>
- nnoremap <Leader>, :<C-u>tabedit ~/.config/nvim/dein.toml<CR>
 
  " バッファを保存しなくても他のバッファを表示できるようにする
  set hidden
@@ -32,32 +31,56 @@
  " 検索語を強調表示（<C-L>を押すと現在の強調表示を解除する）
  set hlsearch
 
- " 検索時に大文字・小文字を区別しない。ただし、検索後に大文字小文字が
- " 混在しているときは区別する
+ " 検索時に大文字・小文字を区別しない。検索後に大文字小文字が混在しているときは区別する
  set ignorecase
  set smartcase
-
- " 検索総数を非表示
- set shortmess+=S
 
  " オートインデント、改行、インサートモード開始直後にバックスペースキーで削除できるようにする
  set backspace=indent,eol,start
 
+ " 編集魔法速攻召喚
+ nnoremap ew :<C-u>w<CR>
+ nnoremap eW :<C-w>wq<CR>
+ nnoremap eq :<C-u>quit<CR>
+ nnoremap eQ :<C-u>quit!<CR>
+ nnoremap ec :<C-u>close<CR>
+ nnoremap eC :<C-u>close!<CR>
+ nnoremap eo :<C-u>only<CR>
+ nnoremap <C-s> :<C-u>%s___cg<Left><Left><Left><Left>
+
  " インデント
- set autoindent smartindent
- set expandtab
- set tabstop=2
- set softtabstop=2
- set shiftwidth=2
+ set autoindent
+ set tabstop=8
+ set softtabstop=4
+ set shiftwidth=4
+ set noexpandtab
  set list listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
 
- " タブ削除
- nnoremap bd :bd<CR>
+ " 常に新しいタブで開く
+ function OpenFilesToTabs()
+     if len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) > 1
+       execute 'b # | tabnew | blast | bp'
+     endif
+ endfunction
+ autocmd BufNewFile,BufRead * :call OpenFilesToTabs()
+
+ " タブ関連
+ nnoremap td :bd<CR>
+ nnoremap tt :<C-u>tabnew<CR>
+ nnoremap t1 :<C-u>tabnext1<CR>
+ nnoremap t2 :<C-u>tabnext2<CR>
+ nnoremap t3 :<C-u>tabnext3<CR>
+ nnoremap t4 :<C-u>tabnext4<CR>
+ nnoremap t5 :<C-u>tabnext5<CR>
+ nnoremap t6 :<C-u>tabnext6<CR>
+ nnoremap t7 :<C-u>tabnext7<CR>
+ nnoremap t8 :<C-u>tabnext8<CR>
+ nnoremap t9 :<C-u>tabnext9<CR>
 
  " 移動コマンドを使ったとき、行頭に移動しない
  set nostartofline
 
- " ウガンダ君さようなら
+ " ウガンダ君さようなら（寄付はした）
  set shortmess+=I
 
  " ミドルクリック抹殺
@@ -131,6 +154,16 @@
  nnoremap <S-Up>    <C-w>-<CR>
  nnoremap <S-Down>  <C-w>+<CR>
 
+ " ウインドウ間の移動
+ nnoremap sh <C-w>h
+ nnoremap sj <C-w>j
+ nnoremap sk <C-w>k
+ nnoremap sl <C-w>l
+ nnoremap sH <C-w>H
+ nnoremap sJ <C-w>J
+ nnoremap sK <C-w>K
+ nnoremap sL <C-w>L
+
  " dein.vim 関連 {{{
  " インストールディレクトリの指定 {{{
  let s:dein_dir = expand('~/.config/nvim/.cache/dein')
@@ -150,17 +183,17 @@ endif
  if dein#load_state(s:dein_dir)
   call dein#begin(s:dein_dir)
 
-  " .tomlファイルの場所
+ " .tomlファイルの場所
   let s:rc_dir = expand('~/.config/nvim/')
   if !isdirectory(s:rc_dir)
     call mkdir(s:rc_dir, 'p')
   endif
   let s:toml = s:rc_dir . '/dein.toml'
 
-  " .tomlファイルを読み込む
+ " .tomlファイルを読み込む
   call dein#load_toml(s:toml, {'lazy': 0})
 
-  " 終了
+ " 終了
   call dein#end()
   call dein#save_state()
 endif
@@ -180,7 +213,7 @@ endif
 endif
  " }}}
 
-  " 発色
+ " 発色
  set termguicolors
 
  " カラースキームの設定

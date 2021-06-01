@@ -245,6 +245,7 @@ exec --no-startup-id slack
 exec --no-startup-id parcellite
 exec --no-startup-id "./sh/mount.sh"
 exec --no-startup-id "./sh/nvidia.sh"
+exec --no-startup-id "./sh/nvidia-force.sh"
 exec --no-startup-id "feh --bg-scale ~/Wallpaper.png"
 exec --no-startup-id "xset r rate 200 30"
 exec --no-startup-id "xrandr --output DVI-D-0 --mode 1920x1080 --rate 144.00"
