@@ -163,10 +163,10 @@ endif
 [[plugins]]
  repo = 'easymotion/vim-easymotion'
  hook_add = '''
- map <Leader>n <Plug>(easymotion-bd-f2)
- nmap <Leader>n <Plug>(easymotion-overwin-f2)
- map <Leader>m <Plug>(easymotion-bd-jk)
- nmap <Leader>m <Plug>(easymotion-overwin-line)
+ map <Leader>; <Plug>(easymotion-bd-f2)
+ nmap <Leader>; <Plug>(easymotion-overwin-f2)
+ map <Leader>' <Plug>(easymotion-bd-jk)
+ nmap <Leader>' <Plug>(easymotion-overwin-line)
 '''
 
 [[plugins]]
