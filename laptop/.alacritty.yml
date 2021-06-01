@@ -6,8 +6,6 @@ shell:
 
 # カーソル
 cursor:
-  text: '#ffffff'
-  cursor: '#00ff00'
   style:
     shape: Block
     blinking: On
