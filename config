@@ -139,6 +139,7 @@ bindsym $mod+c mode "CMD"
 mode "CMD"{
     bindsym g exec google-chrome-stable; mode "default"
     bindsym p exec gscreenshot; mode "default"
+    bindsym f exec "flameshot gui" mode "default"
     bindsym j exec qjackctl; mode "default"
     bindsym t exec thunderbird; mode "default"
     bindsym Return mode "default"
