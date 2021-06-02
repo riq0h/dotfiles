@@ -174,6 +174,12 @@ endif
 
 [[plugins]]
  repo = 'tpope/vim-fugitive'
+ hook_add = '''
+ nnoremap <silent> <Leader>gs :<C-u>Git status<CR>
+ nnoremap <silent> <Leader>ga :<C-u>Git add *<CR>
+ nnoremap <silent> <Leader>gc :<C-u>Git commit -m "fixed"<CR>
+ nnoremap <silent> <Leader>gp :<C-u>Git push<CR>
+'''
 
 [[plugins]]
  repo = 'airblade/vim-gitgutter'
