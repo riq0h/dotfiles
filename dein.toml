@@ -203,10 +203,7 @@ endif
  repo = 'sheerun/vim-polyglot'
 
 [[plugins]]
- repo = 'tpope/vim-surround'
-
-[[plugins]]
- repo = 'tpope/vim-repeat'
+ repo = 'machakann/vim-sandwich'
 
 [[plugins]]
  repo = 'gko/vim-coloresque'
