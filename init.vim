@@ -46,7 +46,7 @@
  nnoremap ec :<C-u>close<CR>
  nnoremap eC :<C-u>close!<CR>
  nnoremap eo :<C-u>only<CR>
- nnoremap <C-s> :<C-u>%s___cg<Left><Left><Left><Left>
+ nnoremap <C-s> :<C-u>%s///cg<Left><Left><Left><Left>
 
  " インデント
  set autoindent
