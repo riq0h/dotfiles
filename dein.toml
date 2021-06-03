@@ -126,7 +126,7 @@ endif
 [[plugins]]
  repo = 'lambdalisue/fern.vim'
  hook_add = '''
- nnoremap <C-n> :Fern . -reveal=% -drawer -toggle -width=40<CR>
+ nnoremap <silent> <C-n> :Fern . -reveal=% -drawer -toggle -width=40<CR>
  let g:fern#renderer = 'nerdfont'
 '''
 
