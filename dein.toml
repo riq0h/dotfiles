@@ -209,13 +209,13 @@ endif
  repo = 'gko/vim-coloresque'
 
 [[plugins]]
- repo = 'tomtom/tcomment_vim'
- hook_add = '''
-    vnoremap ? :'<,'>TComment<CR>
-'''
+ repo = 'tyru/caw.vim'
 
 [[plugins]]
- repo = 'tpope/vim-commentary'
+ repo = 'tpope/vim-repeat'
+
+[[plugins]]
+ repo = 'haya14busa/vim-migemo'
 
 [[plugins]]
  repo = 'nathanaelkane/vim-indent-guides'
