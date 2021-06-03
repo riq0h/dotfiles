@@ -93,6 +93,14 @@
  imap <3-MiddleMouse> <Nop>
  imap <4-MiddleMouse> <Nop>
 
+ " 表示行移動優先
+ nnoremap k gk
+ nnoremap <Up> gk
+ inoremap <Up> <C-o>gk
+ nnoremap j gj
+ nnoremap <Down> gj
+ inoremap <Down> <C-o>gj
+
  " 挿入モード時の移動
  inoremap <C-a> <C-o>^
  inoremap <C-e> <C-o>$
@@ -100,8 +108,8 @@
  inoremap <C-b> <C-o>b
  inoremap <C-d> <C-o>x
  inoremap <C-h> <C-o>h
- inoremap <C-j> <C-o>j
- inoremap <C-k> <C-o>k
+ inoremap <C-j> <C-o>gj
+ inoremap <C-k> <C-o>gk
  inoremap <C-l> <C-o>l
 
  " ステータスラインを表示する
@@ -128,8 +136,8 @@
  " クリップボード保持
  set clipboard+=unnamedplus
 
- " <C-L>で検索後の強調表示を解除する
- nnoremap <C-L> :nohl<CR><C-L>
+ " <C-X>で検索後の強調表示を解除する
+ nnoremap <C-X> :nohl<CR><C-X>
 
  " バックアップファイルの生成を行わない
  set nobackup

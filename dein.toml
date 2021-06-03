@@ -194,6 +194,9 @@ endif
 '''
 
 [[plugins]]
+ repo = 'wsdjeg/dein-ui.vim'
+
+[[plugins]]
  repo = 'ntk148v/vim-horizon'
 
 [[plugins]]
