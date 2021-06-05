@@ -65,7 +65,7 @@
  autocmd BufNewFile,BufRead * :call OpenFilesToTabs()
 
  " タブ関連
- nnoremap td :bd<CR>
+ nnoremap td :<C-u>bd<CR>
  nnoremap tt :<C-u>tabnew<CR>
 
  " 移動コマンドを使ったとき、行頭に移動しない
