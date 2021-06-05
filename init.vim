@@ -67,15 +67,6 @@
  " タブ関連
  nnoremap td :bd<CR>
  nnoremap tt :<C-u>tabnew<CR>
- nnoremap t1 :<C-u>tabnext1<CR>
- nnoremap t2 :<C-u>tabnext2<CR>
- nnoremap t3 :<C-u>tabnext3<CR>
- nnoremap t4 :<C-u>tabnext4<CR>
- nnoremap t5 :<C-u>tabnext5<CR>
- nnoremap t6 :<C-u>tabnext6<CR>
- nnoremap t7 :<C-u>tabnext7<CR>
- nnoremap t8 :<C-u>tabnext8<CR>
- nnoremap t9 :<C-u>tabnext9<CR>
 
  " 移動コマンドを使ったとき、行頭に移動しない
  set nostartofline
