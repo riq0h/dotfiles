@@ -1,0 +1,261 @@
+# 神は言った――「光あれ」
+set $mod Mod4
+
+# ウインドウタイトルのフォント
+font pango:Noto Sans CJK JP 8
+
+# フローティングウインドウの操作キー
+floating_modifier $mod
+
+# ターミナル
+bindsym $mod+Return exec --no-startup-id alacritty
+
+# ファイラー
+bindsym $mod+m exec --no-startup-id thunar
+
+# タスクキル
+bindsym $mod+q kill
+
+# ランチャー
+bindsym $mod+z exec --no-startup-id "rofi -show drun"
+bindsym $mod+x exec --no-startup-id "rofi -show run"
+
+# ウインドウフォーカス
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# 代替ウインドウフォーカス
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# ウインドウ交換
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# 代替ウインドウ交換
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# 水平ウインドウ分割
+bindsym $mod+s split v
+
+# 垂直ウインドウ分割
+bindsym $mod+v split h
+
+# フルスクリーン
+bindsym $mod+f fullscreen toggle
+
+# ウインドウの分割切り替え
+bindsym $mod+e layout toggle split
+
+# ウインドウフロート
+bindsym $mod+w floating toggle
+
+# フロートウインドウフォーカス
+bindsym $mod+space focus mode_toggle
+
+# 親コンテナへのフォーカス
+bindsym $mod+a focus parent
+
+# 子コンテナへのフォーカス
+bindsym $mod+b focus child
+
+# ワークスペース変数
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# ワークスペースの移動
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+# ウインドウを他のワークスペースに移動する
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+# 設定再読込み
+bindsym $mod+Shift+c reload
+
+# 再起動
+bindsym $mod+Shift+r restart
+
+# ウインドウリサイズ
+mode "RESIZE" {
+        bindsym h resize shrink width 10 px or 5 ppt
+        bindsym j resize grow height 10 px or 5 ppt
+        bindsym k resize shrink height 10 px or 5 ppt
+        bindsym l resize grow width 10 px or 5 ppt
+
+        # 代替
+        bindsym Left resize shrink width 10 px or 5 ppt
+        bindsym Down resize grow height 10 px or 5 ppt
+        bindsym Up resize shrink height 10 px or 5 ppt
+        bindsym Right resize grow width 10 px or 5 ppt
+
+        # 通常モード遷移
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+
+bindsym $mod+r mode "RESIZE"
+
+# コマンドモード――これによりキーバインドは実質無制限となる！
+bindsym $mod+c mode "CMD"
+mode "CMD"{
+    bindsym v exec vivaldi-stable; mode "default"
+    bindsym f exec "flameshot gui" mode "default"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+c mode "default"
+}
+
+# シャットダウンシークエンス
+bindsym $mod+Shift+e mode "SHUTDOWN SEQUENCE"
+mode "SHUTDOWN SEQUENCE"{
+    bindsym p exec "systemctl poweroff"
+    bindsym r exec "systemctl reboot"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+Shift+e mode "default"
+}
+
+# ステータスバーの色
+set $background #2B303B
+set $foreground #C0C5CE
+set $lightred #BF616A
+set $lightgreen #A3BE8C
+set $lightyellow #EBCB8B
+set $lightblue #8FA1B3
+set $lightmagenta #B48EAD
+set $lightcyan #96B5B4
+set $lightwhite #C0C5CE
+set $pink #FFB6C1
+set $orange #F08080
+
+# ステータスバー関連
+bar {
+    font pango:UDEV Gothic 35 13
+    mode dock
+    position top
+    workspace_buttons yes
+    strip_workspace_numbers yes
+    binding_mode_indicator yes
+    tray_padding 2
+    colors {
+        background $background
+        focused_background $background
+        statusline $lightred
+        focused_statusline $lightred
+        # 左からborder, bg, fg
+        focused_workspace  $orange $orange $background
+        active_workspace $background $background $foreground
+        inactive_workspace $background $background $foreground
+        urgent_workspace   $green $green $background
+        binding_mode       $green $green $background
+    }
+    status_command /usr/bin/bumblebee-status -m playerctl datetime \
+    -p playerctl.hide="true" playerctl.format="{{artist}} - {{title}}" playerctl.layout="playerctl.song" datetime.format="%m/%d %H:%M" -t monotone
+}
+
+# i3wm全体の色
+set $bg           #1C1E27
+set $fg           #CACACC
+set $darkred      #D95882
+set $red          #E4436F
+set $darkgreen    #68DDC4
+set $green        #24E39D
+set $darkyellow   #E8AEAA
+set $yellow       #EDA685
+set $darkblue     #64A4BF
+set $blue         #2095B4
+set $darkmagenta  #B382CF
+set $darkcyan     #54AEB8
+set $cyan         #00A5AF
+set $darkwhite    #CACACC
+set $white        #CACACA
+set $darkgrey     #6C6F93
+
+# フォーカスカラー
+# class                     border      background      text        indicator       child_border
+client.focused              $bg         $darkgrey       $fg         $yellow         $darkyellow
+client.unfocused            $bg         $bg             $fg         $yellow         $bg
+
+# ウインドウの枠の太さ
+for_window [class="^.*"] border pixel 2
+
+# ウインドウ間の隙間の広さ
+gaps top 6
+gaps bottom 6
+gaps right 6
+gaps left 6
+gaps inner 6
+
+# マウスでフォーカスしない
+focus_follows_mouse no
+
+# 自動起動
+exec --no-startup-id dunst
+exec --no-startup-id "picom -b"
+exec --no-startup-id xfce4-power-manager
+exec --no-startup-id fcitx5
+exec --no-startup-id vivaldi-stable
+exec --no-startup-id discord
+exec --no-startup-id slack
+exec --no-startup-id parcellite
+exec --no-startup-id "./sh/mount.sh"
+exec --no-startup-id "feh --no-fehbg --bg-scale ~/Wallpaper.png"
+exec --no-startup-id "xset r rate 200 30"
+
+# フローティング起動一覧
+for_window [class="Thunar"] floating enable, resize set 1024 780
+for_window [class="Lxappearance"] floating enable, resize set 800 600
+for_window [class="Pavucontrol"] floating enable, resize set 800 600
+for_window [class="fcitx5-config-qt"] floating enable
+for_window [class="mozc_tool"] floating enable, resize set 800 600
+for_window [class="VirtualBox Manager"] floating enable, resize set 1280 1024
+for_window [class="VirtualBox Machine"] floating enable
+for_window [class="Io.github.celluloid_player.Celluloid"] floating enable
+for_window [class="feh"] floating enable, resize set 1280 1024
+for_window [class="transmission-gtk"] floating enable
+for_window [class="stacer"] floating enable
+for_window [class="Mousepad"] floating enable, resize set 1280 1024
+for_window [class="Xfce4-power-manager-settings"] floating enable, resize 1024 780
+for_window [class="qt5ct"] floating enable, resize set 1024 780
+for_window [class="Qtconfig-qt4"] floating enable, resize set 1024 780
+for_window [class="kdeconnect-app"] floating enbale
+
+# ワークスペース指定一覧
+assign [class="discord"] workspace 3
+assign [class="Slack"] workspace 3

@@ -1,0 +1,67 @@
+{
+    "icons": [ "awesome-fonts" ],
+    "colors": [{
+        "red": "#BF616A",
+        "orange": "#F08080",
+        "yellow": "#EBCB8B",
+        "green": "#A3BE8C"
+    }],
+    "defaults": {
+        "separator-block-width": 0,
+        "separator": "",
+        "warning": {
+            "fg": "#2B303B",
+            "bg": "#f08080"
+        },
+        "critical": {
+            "fg": "#2B303B",
+            "bg": "#BF616A"
+        }
+    },
+    "cycle": [
+        { "fg": "#C0C5CE", "bg": "#2B303B"}
+    ],
+    "dnf": {
+        "good": {
+            "fg": "#A3BE8C",
+            "bg": "#2B303B"
+        }
+    },
+    "apt": {
+        "good": {
+            "fg": "#A3BE8C",
+            "bg": "#2B303B"
+        }
+    },
+    "pacman": {
+        "good": {
+            "fg": "#A3BE8C",
+            "bg": "#2B303B"
+        }
+    },
+    "battery": {
+        "charged": {
+            "fg": "#2B303B",
+            "bg": "#A3BE8C"
+        },
+        "charging": {
+            "fg": "#2B303B",
+            "bg": "#A3BE8C"
+        }
+    },
+    "pomodoro": {
+        "paused": {
+            "fg": "#2B303B",
+            "bg": "#F08080"
+        },
+        "work": {
+            "fg": "#2B303B",
+            "bg": "#EBCB8B"
+        },
+        "break": {
+            "fg": "#A3BE8C",
+            "bg": "#2B303B"
+        }
+    }
+
+}

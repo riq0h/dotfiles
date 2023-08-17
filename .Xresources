@@ -1,0 +1,49 @@
+!! Import colorscheme
+#define S_foreground        #cacacc
+#define S_background        #1C1E27
+#define S_black             #3C3E47
+#define S_red               #E4436F
+#define S_green             #24e39d
+#define S_yellow            #EDA685
+#define S_blue              #2095B4
+#define S_magenta           #B367CF
+#define S_cyan              #00A5AF
+#define S_lightgrey         #b5b5ba
+#define S_darkgrey          #6C6F93
+#define S_darkred           #D95882
+#define S_darkgreen         #68DDC4
+#define S_darkyellow        #E8AEAA
+#define S_darkblue          #64A4BF
+#define S_darkmagenta       #B382CF
+#define S_darkcyan          #54AEB8
+#define S_white             #cacacc
+
+!! Set colors
+*background:    S_background
+*foreground:    S_foreground
+*color0:        S_black
+*color8:        S_darkgrey
+*color1:        S_darkred
+*color9:        S_red
+*color2:        S_darkgreen
+*color10:       S_green
+*color3:        S_darkyellow
+*color11:       S_yellow
+*color4:        S_darkblue
+*color12:       S_blue
+*color5:        S_darkmagenta
+*color13:       S_magenta
+*color6:        S_darkcyan
+*color14:       S_cyan
+*color7:        S_lightgrey
+*color15:       S_white
+
+
+!! Set DPI
+Xft.dpi: 140
+Xft.auohint: 0
+Xft.lcdfilter: lcddefault
+Xft.hintstyle: hintfull
+Xft.antialias: 1
+Xft.rgba: rgb
+Xcursor.size: 32
