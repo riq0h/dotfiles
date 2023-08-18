@@ -18,6 +18,7 @@
 #define S_darkcyan          #54AEB8
 #define S_white             #cacacc
 
+
 !! Set colors
 *background:    S_background
 *foreground:    S_foreground
