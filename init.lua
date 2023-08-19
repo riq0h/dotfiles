@@ -274,9 +274,9 @@ options = {
 --telescope
 require('telescope').setup({
   defaults = {
-    borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+    borderchars = { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
     color_devicons = true,
-    file_ignore_patterns = { 'node_modules', '.git', '.svg', '.npm', 'go', 'MEGA'},
+    file_ignore_patterns = { 'node_modules', '.git', '.svg', '.npm', 'go' },
     mappings = {
       i = {
     ['<esc>'] = require('telescope.actions').close,
@@ -325,12 +325,12 @@ local on_attach = function(client, bufnr)
  client.server_capabilities.documentFormattingProvider = false
  local set = vim.keymap.set
   set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>')
-  set('n', 'ls', '<cmd>lua vim.lsp.buf.signature_help()<CR>')
-  set('n', 'ln', '<cmd>lua vim.lsp.buf.rename()<CR>')
-  set('n', 'la', '<cmd>lua vim.lsp.buf.code_action()<CR>')
-  set('n', 'l[', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>')
-  set('n', 'l]', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>')
-  set('n', 'lf', '<cmd>lua vim.lsp.buf.format {async = true}<CR>')
+  set('n', '<leader>1', '<cmd>lua vim.lsp.buf.signature_help()<CR>')
+  set('n', '<leader>2', '<cmd>lua vim.lsp.buf.rename()<CR>')
+  set('n', '<leader>3', '<cmd>lua vim.lsp.buf.code_action()<CR>')
+  set('n', '<leader>[', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>')
+  set('n', '<leaaer>]', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>')
+  set('n', '<leader>4', '<cmd>lua vim.lsp.buf.format {async = true}<CR>')
   end
 vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
 vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = false })
@@ -365,60 +365,60 @@ map("n", "<leader><leader>d", ":lua require'dapui'.eval()<CR>", { silent = true}
 
 
 ---DAP-UI
-require("dapui").setup({
-	icons = { expanded = "▾", collapsed = "▸", current_frame = "▸" },
+require('dapui').setup({
+	icons = { expanded = '▾', collapsed = '▸', current_frame = '▸' },
 	mappings = {
 		-- Use a table to apply multiple mappings
-		expand = { "<CR>", "<2-LeftMouse>" },
-		open = "o",
-		remove = "d",
-		edit = "e",
-		repl = "r",
-		toggle = "t",
+		expand = { '<CR>', '<2-LeftMouse>' },
+		open = 'o',
+		remove = 'd',
+		edit = 'e',
+		repl = 'r',
+		toggle = 't',
 	},
-	expand_lines = vim.fn.has("nvim-0.7") == 1,
+	expand_lines = vim.fn.has('nvim-0.7') == 1,
 	layouts = {
 		{
 			elements = {
 				-- Elements can be strings or table with id and size keys.
-				{ id = "scopes", size = 0.25 },
-				"breakpoints",
-				"stacks",
-				"watches",
+				{ id = 'scopes', size = 0.25 },
+				'breakpoints',
+				'stacks',
+				'watches',
 			},
 			size = 40, -- 40 columns
-			position = "left",
+			position = 'left',
 		},
 		{
 			elements = {
-				"repl",
+				'repl',
 			},
 			size = 0.25, -- 25% of total lines
-			position = "bottom",
+			position = 'bottom',
 		},
 	},
 	controls = {
 		-- Requires Neovim nightly (or 0.8 when released)
 		enabled = true,
 		-- Display controls in this element
-		element = "repl",
+		element = 'repl',
 		icons = {
-			pause = "",
-			play = "",
-			step_into = "",
-			step_over = "",
-			step_out = "",
-			step_back = "",
-			run_last = "↻",
-			terminate = "□",
+			pause = '',
+			play = '',
+			step_into = '',
+			step_over = '',
+			step_out = '',
+			step_back = '',
+			run_last = '↻',
+			terminate = '□',
 		},
 	},
 	floating = {
 		max_height = nil, -- These can be integers or a float between 0 and 1.
 		max_width = nil, -- Floats will be treated as percentage of your screen.
-		border = "single", -- Border style. Can be "single", "double" or "rounded"
+		border = 'single', -- Border style. Can be "single", "double" or "rounded"
 		mappings = {
-			close = { "q", "<Esc>" },
+			close = { 'q', '<Esc>' },
 		},
 	},
 	windows = { indent = 1 },
