@@ -13,6 +13,9 @@ bindsym $mod+Return exec --no-startup-id alacritty
 # ファイラー
 bindsym $mod+m exec --no-startup-id thunar
 
+# メーラー
+bindsym $mod+t exec --no-startup-id thunderbird
+
 # タスクキル
 bindsym $mod+q kill
 
