@@ -147,6 +147,7 @@ defaults = {lazy = true},
 {'mfussenegger/nvim-dap', event = 'LspAttach'},
 {'rcarriga/nvim-dap-ui', event = 'LspAttach'},
 {'suketa/nvim-dap-ruby', config = true, event = 'LspAttach'},
+{'is0n/jaq-nvim', event = 'LspAttach'},
 {'j-hui/fidget.nvim', config = true, event = 'LspAttach'},
 {'sainnhe/edge', event = 'VeryLazy'},
 {'nvim-lua/plenary.nvim', event = 'VeryLazy'},
@@ -427,6 +428,56 @@ require('dapui').setup({
 		max_value_lines = 100, -- Can be integer or nil.
 	}
 })
+
+
+---jaq-nvim
+require('jaq-nvim').setup{
+  cmds = {
+    internal = {
+      lua = 'luafile %',
+      vim = 'source %'
+    },
+    external = {
+      markdown = 'glow %',
+      python   = 'python3 %',
+      go       = 'go run %',
+      sh       = 'sh %',
+      ruby     = 'ruby %',
+    }
+  },
+
+  behavior = {
+    default     = 'float',
+    startinsert = false,
+    wincmd      = false,
+    autosave    = false
+  },
+
+  ui = {
+    float = {
+      border    = 'none',
+      winhl     = 'Normal',
+      borderhl  = 'FloatBorder',
+      winblend  = 0,
+      height    = 0.8,
+      width     = 0.8,
+      x         = 0.5,
+      y         = 0.5
+    },
+
+    terminal = {
+      position = 'bot',
+      size     = 10,
+      line_no  = false
+    },
+    quickfix = {
+      position = 'bot',
+      size     = 10
+    }
+  }
+}
+
+vim.keymap.set('n', '<leader>j', ':<C-u>Jaq<CR>', { silent = true})
 
 
 --nvim-cmp
