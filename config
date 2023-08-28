@@ -237,7 +237,7 @@ exec --no-startup-id vivaldi-stable
 exec --no-startup-id discord
 exec --no-startup-id slack
 exec --no-startup-id parcellite
-exec --no-startup-id birdtray
+exec --no-startup-id thunderbird
 exec --no-startup-id "./sh/mount.sh"
 exec --no-startup-id "feh --no-fehbg --bg-scale ~/Wallpaper.png"
 exec --no-startup-id "xset r rate 200 30"
