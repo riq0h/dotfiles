@@ -369,7 +369,6 @@ map("n", "<leader><leader>d", ":lua require'dapui'.eval()<CR>", { silent = true}
 require('dapui').setup({
 	icons = { expanded = '▾', collapsed = '▸', current_frame = '▸' },
 	mappings = {
-		-- Use a table to apply multiple mappings
 		expand = { '<CR>', '<2-LeftMouse>' },
 		open = 'o',
 		remove = 'd',
@@ -381,27 +380,24 @@ require('dapui').setup({
 	layouts = {
 		{
 			elements = {
-				-- Elements can be strings or table with id and size keys.
 				{ id = 'scopes', size = 0.25 },
 				'breakpoints',
 				'stacks',
 				'watches',
 			},
-			size = 40, -- 40 columns
+			size = 40,
 			position = 'left',
 		},
 		{
 			elements = {
 				'repl',
 			},
-			size = 0.25, -- 25% of total lines
+			size = 0.25,
 			position = 'bottom',
 		},
 	},
 	controls = {
-		-- Requires Neovim nightly (or 0.8 when released)
 		enabled = true,
-		-- Display controls in this element
 		element = 'repl',
 		icons = {
 			pause = '',
@@ -415,17 +411,17 @@ require('dapui').setup({
 		},
 	},
 	floating = {
-		max_height = nil, -- These can be integers or a float between 0 and 1.
-		max_width = nil, -- Floats will be treated as percentage of your screen.
-		border = 'single', -- Border style. Can be "single", "double" or "rounded"
+		max_height = nil,
+		max_width = nil,
+		border = 'single',
 		mappings = {
 			close = { 'q', '<Esc>' },
 		},
 	},
 	windows = { indent = 1 },
 	render = {
-		max_type_length = nil, -- Can be integer or nil.
-		max_value_lines = 100, -- Can be integer or nil.
+		max_type_length = nil,
+		max_value_lines = 100,
 	}
 })
 
@@ -776,7 +772,7 @@ vim.keymap.set('v', 'g<C-x>', require('dial.map').dec_gvisual(), {noremap = true
 --gin
 vim.keymap.set('n', '<leader>gs', ':<C-u>GitStatus<CR>', {silent = true})
 vim.keymap.set('n', '<leader>ga', ':<C-u>Gin add .<CR>', {silent = true})
-vim.keymap.set('n', '<leader>gc', ":<C-u>Gin commit -m ''<Left>")
+vim.keymap.set('n', '<leader>gc', ":<C-u>Gin commit -m ")
 vim.keymap.set('n', '<leader>gp', ':<C-u>Gin push<CR>')
 
 
