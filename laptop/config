@@ -245,6 +245,7 @@ exec --no-startup-id "picom -b --experimental-backends"
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id fcitx5
 exec --no-startup-id light-locker --lock-on-suspend
+exec --no-startup-id nextcloud
 exec --no-startup-id "feh --no-fehbg --bg-scale ~/Wallpaper.png"
 exec --no-startup-id "xset r rate 200 30"
 exec --no-startup-id "libinput-gestures-setup start"
@@ -258,7 +259,7 @@ for_window [class="feh"] floating enable, resize set 1280 1024
 for_window [class="fcitx5-config-qt"] floating enable
 for_window [class="mozc_tool"] floating enable, resize set 600 400
 for_window [class="Blueman-manager"] floating enable, resize set 800 600
-for_window [class="L3afpad"] floating enable, resize set 800 600
+for_window [class="Mousepad"] floating enable, resize set 800 600
 for_window [class="qt5ct"] floating enable, resize set 800 600
 for_window [class="Qtconfig-qt4"] floating enable, resize set 800 600
 for_window [class="thunderbird"] floating enable, resize set 1440 1024
