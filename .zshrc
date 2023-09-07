@@ -17,9 +17,9 @@ alias vim=nvim
 # paruを短縮する
 alias poo=paru
 
-# exaをls代わりにする
-alias ls='exa --icons -a'
-alias lsa='exa --icons -T -a'
+# ezaをls代わりにする
+alias ls='eza --icons -a'
+alias lsa='eza --icons -T -a'
 
 # batをcatの代わりにする
 alias cat=bat
