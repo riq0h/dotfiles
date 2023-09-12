@@ -230,7 +230,7 @@ focus_follows_mouse no
 
 # 自動起動
 exec --no-startup-id dunst
-exec --no-startup-id "picom -b --experimental-backends"
+exec --no-startup-id "picom -b"
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id fcitx5
 exec --no-startup-id vivaldi-stable
@@ -238,6 +238,7 @@ exec --no-startup-id discord
 exec --no-startup-id slack
 exec --no-startup-id parcellite
 exec --no-startup-id thunderbird
+exec --no-startup-id nextcloud
 exec --no-startup-id "./sh/mount.sh"
 exec --no-startup-id "feh --no-fehbg --bg-scale ~/Wallpaper.png"
 exec --no-startup-id "xset r rate 200 30"
@@ -260,6 +261,7 @@ for_window [class="qt5ct"] floating enable, resize set 1024 780
 for_window [class="Qtconfig-qt4"] floating enable, resize set 1024 780
 for_window [class="kdeconnect.app"] floating enbale, resize set 1280 1024
 for_window [class="thunderbird"] floating enable, resize set 1440 1024
+for_window [class="Gnucash"] floating enable, resize set 1440 1024
 
 # ワークスペース指定一覧
 assign [class="discord"] workspace 3
