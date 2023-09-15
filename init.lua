@@ -181,7 +181,7 @@ defaults = {lazy = true},
 {'mvllow/modes.nvim', event = 'BufNewFile, BufRead'},
 {'monaqa/dial.nvim', event = 'VeryLazy'},
 {'tpope/vim-repeat', event = 'VeryLazy'},
-{'dstein64/vim-startuptime', cmd = 'StartupTime'},
+{'nvim-zh/colorful-winsep.nvim', config = true, event = 'WinNew'},
 {'vim-jp/vimdoc-ja', ft = 'help'},
 
 --non-lazy
@@ -593,6 +593,15 @@ require('modes').setup({
 	insert = '#55AAEE',
 	visual = '#DD5522',
  },
+})
+
+
+--colorful-winsep
+require("colorful-winsep").setup({
+  highlight = {
+    bg = "",
+    fg = "#E8AEAA",
+  },
 })
 
 
