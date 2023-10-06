@@ -90,6 +90,8 @@ if [ -z $TMUX ]; then
   tmuximum
 fi
 
+alias ta='tmux attach'
+
 # 履歴関連
 HISTFILE=~/.zsh_history   # ヒストリを保存するファイル
 HISTSIZE=10000            # メモリに保存されるヒストリの件数
