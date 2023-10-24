@@ -152,7 +152,7 @@ defaults = {lazy = true},
 {'sainnhe/edge', event = 'VeryLazy'},
 {'nvim-lua/plenary.nvim', event = 'VeryLazy'},
 {'stevearc/dressing.nvim', event = 'VeryLazy'},
-{'hrsh7th/nvim-cmp', event = 'InsertEnter, CmdlineEnter'},
+{'hrsh7th/nvim-cmp', event = 'VeryLazy'},
 {'hrsh7th/cmp-nvim-lsp', event = 'InsertEnter'}, 
 {'hrsh7th/cmp-buffer', event = 'InsertEnter'},
 {'hrsh7th/cmp-path', event = 'InsertEnter'},
@@ -165,20 +165,20 @@ defaults = {lazy = true},
 {'hrsh7th/vim-vsnip', event = 'InsertEnter'},
 {'hrsh7th/vim-vsnip-integ', event = 'InsertEnter'},
 {'rafamadriz/friendly-snippets', event = 'InsertEnter'},
-{'nvim-treesitter/nvim-treesitter', event = 'BufNewFile, BufRead'},
+{'nvim-treesitter/nvim-treesitter', event = 'VeryLazy'},
 {'yioneko/nvim-yati', event = 'VeryLazy'},
 {'windwp/nvim-autopairs', config = true, event = 'InsertEnter'},
 {'andymass/vim-matchup', event = 'VeryLazy'},
-{'Maan2003/lsp_lines.nvim', config = true, event = 'BufNewFile, BufRead'},
+{'Maan2003/lsp_lines.nvim', config = true, event = 'VeryLazy'},
 {'lambdalisue/suda.vim', cmd = {'SudaWrite', 'SudaRead'},},
-{'lukas-reineke/indent-blankline.nvim', event = 'BufNewFile, BufRead'},
-{'kevinhwang91/nvim-hlslens', event = 'BufNewFile, BufRead'},
+{'lukas-reineke/indent-blankline.nvim', main = 'ibl', opts = {}, event = 'VeryLazy'},
+{'kevinhwang91/nvim-hlslens', event = 'VeryLazy'},
 {'numToStr/Comment.nvim', config = true, event = 'VeryLazy'},
 {'rhysd/clever-f.vim', event = 'VeryLazy'},
-{'luochen1990/rainbow', event = 'BufNewFile, BufRead'},
+{'luochen1990/rainbow', event = 'VeryLazy'},
 {'echasnovski/mini.surround', event = 'ModeChanged'},
 {'echasnovski/mini.ai', event = 'ModeChanged'},
-{'mvllow/modes.nvim', event = 'BufNewFile, BufRead'},
+{'mvllow/modes.nvim', event = 'VeryLazy'},
 {'monaqa/dial.nvim', event = 'VeryLazy'},
 {'tpope/vim-repeat', event = 'VeryLazy'},
 {'nvim-zh/colorful-winsep.nvim', config = true, event = 'WinNew'},
@@ -577,12 +577,6 @@ require('dressing').setup({
     border = 'single',
   },
 })
-
-
---indent_blankline
-require('indent_blankline').setup {
-    show_end_of_line = true,
-}
 
 
 --modes
