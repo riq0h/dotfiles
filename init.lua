@@ -581,6 +581,10 @@ require('dressing').setup({
 })
 
 
+--vim-prettier
+vim.keymap.set('v', '<Leader>p', '<C-u>:PrettierFragment<CR>')
+
+
 --modes
 require('modes').setup({
   colors = {
