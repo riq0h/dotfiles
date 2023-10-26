@@ -591,10 +591,10 @@ require('modes').setup({
 
 
 --colorful-winsep
-require("colorful-winsep").setup({
+require('colorful-winsep').setup({
   highlight = {
-    bg = "",
-    fg = "#E8AEAA",
+    bg = '',
+    fg = '#E8AEAA',
   },
 })
 
