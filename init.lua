@@ -340,7 +340,7 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
 vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = false })
 require('mason').setup()
 require("mason-null-ls").setup({
-    ensure_installed = { 'prettierd', 'rubocop' },
+    ensure_installed = { 'prettierd', 'rubocop', 'black', 'goimports' },
     handlers = {},
 })
 require('mason-lspconfig').setup()
@@ -360,12 +360,11 @@ if (not status) then return end
 
 null_ls.setup({
     sources = {
-        null_ls.builtins.diagnostics.eslint.with({
-        prefer_local = 'node_modules/.bin',
-    }),
         null_ls.builtins.formatting.prettierd,
         null_ls.builtins.diagnostics.rubocop,
         null_ls.builtins.formatting.rubocop,
+        null_ls.builtins.formatting.black,
+        null_ls.builtins.formatting.goimports,
     },
     debug = false,
 })
