@@ -145,6 +145,8 @@ defaults = {lazy = true},
 {'williamboman/mason.nvim', event = 'BufRead', cmd = {'Mason', 'MasonInstall'}, },
 {'neovim/nvim-lspconfig', event = 'LspAttach'},
 {'williamboman/mason-lspconfig.nvim', event = 'LspAttach'},
+{'jay-babu/mason-null-ls.nvim', event = 'LspAttach'},
+{'nvimtools/none-ls.nvim', event = 'LspAttach'},
 {'mfussenegger/nvim-dap', event = 'LspAttach'},
 {'rcarriga/nvim-dap-ui', event = 'LspAttach'},
 {'suketa/nvim-dap-ruby', config = true, event = 'LspAttach'},
@@ -183,7 +185,6 @@ defaults = {lazy = true},
 {'monaqa/dial.nvim', event = 'VeryLazy'},
 {'tpope/vim-repeat', event = 'VeryLazy'},
 {'nvim-zh/colorful-winsep.nvim', config = true, event = 'WinNew'},
-{'prettier/vim-prettier', event = 'BufRead'},
 {'vim-jp/vimdoc-ja', ft = 'help'},
 
 --non-lazy
@@ -338,6 +339,9 @@ local on_attach = function(client, bufnr)
 vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
 vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = false })
 require('mason').setup()
+require("mason-null-ls").setup({
+    handlers = {},
+})
 require('mason-lspconfig').setup()
 require('mason-lspconfig').setup_handlers {
   function(server_name)
@@ -347,6 +351,26 @@ require('mason-lspconfig').setup_handlers {
     }
   end
 }
+
+
+--none-ls
+local status, null_ls = pcall(require, 'null-ls')
+if (not status) then return end
+
+null_ls.setup({
+    sources = {
+        null_ls.builtins.diagnostics.eslint.with({
+        prefer_local = 'node_modules/.bin',
+    }),
+        null_ls.builtins.formatting.prettierd,
+        null_ls.builtins.diagnostics.rubocop,
+        null_ls.builtins.formatting.rubocop,
+    },
+    debug = false,
+})
+
+vim.keymap.set('n', '<leader>p', function() vim.lsp.buf.format { async = true } end)
+vim.keymap.set('v', '<leader>p', function() vim.lsp.buf.format { async = true } end)
 
 
 --DAP
@@ -441,6 +465,7 @@ require('jaq-nvim').setup{
       go       = 'go run %',
       sh       = 'sh %',
       ruby     = 'ruby %',
+      java     = 'java %',
     }
   },
 
@@ -579,10 +604,6 @@ require('dressing').setup({
     border = 'single',
   },
 })
-
-
---vim-prettier
-vim.keymap.set('v', '<Leader>p', '<C-u>:PrettierFragment<CR>')
 
 
 --modes
