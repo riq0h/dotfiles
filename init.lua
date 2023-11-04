@@ -339,7 +339,7 @@ local on_attach = function(client, bufnr)
 vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
 vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = false })
 require('mason').setup()
-require("mason-null-ls").setup({
+require('mason-null-ls').setup({
     ensure_installed = { 'prettierd', 'rubocop', 'black', 'goimports' },
     handlers = {},
 })
@@ -542,12 +542,11 @@ local lspkind = require('lspkind')
    },
  
    sources = cmp.config.sources({
-     { name = 'nvim_lsp' },
-     { name = 'vsnip' },
-     { name = 'nvim_lsp_signature_help' },
+     { name = 'nvim_lsp', max_item_count = 7, keyword_length = 1},
+     { name = 'vsnip', max_item_count = 7, keyword_length = 2},
+     { name = 'nvim_lsp_signature_help', max_item_count = 7, keyword_length = 1},
      { name = 'calc' },
-    }, {
-     { name = 'buffer', keyword_length = 2 },
+     { name = 'buffer', max_item_count = 7, keyword_length = 2 },
     })
   })
 
