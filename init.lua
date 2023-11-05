@@ -370,7 +370,6 @@ null_ls.setup({
 })
 
 vim.keymap.set('n', '<leader>p', function() vim.lsp.buf.format { async = true } end)
-vim.keymap.set('v', '<leader>p', function() vim.lsp.buf.format { async = true } end)
 
 
 --DAP
