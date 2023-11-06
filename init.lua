@@ -334,7 +334,6 @@ local on_attach = function(client, bufnr)
   set('n', '<leader>3', '<cmd>lua vim.lsp.buf.code_action()<CR>')
   set('n', '<leader>[', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>')
   set('n', '<leaaer>]', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>')
-  set('n', '<leader>4', '<cmd>lua vim.lsp.buf.format {async = true}<CR>')
   end
 vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
 vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = false })
