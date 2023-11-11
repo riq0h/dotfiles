@@ -464,6 +464,7 @@ require('jaq-nvim').setup{
       sh       = 'sh %',
       ruby     = 'ruby %',
       java     = 'java %',
+      javascript = 'node %',
     }
   },
 
@@ -528,7 +529,7 @@ local lspkind = require('lspkind')
      ['<C-f>'] = cmp.mapping.scroll_docs(4),
      ['<C-Space>'] = cmp.mapping.complete(),
      ['<C-e>'] = cmp.mapping.abort(),
-     ['<CR>'] = cmp.mapping.confirm({ select = true }),
+     ['<CR>'] = cmp.mapping.confirm({ select = false }),
    }),
 
    formatting = {
@@ -540,9 +541,9 @@ local lspkind = require('lspkind')
    },
  
    sources = cmp.config.sources({
-     { name = 'nvim_lsp', max_item_count = 7, keyword_length = 1},
+     { name = 'nvim_lsp', max_item_count = 7, keyword_length = 2},
      { name = 'vsnip', max_item_count = 7, keyword_length = 2},
-     { name = 'nvim_lsp_signature_help', max_item_count = 7, keyword_length = 1},
+     { name = 'nvim_lsp_signature_help', max_item_count = 7, keyword_length = 2},
      { name = 'calc' },
      { name = 'buffer', max_item_count = 7, keyword_length = 2 },
     })
