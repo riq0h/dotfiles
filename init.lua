@@ -337,6 +337,12 @@ local on_attach = function(client, bufnr)
   end
 vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
 vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = false })
+vim.keymap.set(
+  '',
+  '<Leader>4',
+  require('lsp_lines').toggle,
+  { desc = 'Toggle lsp_lines' }
+)
 require('mason').setup()
 require('mason-null-ls').setup({
     ensure_installed = { 'prettierd', 'rubocop', 'black', 'goimports' },
