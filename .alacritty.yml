@@ -41,7 +41,7 @@ font:
 
 # 環境変数
 env:
-  TERM: alacritty
+  TERM: xterm-256color
 
 # Colors (Horizon Dark)
 colors:

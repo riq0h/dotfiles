@@ -43,21 +43,21 @@ alias tlsc='sudo tailscale up --exit-node-allow-lan-access --exit-node=mystech'
 alias tlscd='sudo tailscale down'
 
 # fzf関連
-export PATH="$PATH:$HOME/.fzf/bin"
-export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git"'
+export FZF_TMUX_OPTS="-p 40%"
+export FZF_CTRL_R_OPTS="--reverse --preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
+export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --iglob "!.git/*"'
 export FZF_DEFAULT_OPTS='--ansi --height 40% --reverse --border=none'
-
-export FZF_CTRL_T_COMMAND='rg --files --hidden --follow --glob "!**/.git/*"'
+export FZF_CTRL_T_COMMAND='rg --files --hidden --follow --iglob "!.git/*"'
 export FZF_CTRL_T_OPTS="
     --preview 'bat  --color=always --style=header,grid {}'
-    --preview-window=right:60%"
+    --preview-window=right:40%"
 
 fadd() {
   local out q n addfiles
   while out=$(
       git status --short |
       awk '{if (substr($0,2,1) !~ / /) print $2}' |
-      fzf-tmux --multi --exit-0 --expect=ctrl-d); do
+      fzf-tmux -p 30% --multi --exit-0 --expect=ctrl-d); do
     q=$(head -1 <<< "$out")
     n=$[$(wc -l <<< "$out") - 1]
     addfiles=(`echo $(tail "-$n" <<< "$out")`)
@@ -92,6 +92,10 @@ fi
 
 alias ta='tmux attach'
 
+if [[ -n ${TMUX-} ]];then
+    export TERM=tmux-256color
+fi
+
 # 履歴関連
 HISTFILE=~/.zsh_history   # ヒストリを保存するファイル
 HISTSIZE=10000            # メモリに保存されるヒストリの件数
@@ -100,4 +104,5 @@ setopt bang_hist          # !を使ったヒストリ展開を行う(d)
 setopt extended_history   # ヒストリに実行時間も保存する
 setopt hist_reduce_blanks # 余分なスペースを削除してヒストリに保存する
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
+[ -f /usr/share/fzf/completion.zsh ] && source /usr/share/fzf/completion.zsh
