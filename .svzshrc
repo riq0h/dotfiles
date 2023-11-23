@@ -52,7 +52,7 @@ export FZF_DEFAULT_OPTS="--ansi --reverse --border=none \
 --color=marker:#ee64ac,fg+:#d5d8da,prompt:#e95678,hl+:#e95678"
 export FZF_CTRL_T_COMMAND='rg --files --hidden 2> /dev/null --follow --glob "!.git/*"'
 export FZF_CTRL_T_OPTS="--preview 'batcat  --color=always --style=plain --line-range :100 {}' --preview-window=border-sharp,right:60%"
-export FZF_ALT_C_COMMAND='fd -t d --hidden'
+export FZF_ALT_C_COMMAND='fdfind -t d --hidden'
 export FZF_ALT_C_OPTS="--preview 'exa {} -h -T -F --no-user --no-time --no-filesize --no-permissions --long | head -200' --preview-window=border-sharp,hidden:right:60% --bind '?:toggle-preview'"
 export RUNEWIDTH_EASTASIAN=0
 bindkey '^[t' fzf-file-widget
