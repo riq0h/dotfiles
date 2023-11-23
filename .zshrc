@@ -3,9 +3,24 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
+# zplug
+source /usr/share/zsh/scripts/zplug/init.zsh
+zplug "arks22/tmuximum", as:command
+zplug "sorin-ionescu/prezto"
+
+if ! zplug check; then
+    zplug install
+fi
+
+zplug load
+
 # fzf.zshの読み込み
 [ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
 [ -f /usr/share/fzf/completion.zsh ] && source /usr/share/fzf/completion.zsh
+
+# ロケール
+export LC_ALL=ja_JP.UTF-8
+export LANG=ja_JP.UTF-8
 
 # 上位階層に移動するコマンド
 alias a='cd ../'
@@ -26,7 +41,7 @@ alias ls='eza --icons -a'
 alias lsa='eza --icons -T -a'
 
 # batをcatの代わりにする
-alias cat=bat
+alias cat="bat --color=always --style=plain"
 
 # clearを短縮する
 alias cls=clear
@@ -47,20 +62,23 @@ alias tlsc='sudo tailscale up --exit-node-allow-lan-access --exit-node=mystech'
 alias tlscd='sudo tailscale down'
 
 # fzf関連
-export FZF_TMUX="1"
-export FZF_TMUX_OPTS="-p 50%"
+export FZF_TMUX='1'
+export FZF_TMUX_OPTS='-p 50%'
 export FZF_CTRL_R_OPTS="--reverse --preview 'echo {}' --preview-window=border-sharp,down:3:hidden:wrap --bind '?:toggle-preview'"
-export FZF_DEFAULT_COMMAND='rg --files --follow --iglob "!**/.git/*"'
+export FZF_DEFAULT_COMMAND='rg --files --hidden 2> /dev/null --follow --glob "!.git/*"'
 export FZF_DEFAULT_OPTS="--ansi --no-separator --no-scrollbar --reverse --border=none \
 --color=bg+:#1c1e26,bg:#1c1e26,spinner:#ee64ac,hl:#e95678 \
 --color=fg:#d5d8da,header:#e95678,info:#e95678,pointer:#ee64ac \
 --color=marker:#ee64ac,fg+:#d5d8da,prompt:#e95678,hl+:#e95678"
-export FZF_CTRL_T_COMMAND='rg --files --follow --iglob "!**.git/*"'
+export FZF_CTRL_T_COMMAND='rg --files --hidden 2> /dev/null --follow --glob "!.git/*"'
 export FZF_CTRL_T_OPTS="--preview 'bat  --color=always --style=plain --line-range :100 {}' --preview-window=border-sharp,right:60%"
+export FZF_ALT_C_COMMAND='fd -t d --hidden'
 export FZF_ALT_C_OPTS="--preview 'exa {} -h -T -F --no-user --no-time --no-filesize --no-permissions --long | head -200' --preview-window=border-sharp,hidden:right:60% --bind '?:toggle-preview'"
 export RUNEWIDTH_EASTASIAN=0
 bindkey '^[t' fzf-file-widget
 bindkey '^[r' fzf-history-widget
+bindkey -r '^T'
+bindkey -r '^R'
 
 fadd() {
   local out q n addfiles
@@ -80,26 +98,18 @@ fadd() {
   done
 }
 
-fv() {
-  local file
-  file=$(
-         rg --files --follow --glob "!**/.git/*" | fzf-tmux -p 50% \
-             --preview 'bat  --color=always --style=plain {}' --preview-window=border-sharp,right:60%
-     )
-  v "$file"
+fman() {
+    man -k . | fzf-tmux -p 50% -q "$1" --prompt='man> '  --preview $'echo {} | tr -d \'()\' | awk \'{printf "%s ", $2} {print $1}\' | xargs -r man | col -bx | bat -l man -p --color always' --preview-window=border-sharp,right:60% --bind '?:toggle-preview' | tr -d '()' | awk '{printf "%s ", $2} {print $1}' | xargs -r man
 }
+export MANPAGER="sh -c 'col -bx | bat -l man -p --paging always'"
 
 # tmux関連
-alias tx="tmuximum"
 if [ -z $TMUX ]; then
   tmuximum
 fi
 
-alias ta='tmux attach'
-
-if [[ -n ${TMUX-} ]];then
-    export TERM=tmux-256color
-fi
+alias tx="tmuximum"
+alias ta="tmux attach"
 
 # 履歴関連
 HISTFILE=~/.zsh_history   # ヒストリを保存するファイル
