@@ -5,7 +5,6 @@ fi
 
 # zplug
 source /usr/share/zsh/scripts/zplug/init.zsh
-zplug "arks22/tmuximum", as:command
 zplug "sorin-ionescu/prezto"
 
 if ! zplug check; then
@@ -73,7 +72,7 @@ export FZF_DEFAULT_OPTS="--ansi --no-separator --no-scrollbar --reverse --border
 export FZF_CTRL_T_COMMAND='rg --files --hidden 2> /dev/null --follow --glob "!.git/*"'
 export FZF_CTRL_T_OPTS="--preview 'bat  --color=always --style=plain --line-range :100 {}' --preview-window=border-sharp,right:60%"
 export FZF_ALT_C_COMMAND='fd -t d --hidden'
-export FZF_ALT_C_OPTS="--preview 'exa {} -h -T -F --no-user --no-time --no-filesize --no-permissions --long | head -200' --preview-window=border-sharp,hidden:right:60% --bind '?:toggle-preview'"
+export FZF_ALT_C_OPTS="--preview 'eza {} -h -T -F --no-user --no-time --no-filesize --no-permissions --long | head -200' --preview-window=border-sharp,hidden:right:60% --bind '?:toggle-preview'"
 export RUNEWIDTH_EASTASIAN=0
 bindkey '^[t' fzf-file-widget
 bindkey '^[r' fzf-history-widget
@@ -102,14 +101,6 @@ fman() {
     man -k . | fzf-tmux -p 50% -q "$1" --prompt='man> '  --preview $'echo {} | tr -d \'()\' | awk \'{printf "%s ", $2} {print $1}\' | xargs -r man | col -bx | bat -l man -p --color always' --preview-window=border-sharp,right:60% --bind '?:toggle-preview' | tr -d '()' | awk '{printf "%s ", $2} {print $1}' | xargs -r man
 }
 export MANPAGER="sh -c 'col -bx | bat -l man -p --paging always'"
-
-# tmux関連
-if [ -z $TMUX ]; then
-  tmuximum
-fi
-
-alias tx="tmuximum"
-alias ta="tmux attach"
 
 # 履歴関連
 HISTFILE=~/.zsh_history   # ヒストリを保存するファイル
