@@ -22,13 +22,13 @@ export LC_ALL=ja_JP.UTF-8
 export LANG=ja_JP.UTF-8
 
 # 上位階層に移動するコマンド
-alias a='cd ../'
-alias aa='cd ../../'
-alias aaa='cd ../../../'
+alias a="cd ../"
+alias aa="cd ../../"
+alias aaa="cd ../../../"
 
 # デフォルトエディタをVimにする
 export EDITOR=nvim
-alias sudo='sudo -E '
+alias sudo="sudo -E "
 alias v=nvim
 alias vim=nvim
 
@@ -36,8 +36,8 @@ alias vim=nvim
 alias poo=paru
 
 # ezaをls代わりにする
-alias ls='eza --icons -a'
-alias lsa='eza --icons -T -a'
+alias ls="eza --icons -a"
+alias lsa="eza --icons -T -a"
 
 # batをcatの代わりにする
 alias cat="bat --color=always --style=plain"
@@ -46,7 +46,7 @@ alias cat="bat --color=always --style=plain"
 alias cls=clear
 
 # 天気情報
-alias wttr='() { curl -H "Accept-Language: ${LANG%_ja}" wttr.in/"${1:-Saitama}" }'
+alias wttr="() { curl -H 'Accept-Language: ${LANG%_ja}' wttr.in/'${1:-Saitama}' }"
 
 # BAT関連
 export BAT_THEME="TwoDark"
@@ -54,30 +54,36 @@ export BAT_THEME="TwoDark"
 # Zoxide関連
 eval "$(zoxide init zsh)"
 zle -N zi
-bindkey '^z' zi
+bindkey "^z" zi
 
 # Tailscale関連
-alias tlsc='sudo tailscale up --exit-node-allow-lan-access --exit-node=mystech'
-alias tlscd='sudo tailscale down'
+alias tlsc="sudo tailscale up --exit-node-allow-lan-access --exit-node=mystech"
+alias tlscd="sudo tailscale down"
 
 # fzf関連
-export FZF_TMUX='1'
-export FZF_TMUX_OPTS='-p 50%'
+export FZF_TMUX="1"
+export FZF_TMUX_OPTS="-p 50%"
 export FZF_CTRL_R_OPTS="--reverse --preview 'echo {}' --preview-window=border-sharp,down:3:hidden:wrap --bind '?:toggle-preview'"
-export FZF_DEFAULT_COMMAND='rg --files --hidden 2> /dev/null --follow --glob "!.git/*"'
+export FZF_DEFAULT_COMMAND="rg --files --hidden 2> /dev/null --follow --glob '!.git/*'"
 export FZF_DEFAULT_OPTS="--ansi --no-separator --no-scrollbar --reverse --border=none \
 --color=bg+:#1c1e26,bg:#1c1e26,spinner:#ee64ac,hl:#e95678 \
 --color=fg:#d5d8da,header:#e95678,info:#e95678,pointer:#ee64ac \
 --color=marker:#ee64ac,fg+:#d5d8da,prompt:#e95678,hl+:#e95678"
-export FZF_CTRL_T_COMMAND='rg --files --hidden 2> /dev/null --follow --glob "!.git/*"'
+export FZF_CTRL_T_COMMAND="rg --files --hidden 2> /dev/null --follow --glob '!.git/*'"
 export FZF_CTRL_T_OPTS="--preview 'bat  --color=always --style=plain --line-range :100 {}' --preview-window=border-sharp,right:60%"
-export FZF_ALT_C_COMMAND='fd -t d --hidden'
+export FZF_ALT_C_COMMAND="fd -t d --hidden"
 export FZF_ALT_C_OPTS="--preview 'eza {} -h -T -F --no-user --no-time --no-filesize --no-permissions --long | head -200' --preview-window=border-sharp,hidden:right:60% --bind '?:toggle-preview'"
 export RUNEWIDTH_EASTASIAN=0
-bindkey '^[t' fzf-file-widget
-bindkey '^[r' fzf-history-widget
-bindkey -r '^T'
-bindkey -r '^R'
+bindkey "^[t" fzf-file-widget
+bindkey "^[r" fzf-history-widget
+bindkey -r "^T"
+bindkey -r "^R"
+
+fv() {
+  IFS=$'\n' files=($(fzf-tmux -p 50% --preview 'bat  --color=always --style=plain {}' --preview-window=border-sharp,right:60% --query="$1" --multi --select-1 --exit-0))
+  [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
+  zsh
+}
 
 fadd() {
   local out q n addfiles
