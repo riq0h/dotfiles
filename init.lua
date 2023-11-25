@@ -169,8 +169,10 @@ require("lazy").setup({
 	{ "nvim-treesitter/nvim-treesitter", event = "VeryLazy" },
 	{ "yioneko/nvim-yati", event = "VeryLazy" },
 	{ "windwp/nvim-autopairs", config = true, event = "InsertEnter" },
+	{ "windwp/nvim-ts-autotag", config = true, event = "InsertEnter" },
 	{ "andymass/vim-matchup", event = "VeryLazy" },
 	{ "lambdalisue/suda.vim", cmd = { "SudaWrite", "SudaRead" } },
+	{ "jghauser/mkdir.nvim", event = "ModeChanged" },
 	{ "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {}, event = "VeryLazy" },
 	{ "kevinhwang91/nvim-hlslens", event = "VeryLazy" },
 	{ "numToStr/Comment.nvim", config = true, event = "VeryLazy" },
@@ -596,6 +598,9 @@ require("nvim-treesitter.configs").setup({
 		},
 	},
 	yati = {
+		enable = true,
+	},
+	autotag = {
 		enable = true,
 	},
 	matchup = {
