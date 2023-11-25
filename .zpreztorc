@@ -14,7 +14,8 @@ zstyle ':prezto:load' pmodule \
   'completion' \
   'syntax-highlighting' \
   'history-substring-search' \
-  'prompt'
+  'prompt' \
+  'tmux'
 
 # キーマップ
 zstyle ':prezto:module:editor' key-bindings 'emacs'
@@ -28,6 +29,11 @@ zstyle ':prezto:module:syntax-highlighting' highlighters \
   'main' \
   'brackets' \
   'pattern'
+
+# tmux
+zstyle ':prezto:module:tmux:auto-start' local 'yes'
+zstyle ':prezto:module:tmux:session' name '0'
+zstyle ':prezto:module:tmux:alias' skip 'yes'
 
 # 途中まで打ったコマンドの履歴を検索
 zstyle ':prezto:module:history-substring-search' case-sensitive 'yes'
