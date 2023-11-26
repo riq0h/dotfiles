@@ -135,6 +135,7 @@ require("lazy").setup({
 	defaults = { lazy = true },
 	{ "nvim-lualine/lualine.nvim", event = "VeryLazy" },
 	{ "nvim-telescope/telescope.nvim", cmd = "Telescope" },
+	{ "nvim-telescope/telescope-fzf-native.nvim", build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build', cmd = "Telescope" },
 	{ "nvim-telescope/telescope-file-browser.nvim", event = "VeryLazy" },
 	{ "lewis6991/gitsigns.nvim", config = true, event = "VeryLazy" },
 	{ "ryanoasis/vim-devicons", event = "VeryLazy" },
@@ -277,11 +278,28 @@ require("telescope").setup({
 	defaults = {
 		borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
 		color_devicons = true,
-		file_ignore_patterns = { "node_modules", ".git", ".svg", ".npm", "go" },
+		file_ignore_patterns = { "node_modules", ".git", ".cache", ".svg", ".npm", "go" },
 		mappings = {
 			i = {
 				["<esc>"] = require("telescope.actions").close,
 			},
+		},
+	},
+
+	vimgrep_arguments = {
+		"rg",
+		"--color=never",
+		"--no-heading",
+		"--smart-case",
+		"-uu",
+	},
+
+	extensions = {
+		fzf = {
+			fuzzy = true,
+			override_generic_sorter = true,
+			override_file_sorter = true,
+			case_mode = "smart_case",
 		},
 	},
 })
