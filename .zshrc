@@ -80,7 +80,7 @@ bindkey -r "^T"
 bindkey -r "^R"
 
 fv() {
-  IFS=$'\n' files=($(fzf-tmux -p 50% --preview 'bat  --color=always --style=plain {}' --preview-window=border-sharp,right:60% --query="$1" --multi --select-1 --exit-0))
+  IFS=$'\n' files=($(fzf --height 50% --preview 'bat  --color=always --style=plain {}' --preview-window=border-sharp,right:60% --query="$1" --multi --select-1 --exit-0))
   [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
   zsh
 }
@@ -90,7 +90,7 @@ fadd() {
   while out=$(
       git status --short |
       awk '{if (substr($0,2,1) !~ / /) print $2}' |
-      fzf-tmux -p 30% --multi --exit-0 --expect=ctrl-d); do
+      fzf --height 30% --multi --exit-0 --expect=ctrl-d); do
     q=$(head -1 <<< "$out")
     n=$[$(wc -l <<< "$out") - 1]
     addfiles=(`echo $(tail "-$n" <<< "$out")`)
@@ -104,7 +104,7 @@ fadd() {
 }
 
 fman() {
-    man -k . | fzf-tmux -p 50% -q "$1" --prompt='man> '  --preview $'echo {} | tr -d \'()\' | awk \'{printf "%s ", $2} {print $1}\' | xargs -r man | col -bx | bat -l man -p --color always' --preview-window=border-sharp,right:60% --bind '?:toggle-preview' | tr -d '()' | awk '{printf "%s ", $2} {print $1}' | xargs -r man
+    man -k . | fzf --height 50% -q "$1" --prompt='man> '  --preview $'echo {} | tr -d \'()\' | awk \'{printf "%s ", $2} {print $1}\' | xargs -r man | col -bx | bat -l man -p --color always' --preview-window=border-sharp,right:60% --bind '?:toggle-preview' | tr -d '()' | awk '{printf "%s ", $2} {print $1}' | xargs -r man
 }
 export MANPAGER="sh -c 'col -bx | bat -l man -p --paging always'"
 
