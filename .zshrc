@@ -3,16 +3,6 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-# zplug
-source /usr/share/zsh/scripts/zplug/init.zsh
-zplug "sorin-ionescu/prezto"
-
-if ! zplug check; then
-    zplug install
-fi
-
-zplug load
-
 # fzf.zshの読み込み
 [ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
 [ -f /usr/share/fzf/completion.zsh ] && source /usr/share/fzf/completion.zsh
