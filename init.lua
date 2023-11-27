@@ -314,7 +314,7 @@ vim.keymap.set("n", "<leader>y", "<cmd>Telescope registers<CR>")
 vim.keymap.set("n", "<leader>n", "<cmd>Telescope lsp_references<CR>")
 vim.keymap.set("n", "<leader>m", "<cmd>Telescope diagnostics<CR>")
 vim.keymap.set("n", "<leader>x", "<cmd>Telescope lsp_document_symbols<CR>")
-vim.keymap.set("n", "<leader>e", "<cmd>Telescope file_browser<CR>")
+vim.keymap.set("n", "<leader>f", "<cmd>Telescope file_browser<CR>")
 
 local fb_actions = require("telescope").extensions.file_browser.actions
 local previewers = require("telescope.previewers")
@@ -414,7 +414,7 @@ map("n", "<leader>6", ":lua require'dap'.continue()<CR>", { silent = true })
 map("n", "<leader>7", ":lua require'dap'.step_over()<CR>", { silent = true })
 map("n", "<leader>8", ":lua require'dap'.step_into()<CR>", { silent = true })
 map("n", "<leader>9", ":lua require'dap'.step_out()<CR>", { silent = true })
-map("n", "<leader>f", ":lua require'dap'.toggle_breakpoint()<CR>", { silent = true })
+map("n", "<leader>;", ":lua require'dap'.toggle_breakpoint()<CR>", { silent = true })
 map("n", "<leader>c", ":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>", { silent = true })
 map(
 	"n",
