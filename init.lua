@@ -135,19 +135,26 @@ require("lazy").setup({
 	defaults = { lazy = true },
 	{ "nvim-lualine/lualine.nvim", event = "VeryLazy" },
 	{ "nvim-telescope/telescope.nvim", cmd = "Telescope" },
-	{ "nvim-telescope/telescope-fzf-native.nvim", build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build', cmd = "Telescope" },
+	{
+		"nvim-telescope/telescope-fzf-native.nvim",
+		build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+		cmd = "Telescope",
+	},
 	{ "nvim-telescope/telescope-file-browser.nvim", event = "VeryLazy" },
 	{ "lewis6991/gitsigns.nvim", config = true, event = "VeryLazy" },
 	{ "ryanoasis/vim-devicons", event = "VeryLazy" },
 	{ "nvim-tree/nvim-web-devicons", event = "VeryLazy" },
 	{ "williamboman/mason.nvim", event = "BufRead", cmd = { "Mason", "MasonInstall" } },
-	{ "neovim/nvim-lspconfig", event = "LspAttach" },
 	{ "williamboman/mason-lspconfig.nvim", event = "LspAttach" },
 	{ "jay-babu/mason-null-ls.nvim", event = "LspAttach" },
+	{ "jay-babu/mason-nvim-dap.nvim", event = "LspAttach" },
+	{ "neovim/nvim-lspconfig", event = "LspAttach" },
 	{ "nvimtools/none-ls.nvim", event = "LspAttach" },
 	{ "mfussenegger/nvim-dap", event = "LspAttach" },
 	{ "rcarriga/nvim-dap-ui", event = "LspAttach" },
 	{ "suketa/nvim-dap-ruby", config = true, event = "LspAttach" },
+	{ "leoluz/nvim-dap-go", config = true, event = "LspAttach" },
+	{ "mfussenegger/nvim-dap-python", config = true, event = "LspAttach" },
 	{ "nvimdev/lspsaga.nvim", event = "LspAttach" },
 	{ "is0n/jaq-nvim", event = "LspAttach" },
 	{ "j-hui/fidget.nvim", config = true, event = "LspAttach" },
@@ -370,6 +377,10 @@ require("mason-null-ls").setup({
 	ensure_installed = { "prettierd", "rubocop", "black", "goimports", "stylua", "shfmt" },
 	handlers = {},
 })
+require("mason-nvim-dap").setup({
+	ensure_installed = {},
+	handlers = {},
+})
 require("mason-lspconfig").setup()
 require("mason-lspconfig").setup_handlers({
 	function(server_name)
@@ -415,7 +426,7 @@ map("n", "<leader>7", ":lua require'dap'.step_over()<CR>", { silent = true })
 map("n", "<leader>8", ":lua require'dap'.step_into()<CR>", { silent = true })
 map("n", "<leader>9", ":lua require'dap'.step_out()<CR>", { silent = true })
 map("n", "<leader>;", ":lua require'dap'.toggle_breakpoint()<CR>", { silent = true })
-map("n", "<leader>c", ":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>", { silent = true })
+map("n", "<leader>'", ":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>", { silent = true })
 map(
 	"n",
 	"<leader>i",
@@ -493,7 +504,6 @@ require("jaq-nvim").setup({
 			vim = "source %",
 		},
 		external = {
-			markdown = "glow %",
 			python = "python3 %",
 			go = "go run %",
 			sh = "sh %",
