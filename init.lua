@@ -152,9 +152,9 @@ require("lazy").setup({
 	{ "nvimtools/none-ls.nvim", event = "LspAttach" },
 	{ "mfussenegger/nvim-dap", event = "LspAttach" },
 	{ "rcarriga/nvim-dap-ui", event = "LspAttach" },
-	{ "suketa/nvim-dap-ruby", config = true, event = "LspAttach" },
-	{ "leoluz/nvim-dap-go", config = true, event = "LspAttach" },
-	{ "mfussenegger/nvim-dap-python", config = true, event = "LspAttach" },
+	{ "suketa/nvim-dap-ruby", config = true, ft = "ruby" },
+	{ "leoluz/nvim-dap-go", config = true, ft = "go" },
+	{ "mfussenegger/nvim-dap-python", config = true, ft = "python" },
 	{ "nvimdev/lspsaga.nvim", event = "LspAttach" },
 	{ "is0n/jaq-nvim", event = "LspAttach" },
 	{ "j-hui/fidget.nvim", config = true, event = "LspAttach" },
@@ -379,22 +379,7 @@ require("mason-null-ls").setup({
 })
 require("mason-nvim-dap").setup({
 	ensure_installed = {},
-	handlers = {
-		function(config)
-			require("mason-nvim-dap").default_setup(config)
-		end,
-		python = function(config)
-			config.adapters = {
-				type = "executable",
-				command = "/usr/bin/python3.11",
-				args = {
-					"-m",
-					"debugpy.adapter",
-				},
-			}
-			require("mason-nvim-dap").default_setup(config)
-		end,
-	},
+	handlers = {},
 })
 require("mason-lspconfig").setup()
 require("mason-lspconfig").setup_handlers({
