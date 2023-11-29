@@ -379,7 +379,22 @@ require("mason-null-ls").setup({
 })
 require("mason-nvim-dap").setup({
 	ensure_installed = {},
-	handlers = {},
+	handlers = {
+		function(config)
+			require("mason-nvim-dap").default_setup(config)
+		end,
+		python = function(config)
+			config.adapters = {
+				type = "executable",
+				command = "/usr/bin/python3.11",
+				args = {
+					"-m",
+					"debugpy.adapter",
+				},
+			}
+			require("mason-nvim-dap").default_setup(config)
+		end,
+	},
 })
 require("mason-lspconfig").setup()
 require("mason-lspconfig").setup_handlers({
