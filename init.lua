@@ -154,7 +154,6 @@ require("lazy").setup({
 	{ "rcarriga/nvim-dap-ui", event = "LspAttach" },
 	{ "suketa/nvim-dap-ruby", config = true, ft = "ruby" },
 	{ "leoluz/nvim-dap-go", config = true, ft = "go" },
-	{ "mfussenegger/nvim-dap-python", config = true, ft = "python" },
 	{ "nvimdev/lspsaga.nvim", event = "LspAttach" },
 	{ "is0n/jaq-nvim", event = "LspAttach" },
 	{ "j-hui/fidget.nvim", config = true, event = "LspAttach" },
@@ -372,7 +371,11 @@ local on_attach = function(client, bufnr)
 end
 vim.lsp.handlers["textDocument/publishDiagnostics"] =
 	vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = false })
-require("mason").setup()
+require("mason").setup({
+	ui = {
+		border = "single",
+	},
+})
 require("mason-null-ls").setup({
 	ensure_installed = { "prettierd", "rubocop", "black", "goimports", "stylua", "shfmt" },
 	handlers = {},
@@ -404,6 +407,8 @@ null_ls.setup({
 		null_ls.builtins.formatting.rubocop,
 		null_ls.builtins.formatting.black,
 		null_ls.builtins.formatting.goimports,
+		null_ls.builtins.formatting.stylua,
+		null_ls.builtins.formatting.shfmt,
 	},
 	debug = false,
 })
