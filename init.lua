@@ -28,8 +28,8 @@ opt.showtabline = 1
 opt.laststatus = 3
 opt.ambiwidth = "single"
 opt.confirm = true
-opt.pumblend = 15
-opt.winblend = 15
+opt.pumblend = 0
+opt.winblend = 0
 opt.mouse = "a"
 opt.cmdheight = 2
 opt.timeout = true
@@ -156,6 +156,7 @@ require("lazy").setup({
 	{ "suketa/nvim-dap-ruby", config = true, ft = "ruby" },
 	{ "leoluz/nvim-dap-go", config = true, ft = "go" },
 	{ "mxsdev/nvim-dap-vscode-js", ft = "javascript" },
+	{ "mfussenegger/nvim-dap-python", ft = "python" },
 	{ "nvimdev/lspsaga.nvim", event = "LspAttach" },
 	{ "is0n/jaq-nvim", event = "LspAttach" },
 	{ "j-hui/fidget.nvim", config = true, event = "LspAttach" },
@@ -553,6 +554,9 @@ for _, language in ipairs({ "typescript", "javascript" }) do
 	}
 end
 
+--DAP-Python
+require("dap-python").setup(vim.fn.stdpath("data") .. "/mason/packages/debugpy/venv/bin/python")
+
 ---jaq-nvim
 require("jaq-nvim").setup({
 	cmds = {
@@ -616,10 +620,10 @@ cmp.setup({
 
 	window = {
 		completion = cmp.config.window.bordered({
-			border = "single",
+			border = "none",
 		}),
 		documentation = cmp.config.window.bordered({
-			border = "single",
+			border = "none",
 		}),
 	},
 
