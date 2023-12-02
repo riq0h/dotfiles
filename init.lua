@@ -28,8 +28,8 @@ opt.showtabline = 1
 opt.laststatus = 3
 opt.ambiwidth = "single"
 opt.confirm = true
-opt.pumblend = 0
-opt.winblend = 0
+opt.pumblend = 15
+opt.winblend = 15
 opt.mouse = "a"
 opt.cmdheight = 2
 opt.timeout = true
@@ -203,7 +203,7 @@ require("lazy").setup({
 	{ "rbtnn/vim-ambiwidth", lazy = false },
 	{ "lambdalisue/kensaku-search.vim", lazy = false },
 	{ "lambdalisue/kensaku.vim", lazy = false },
-	{ "brenoprata10/nvim-highlight-colors", config = true, lazy = false },
+	{ "brenoprata10/nvim-highlight-colors", lazy = false },
 
 	--disable default plugins
 	performance = {
@@ -528,7 +528,7 @@ for _, language in ipairs({ "typescript", "javascript" }) do
 			type = "pwa-node",
 			request = "launch",
 			name = "Launch Current File (pwa-node)",
-			cwd = "${workspaceFolder}", -- vim.fn.getcwd(),
+			cwd = "${workspaceFolder}",
 			args = { "${file}" },
 			sourceMaps = true,
 			protocol = "inspector",
@@ -620,10 +620,10 @@ cmp.setup({
 
 	window = {
 		completion = cmp.config.window.bordered({
-			border = "none",
+			border = "single",
 		}),
 		documentation = cmp.config.window.bordered({
-			border = "none",
+			border = "single",
 		}),
 	},
 
@@ -725,6 +725,13 @@ require("colorful-winsep").setup({
 		bg = "",
 		fg = "#E8AEAA",
 	},
+})
+
+--nvim-highlight-colors
+require("nvim-highlight-colors").setup({
+	render = "background",
+	enable_named_colors = true,
+	enable_tailwind = true,
 })
 
 --nvim-hlslens
