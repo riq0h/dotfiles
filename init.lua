@@ -154,7 +154,7 @@ require("lazy").setup({
 	{ "rcarriga/nvim-dap-ui", event = "LspAttach" },
 	{ "theHamsta/nvim-dap-virtual-text", config = true, event = "LspAttach" },
 	{ "suketa/nvim-dap-ruby", config = true, ft = "ruby" },
-	{ "leoluz/nvim-dap-go", config = true, ft = "go" },
+	{ "leoluz/nvim-dap-go", ft = "go" },
 	{ "mxsdev/nvim-dap-vscode-js", ft = "javascript" },
 	{ "mfussenegger/nvim-dap-python", ft = "python" },
 	{ "nvimdev/lspsaga.nvim", event = "LspAttach" },
@@ -164,15 +164,15 @@ require("lazy").setup({
 	{ "nvim-lua/plenary.nvim", event = "VeryLazy" },
 	{ "stevearc/dressing.nvim", event = "VeryLazy" },
 	{ "hrsh7th/nvim-cmp", event = "VeryLazy" },
-	{ "hrsh7th/cmp-nvim-lsp", event = "InsertEnter" },
+	{ "hrsh7th/cmp-nvim-lsp", event = "LspAttach" },
 	{ "hrsh7th/cmp-buffer", event = "InsertEnter" },
 	{ "hrsh7th/cmp-path", event = "InsertEnter" },
 	{ "hrsh7th/cmp-vsnip", event = "InsertEnter" },
 	{ "hrsh7th/cmp-cmdline", event = "ModeChanged" },
-	{ "hrsh7th/cmp-nvim-lsp-signature-help", event = "InsertEnter" },
-	{ "hrsh7th/cmp-nvim-lsp-document-symbol", event = "InsertEnter" },
+	{ "hrsh7th/cmp-nvim-lsp-signature-help", event = "LspAttach" },
+	{ "hrsh7th/cmp-nvim-lsp-document-symbol", event = "LspAttach" },
 	{ "hrsh7th/cmp-calc", event = "InsertEnter" },
-	{ "onsails/lspkind.nvim", event = "InsertEnter" },
+	{ "onsails/lspkind.nvim", event = "LspAttach" },
 	{ "hrsh7th/vim-vsnip", event = "InsertEnter" },
 	{ "hrsh7th/vim-vsnip-integ", event = "InsertEnter" },
 	{ "rafamadriz/friendly-snippets", event = "InsertEnter" },
@@ -374,11 +374,7 @@ local on_attach = function(client, bufnr)
 end
 vim.lsp.handlers["textDocument/publishDiagnostics"] =
 	vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = false })
-require("mason").setup({
-	ui = {
-		border = "single",
-	},
-})
+require("mason").setup()
 require("mason-null-ls").setup({
 	ensure_installed = { "prettierd", "rubocop", "black", "goimports", "stylua", "shfmt" },
 	handlers = {},
@@ -504,7 +500,7 @@ require("dapui").setup({
 	},
 })
 
---DAP-Javascript
+--nvim-dap-vscode-js
 local dap = require("dap")
 
 dap.adapters["pwa-node"] = {
@@ -554,7 +550,14 @@ for _, language in ipairs({ "typescript", "javascript" }) do
 	}
 end
 
---DAP-Python
+--nvim-dap-go
+require("dap-go").setup({
+	delve = {
+		path = ".local/share/nvim/mason/packages/delve/dlv",
+	},
+})
+
+--nvim-dap-python
 require("dap-python").setup(vim.fn.stdpath("data") .. "/mason/packages/debugpy/venv/bin/python")
 
 ---jaq-nvim
