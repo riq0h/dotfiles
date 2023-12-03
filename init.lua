@@ -177,6 +177,7 @@ require("lazy").setup({
 	{ "hrsh7th/vim-vsnip-integ", event = "InsertEnter" },
 	{ "rafamadriz/friendly-snippets", event = "InsertEnter" },
 	{ "nvim-treesitter/nvim-treesitter", event = "VeryLazy" },
+  { "nvim-treesitter/nvim-treesitter-refactor", event = "VeryLazy" },
 	{ "yioneko/nvim-yati", event = "VeryLazy" },
 	{ "windwp/nvim-autopairs", config = true, event = "InsertEnter" },
 	{ "windwp/nvim-ts-autotag", config = true, event = "InsertEnter" },
@@ -187,7 +188,6 @@ require("lazy").setup({
 	{ "kevinhwang91/nvim-hlslens", event = "VeryLazy" },
 	{ "numToStr/Comment.nvim", config = true, event = "VeryLazy" },
 	{ "rhysd/clever-f.vim", event = "VeryLazy" },
-	{ "luochen1990/rainbow", event = "VeryLazy" },
 	{ "echasnovski/mini.surround", event = "ModeChanged" },
 	{ "echasnovski/mini.ai", event = "ModeChanged" },
 	{ "mvllow/modes.nvim", event = "VeryLazy" },
@@ -911,10 +911,6 @@ require("mini.ai").setup({
 		end,
 	},
 })
-
---rainbow
-vim.cmd("let g:rainbow_active = 1")
-vim.cmd("let g:indent_guides_exclude_filetypes = ['help']")
 
 --dial
 vim.keymap.set("n", "<C-a>", require("dial.map").inc_normal(), { noremap = true })
