@@ -169,7 +169,6 @@ require("lazy").setup({
 	{ "hrsh7th/cmp-path", event = "InsertEnter" },
 	{ "hrsh7th/cmp-vsnip", event = "InsertEnter" },
 	{ "hrsh7th/cmp-cmdline", event = "ModeChanged" },
-	{ "hrsh7th/cmp-nvim-lsp-signature-help", event = "LspAttach" },
 	{ "hrsh7th/cmp-nvim-lsp-document-symbol", event = "LspAttach" },
 	{ "hrsh7th/cmp-calc", event = "InsertEnter" },
 	{ "onsails/lspkind.nvim", event = "LspAttach" },
@@ -177,14 +176,26 @@ require("lazy").setup({
 	{ "hrsh7th/vim-vsnip-integ", event = "InsertEnter" },
 	{ "rafamadriz/friendly-snippets", event = "InsertEnter" },
 	{ "nvim-treesitter/nvim-treesitter", event = "VeryLazy" },
-  { "nvim-treesitter/nvim-treesitter-refactor", event = "VeryLazy" },
+	{ "nvim-treesitter/nvim-treesitter-refactor", event = "VeryLazy" },
 	{ "yioneko/nvim-yati", event = "VeryLazy" },
 	{ "windwp/nvim-autopairs", config = true, event = "InsertEnter" },
 	{ "windwp/nvim-ts-autotag", config = true, event = "InsertEnter" },
 	{ "andymass/vim-matchup", event = "VeryLazy" },
 	{ "lambdalisue/suda.vim", cmd = { "SudaWrite", "SudaRead" } },
 	{ "jghauser/mkdir.nvim", event = "ModeChanged" },
-	{ "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {}, event = "VeryLazy" },
+	{
+		"lukas-reineke/indent-blankline.nvim",
+		main = "ibl",
+		opts = function(_, opts)
+			return require("indent-rainbowline").make_opts(opts, {
+				color_transparency = 0.24,
+			})
+		end,
+		dependencies = {
+			"TheGLander/indent-rainbowline.nvim",
+			event = "VeryLazy",
+		},
+	},
 	{ "kevinhwang91/nvim-hlslens", event = "VeryLazy" },
 	{ "numToStr/Comment.nvim", config = true, event = "VeryLazy" },
 	{ "rhysd/clever-f.vim", event = "VeryLazy" },
@@ -637,7 +648,7 @@ cmp.setup({
 		["<C-f>"] = cmp.mapping.scroll_docs(4),
 		["<C-Space>"] = cmp.mapping.complete(),
 		["<C-e>"] = cmp.mapping.abort(),
-		["<CR>"] = cmp.mapping.confirm({ select = false }),
+		["<CR>"] = cmp.mapping.confirm({ select = true }),
 	}),
 
 	formatting = {
@@ -651,7 +662,6 @@ cmp.setup({
 	sources = cmp.config.sources({
 		{ name = "nvim_lsp", max_item_count = 7, keyword_length = 2 },
 		{ name = "vsnip", max_item_count = 7, keyword_length = 2 },
-		{ name = "nvim_lsp_signature_help", max_item_count = 7, keyword_length = 2 },
 		{ name = "calc" },
 		{ name = "buffer", max_item_count = 7, keyword_length = 2 },
 	}),
