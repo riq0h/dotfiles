@@ -180,6 +180,7 @@ require("lazy").setup({
 	{ "yioneko/nvim-yati", event = "VeryLazy" },
 	{ "windwp/nvim-autopairs", config = true, event = "InsertEnter" },
 	{ "windwp/nvim-ts-autotag", config = true, event = "InsertEnter" },
+	{ "HiPhish/rainbow-delimiters.nvim", event = "VeryLazy" },
 	{ "andymass/vim-matchup", event = "VeryLazy" },
 	{ "lambdalisue/suda.vim", cmd = { "SudaWrite", "SudaRead" } },
 	{ "jghauser/mkdir.nvim", event = "ModeChanged" },
@@ -711,6 +712,9 @@ require("nvim-treesitter.configs").setup({
 	},
 	ensure_installed = "all",
 })
+
+--rainbow-delimiters
+require("rainbow-delimiters.setup").setup()
 
 --dressing
 require("dressing").setup({
