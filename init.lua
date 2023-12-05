@@ -169,6 +169,7 @@ require("lazy").setup({
 	{ "hrsh7th/cmp-path", event = "InsertEnter" },
 	{ "hrsh7th/cmp-vsnip", event = "InsertEnter" },
 	{ "hrsh7th/cmp-cmdline", event = "ModeChanged" },
+	{ "hrsh7th/cmp-nvim-lsp-signature-help", event = "LspAttach" },
 	{ "hrsh7th/cmp-nvim-lsp-document-symbol", event = "LspAttach" },
 	{ "hrsh7th/cmp-calc", event = "InsertEnter" },
 	{ "onsails/lspkind.nvim", event = "LspAttach" },
@@ -384,8 +385,7 @@ local on_attach = function(client, bufnr)
 	set("n", "<leader>[", "<cmd>Lspsaga diagnostic_jump_prev<CR>")
 	set("n", "<leaaer>]", "<cmd>Lspsaga diagnostic_jump_next<CR>")
 end
-vim.lsp.handlers["textDocument/publishDiagnostics"] =
-	vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = false })
+vim.diagnostic.config({ virtual_text = false })
 require("mason").setup()
 require("mason-null-ls").setup({
 	ensure_installed = { "prettierd", "rubocop", "black", "goimports", "stylua", "shfmt" },
@@ -663,6 +663,7 @@ cmp.setup({
 	sources = cmp.config.sources({
 		{ name = "nvim_lsp", max_item_count = 7, keyword_length = 2 },
 		{ name = "vsnip", max_item_count = 7, keyword_length = 2 },
+		{ name = "nvim_lsp_signature_help", max_item_count = 7 },
 		{ name = "calc" },
 		{ name = "buffer", max_item_count = 7, keyword_length = 2 },
 	}),
