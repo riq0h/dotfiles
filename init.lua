@@ -748,7 +748,7 @@ require("colorful-winsep").setup({
 --nvim-highlight-colors
 require("nvim-highlight-colors").setup({
 	render = "background",
-	enable_named_colors = true,
+	enable_named_colors = false,
 	enable_tailwind = true,
 })
 
