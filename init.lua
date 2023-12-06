@@ -386,6 +386,8 @@ local on_attach = function(client, bufnr)
 	set("n", "<leaaer>]", "<cmd>Lspsaga diagnostic_jump_next<CR>")
 end
 vim.diagnostic.config({ virtual_text = false })
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
 require("mason").setup()
 require("mason-null-ls").setup({
 	ensure_installed = { "prettierd", "rubocop", "black", "goimports", "stylua", "shfmt" },
