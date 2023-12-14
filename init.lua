@@ -663,11 +663,11 @@ cmp.setup({
 	},
 
 	sources = cmp.config.sources({
-		{ name = "nvim_lsp", max_item_count = 7, keyword_length = 2 },
-		{ name = "vsnip", max_item_count = 7, keyword_length = 2 },
-		{ name = "nvim_lsp_signature_help", max_item_count = 7 },
+		{ name = "nvim_lsp", max_item_count = 15, keyword_length = 2 },
+		{ name = "vsnip", max_item_count = 15, keyword_length = 2 },
+		{ name = "nvim_lsp_signature_help"},
 		{ name = "calc" },
-		{ name = "buffer", max_item_count = 7, keyword_length = 2 },
+		{ name = "buffer", max_item_count = 15, keyword_length = 2 },
 	}),
 })
 
@@ -750,7 +750,7 @@ require("colorful-winsep").setup({
 --nvim-highlight-colors
 require("nvim-highlight-colors").setup({
 	render = "background",
-	enable_named_colors = false,
+	enable_named_colors = true,
 	enable_tailwind = true,
 })
 
