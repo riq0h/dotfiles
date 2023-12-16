@@ -148,7 +148,7 @@ require("lazy").setup({
 	{ "williamboman/mason-lspconfig.nvim", event = "LspAttach" },
 	{ "jay-babu/mason-null-ls.nvim", event = "LspAttach" },
 	{ "jay-babu/mason-nvim-dap.nvim", event = "LspAttach" },
-	{ "neovim/nvim-lspconfig", event = "LspAttach" },
+	{ "neovim/nvim-lspconfig", event = "BufReadPre" },
 	{ "nvimtools/none-ls.nvim", event = "LspAttach" },
 	{ "mfussenegger/nvim-dap", event = "LspAttach" },
 	{ "rcarriga/nvim-dap-ui", event = "LspAttach" },
