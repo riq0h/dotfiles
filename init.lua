@@ -28,8 +28,8 @@ opt.showtabline = 1
 opt.laststatus = 3
 opt.ambiwidth = "single"
 opt.confirm = true
-opt.pumblend = 15
-opt.winblend = 15
+opt.pumblend = 0
+opt.winblend = 0
 opt.mouse = "a"
 opt.cmdheight = 2
 opt.timeout = true
@@ -185,19 +185,7 @@ require("lazy").setup({
 	{ "andymass/vim-matchup", event = "VeryLazy" },
 	{ "lambdalisue/suda.vim", cmd = { "SudaWrite", "SudaRead" } },
 	{ "jghauser/mkdir.nvim", event = "ModeChanged" },
-	{
-		"lukas-reineke/indent-blankline.nvim",
-		main = "ibl",
-		opts = function(_, opts)
-			return require("indent-rainbowline").make_opts(opts, {
-				color_transparency = 0.24,
-			})
-		end,
-		dependencies = {
-			"TheGLander/indent-rainbowline.nvim",
-			event = "VeryLazy",
-		},
-	},
+	{ "shellRaining/hlchunk.nvim", config = true, event = "UIEnter" },
 	{ "kevinhwang91/nvim-hlslens", event = "VeryLazy" },
 	{ "numToStr/Comment.nvim", config = true, event = "VeryLazy" },
 	{ "rhysd/clever-f.vim", event = "VeryLazy" },
@@ -637,10 +625,10 @@ cmp.setup({
 
 	window = {
 		completion = cmp.config.window.bordered({
-			border = "single",
+			border = "none",
 		}),
 		documentation = cmp.config.window.bordered({
-			border = "single",
+			border = "none",
 		}),
 	},
 
@@ -665,7 +653,7 @@ cmp.setup({
 	sources = cmp.config.sources({
 		{ name = "nvim_lsp", max_item_count = 15, keyword_length = 2 },
 		{ name = "vsnip", max_item_count = 15, keyword_length = 2 },
-		{ name = "nvim_lsp_signature_help"},
+		{ name = "nvim_lsp_signature_help" },
 		{ name = "calc" },
 		{ name = "buffer", max_item_count = 15, keyword_length = 2 },
 	}),
@@ -750,7 +738,7 @@ require("colorful-winsep").setup({
 --nvim-highlight-colors
 require("nvim-highlight-colors").setup({
 	render = "background",
-	enable_named_colors = true,
+	enable_named_colors = false,
 	enable_tailwind = true,
 })
 
