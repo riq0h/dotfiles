@@ -25,8 +25,17 @@ alias vim=nvim
 # paruを短縮する
 alias poo=paru
 
+# gitの短縮
+alias g="git"
+alias ga="git add"
+alias gc="git commit"
+alias gp="git push"
+alias gr="git rebase"
+alias gl="git log"
+
 # ezaをls代わりにする
 alias ls="eza --icons -a"
+alias lsl="eza --icons -la"
 alias lsa="eza --icons -T -a"
 
 # batをcatの代わりにする
