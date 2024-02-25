@@ -187,6 +187,7 @@ require("lazy").setup({
 	{ "jghauser/mkdir.nvim", event = "ModeChanged" },
 	{ "shellRaining/hlchunk.nvim", config = true, event = "UIEnter" },
 	{ "kevinhwang91/nvim-hlslens", event = "VeryLazy" },
+	{ "akinsho/git-conflict.nvim", version = "*", config = true },
 	{ "numToStr/Comment.nvim", config = true, event = "VeryLazy" },
 	{ "rhysd/clever-f.vim", event = "VeryLazy" },
 	{ "echasnovski/mini.surround", event = "ModeChanged" },
@@ -702,6 +703,16 @@ require("nvim-treesitter.configs").setup({
 		enable_quotes = true,
 	},
 	ensure_installed = "all",
+})
+
+--nvim-ts-autotag
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+	underline = true,
+	virtual_text = {
+		spacing = 5,
+		severity_limit = "Warning",
+	},
+	update_in_insert = true,
 })
 
 --rainbow-delimiters
