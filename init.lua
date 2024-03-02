@@ -171,7 +171,6 @@ require("lazy").setup({
 	{ "hrsh7th/cmp-cmdline", event = "ModeChanged" },
 	{ "hrsh7th/cmp-nvim-lsp-signature-help", event = "LspAttach" },
 	{ "hrsh7th/cmp-nvim-lsp-document-symbol", event = "LspAttach" },
-	{ "hrsh7th/cmp-calc", event = "InsertEnter" },
 	{ "onsails/lspkind.nvim", event = "LspAttach" },
 	{ "hrsh7th/vim-vsnip", event = "InsertEnter" },
 	{ "hrsh7th/vim-vsnip-integ", event = "InsertEnter" },
@@ -655,7 +654,6 @@ cmp.setup({
 		{ name = "nvim_lsp", max_item_count = 15, keyword_length = 2 },
 		{ name = "vsnip", max_item_count = 15, keyword_length = 2 },
 		{ name = "nvim_lsp_signature_help" },
-		{ name = "calc" },
 		{ name = "buffer", max_item_count = 15, keyword_length = 2 },
 	}),
 })
@@ -705,7 +703,7 @@ require("nvim-treesitter.configs").setup({
 	ensure_installed = "all",
 })
 
---nvim-ts-autotag
+-- --nvim-ts-autotag
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
 	underline = true,
 	virtual_text = {
