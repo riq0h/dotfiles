@@ -359,6 +359,9 @@ require("lspsaga").setup({
 	lightbulb = {
 		enable = false,
 	},
+	diagnostic = {
+		diagnostic_only_current = true,
+	},
 })
 
 local on_attach = function(client, bufnr)
