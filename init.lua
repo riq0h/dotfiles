@@ -152,6 +152,7 @@ require("lazy").setup({
 	{ "nvimtools/none-ls.nvim", event = "LspAttach" },
 	{ "mfussenegger/nvim-dap", event = "LspAttach" },
 	{ "rcarriga/nvim-dap-ui", event = "LspAttach" },
+  { "nvim-neotest/nvim-nio", event = "LspAttach" },
 	{ "theHamsta/nvim-dap-virtual-text", config = true, event = "LspAttach" },
 	{ "suketa/nvim-dap-ruby", config = true, ft = "ruby" },
 	{ "leoluz/nvim-dap-go", ft = "go" },
