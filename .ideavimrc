@@ -2,13 +2,16 @@
 set surround
 set commentary
 set ideajoin
+set highlightedyank
 
 " その他オプションの有効化
 set clipboard+=unnamedplus
 set keep-english-in-normal
+set incsearch
 
 " キーバインド
 let mapleader=" "
+nnoremap <leader><leader>r :<C-u>source ~/.ideavimrc<CR>
 nnoremap ew :<C-u>w<CR>
 nnoremap eq :<C-u>wq<CR>
 nnoremap Q :<C-u>quit!<CR>
@@ -26,7 +29,7 @@ nnoremap [m :<C-u>action MethodUp<CR>
 nnoremap ]m :<C-u>action MethodDown<CR>
 nnoremap [e :<C-u>action GotoPreviousError<CR>
 nnoremap ]e :<C-u>action GotoNextError<CR>
-nnoremap K :<C-u>action QuickJavaDoc<CR>
+nnoremap <leader>k :<C-u>action QuickJavaDoc<CR>
 nnoremap <leader>d :<C-u>action Debug<CR>
 nnoremap <leader>a :<C-u>action GotoAction<CR>
 nnoremap <leader>G :<C-u>action Generate<CR>
@@ -50,6 +53,6 @@ nnoremap <leader>S :<C-u>action GotoSymbol<CR>
 nnoremap <leader>t :<C-u>action ActivateTerminalToolWindow<CR>
 nnoremap <leader>. :<C-u>action ActivateProjectToolWindow<CR>
 nnoremap <leader>P :<C-u>action ManageRecentProjects<CR>
-nnoremap <leader>b :<C-u>action ToggleLineBreakpoint<CR>
+nnoremap <leader>; :<C-u>action ToggleLineBreakpoint<CR>
 nnoremap <leader>j :<C-u>action Run<CR>
 nnoremap <leader>w :<C-u>action HideAllWindows<CR>
