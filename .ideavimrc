@@ -1,0 +1,55 @@
+" プラグインの有効化
+set surround
+set commentary
+set ideajoin
+
+" その他オプションの有効化
+set clipboard+=unnamedplus
+set keep-english-in-normal
+
+" キーバインド
+let mapleader=" "
+nnoremap ew :<C-u>w<CR>
+nnoremap eq :<C-u>wq<CR>
+nnoremap Q :<C-u>quit!<CR>
+nnoremap <C-s> :<C-u>%s///cg<left><left><left><left>
+nnoremap k gk
+nnoremap j gj
+nnoremap <UP> gk
+nnoremap <DOWN> gj
+nnoremap O :<C-u>call append(expand('.'), '')<CR>j
+nnoremap p ]p
+nnoremap P ]P
+nnoremap ]p p
+nnoremap ]P P
+nnoremap [m :<C-u>action MethodUp<CR>
+nnoremap ]m :<C-u>action MethodDown<CR>
+nnoremap [e :<C-u>action GotoPreviousError<CR>
+nnoremap ]e :<C-u>action GotoNextError<CR>
+nnoremap K :<C-u>action QuickJavaDoc<CR>
+nnoremap <leader>d :<C-u>action Debug<CR>
+nnoremap <leader>a :<C-u>action GotoAction<CR>
+nnoremap <leader>G :<C-u>action Generate<CR>
+nnoremap <leader>gn :<C-u>action NewClass<CR>
+nnoremap <leader>go :<C-u>action OverrideMethods<CR>
+nnoremap <leader>gc :<C-u>action GenerateConstructor<CR>
+nnoremap <leader>gg :<C-u>action GenerateGetter<CR>
+nnoremap <leader>gs :<C-u>action GenerateSetter<CR>
+nnoremap <leader>ga :<C-u>action GenerateGetterAndSetter<CR>
+nnoremap <leader>ge :<C-u>action GenerateEquals<CR>
+nnoremap <leader>gt :<C-u>action GenerateTestMethod<CR>
+nnoremap <leader>p :<C-u>action ReformatCode<CR>
+nnoremap <leader>o :<C-u>action FileStructurePopup<CR>
+nnoremap <leader>q :<C-u>action CloseContent<CR>
+nnoremap <leader>Q :<C-u>action ReopenClosedTab<CR>
+nnoremap <leader>e :<C-u>action SearchEverywhere<CR>
+nnoremap <leader>f :<C-u>action GotoFile<CR>
+nnoremap <leader>F :<C-u>action FindInPath<CR>
+nnoremap <leader>s :<C-u>action GotoClass<CR>
+nnoremap <leader>S :<C-u>action GotoSymbol<CR>
+nnoremap <leader>t :<C-u>action ActivateTerminalToolWindow<CR>
+nnoremap <leader>. :<C-u>action ActivateProjectToolWindow<CR>
+nnoremap <leader>P :<C-u>action ManageRecentProjects<CR>
+nnoremap <leader>b :<C-u>action ToggleLineBreakpoint<CR>
+nnoremap <leader>j :<C-u>action Run<CR>
+nnoremap <leader>w :<C-u>action HideAllWindows<CR>
