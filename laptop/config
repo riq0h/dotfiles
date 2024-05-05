@@ -170,7 +170,7 @@ set $orange #F08080
 
 # ステータスバー関連
 bar {
-    font pango:UDEV Gothic 35 11
+    font pango:UDEV Gothic 35 10
     mode dock
     position top
     workspace_buttons yes
@@ -220,11 +220,11 @@ client.unfocused            $bg         $bg             $fg         $yellow     
 for_window [class="^.*"] border pixel 2
 
 # gaps
-gaps top 5
-gaps bottom 5
-gaps right 5
-gaps left 5
-gaps inner 5
+gaps top 4
+gaps bottom 4
+gaps right 4
+gaps left 4
+gaps inner 4
 
 # マウスでフォーカスしない
 focus_follows_mouse no
