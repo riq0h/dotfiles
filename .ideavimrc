@@ -3,6 +3,7 @@ set surround
 set commentary
 set ideajoin
 set highlightedyank
+set easymotion
 
 " その他オプションの有効化
 set clipboard+=unnamedplus
