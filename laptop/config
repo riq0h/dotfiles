@@ -22,6 +22,7 @@ bindsym $mod+q kill
 # ランチャー
 bindsym $mod+z exec --no-startup-id "rofi -show drun"
 bindsym $mod+x exec --no-startup-id "rofi -show run"
+bindsym $mod+Tab exec --no-startup-id "rofi -show window"
 
 # ウインドウフォーカス
 bindsym $mod+h focus left
