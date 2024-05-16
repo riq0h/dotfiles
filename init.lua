@@ -152,7 +152,7 @@ require("lazy").setup({
 	{ "nvimtools/none-ls.nvim", event = "LspAttach" },
 	{ "mfussenegger/nvim-dap", event = "LspAttach" },
 	{ "rcarriga/nvim-dap-ui", event = "LspAttach" },
-  { "nvim-neotest/nvim-nio", event = "LspAttach" },
+	{ "nvim-neotest/nvim-nio", event = "LspAttach" },
 	{ "theHamsta/nvim-dap-virtual-text", config = true, event = "LspAttach" },
 	{ "suketa/nvim-dap-ruby", config = true, ft = "ruby" },
 	{ "leoluz/nvim-dap-go", ft = "go" },
@@ -388,6 +388,12 @@ require("mason-null-ls").setup({
 require("mason-nvim-dap").setup({
 	ensure_installed = {},
 	handlers = {},
+})
+require("lspconfig").sourcekit.setup({
+	cmd = { "/usr/bin/sourcekit-lsp" },
+	filetypes = { "swift" },
+	on_attach = on_attach,
+	capabilities = capabilities,
 })
 require("mason-lspconfig").setup()
 require("mason-lspconfig").setup_handlers({
@@ -638,7 +644,7 @@ cmp.setup({
 
 	mapping = cmp.mapping.preset.insert({
 		["<C-n>"] = cmp.mapping.select_next_item(),
-    ["<C-p>"] = cmp.mapping.select_prev_item(),
+		["<C-p>"] = cmp.mapping.select_prev_item(),
 		["<C-b>"] = cmp.mapping.scroll_docs(-4),
 		["<C-f>"] = cmp.mapping.scroll_docs(4),
 		["<C-Space>"] = cmp.mapping.complete(),
