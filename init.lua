@@ -586,6 +586,7 @@ require("jaq-nvim").setup({
 			ruby = "ruby %",
 			java = "java %",
 			javascript = "node %",
+      swift = "swift %"
 		},
 	},
 
