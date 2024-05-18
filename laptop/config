@@ -242,7 +242,7 @@ bindsym XF86MonBrightnessDown exec light -U 10
 
 # 自動起動
 exec --no-startup-id dunst
-exec --no-startup-id "picom -b --experimental-backends"
+exec --no-startup-id "picom -b"
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id fcitx5
 exec --no-startup-id light-locker --lock-on-suspend
