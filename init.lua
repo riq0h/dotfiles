@@ -704,9 +704,6 @@ require("nvim-treesitter.configs").setup({
 	yati = {
 		enable = true,
 	},
-	autotag = {
-		enable = true,
-	},
 	matchup = {
 		enable = true,
 		enable_quotes = true,
@@ -714,7 +711,8 @@ require("nvim-treesitter.configs").setup({
 	ensure_installed = "all",
 })
 
--- --nvim-ts-autotag
+--nvim-ts-autotag
+require("nvim-ts-autotag").setup()
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
 	underline = true,
 	update_in_insert = true,
