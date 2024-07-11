@@ -158,6 +158,7 @@ require("lazy").setup({
 	{ "leoluz/nvim-dap-go", ft = "go" },
 	{ "mxsdev/nvim-dap-vscode-js", ft = "javascript" },
 	{ "mfussenegger/nvim-dap-python", ft = "python" },
+  { "akinsho/flutter-tools.nvim", ft = "dart", event = "LspAttach"},
 	{ "nvimdev/lspsaga.nvim", event = "LspAttach" },
 	{ "is0n/jaq-nvim", event = "LspAttach" },
 	{ "j-hui/fidget.nvim", config = true, event = "LspAttach" },
@@ -361,7 +362,7 @@ require("lspsaga").setup({
 		enable = false,
 	},
 	diagnostic = {
-		diagnostic_only_current = true,
+		diagnostic_only_current = false,
 	},
 })
 
@@ -394,6 +395,27 @@ require("lspconfig").sourcekit.setup({
 	filetypes = { "swift" },
 	on_attach = on_attach,
 	capabilities = capabilities,
+})
+require("lspconfig").dartls.setup({
+    cmd = { "dart", "language-server", "--protocol=lsp" },
+    filetypes = { "dart" },
+    on_attach = on_attach,
+    capabilities = capabilities,
+    init_options = {
+        closingLabels = true,
+        flutterOutline = true,
+        onlyAnalyzeProjectsWithOpenFiles = true,
+        outline = true,
+        suggestFromUnimportedLibraries = true,
+    },
+    settings = {
+        dart = {
+            completeFunctionCalls = true,
+            showTodos = true,
+        },
+    },
+    on_attach = function(client, bufnr)
+    end,
 })
 require("mason-lspconfig").setup()
 require("mason-lspconfig").setup_handlers({
@@ -572,6 +594,9 @@ require("dap-go").setup({
 --nvim-dap-python
 require("dap-python").setup(vim.fn.stdpath("data") .. "/mason/packages/debugpy/venv/bin/python")
 
+--flutter-tools
+require("flutter-tools").setup()
+
 ---jaq-nvim
 require("jaq-nvim").setup({
 	cmds = {
@@ -586,7 +611,8 @@ require("jaq-nvim").setup({
 			ruby = "ruby %",
 			java = "java %",
 			javascript = "node %",
-      swift = "swift %"
+      swift = "swift %",
+      dart = "dart %"
 		},
 	},
 
