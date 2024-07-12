@@ -362,7 +362,7 @@ require("lspsaga").setup({
 		enable = false,
 	},
 	diagnostic = {
-		diagnostic_only_current = false,
+		diagnostic_only_current = true,
 	},
 })
 
@@ -393,26 +393,16 @@ require("mason-nvim-dap").setup({
 require("lspconfig").sourcekit.setup({
 	cmd = { "/usr/bin/sourcekit-lsp" },
 	filetypes = { "swift" },
-	on_attach = on_attach,
-	capabilities = capabilities,
 })
 require("lspconfig").dartls.setup({
     cmd = { "dart", "language-server", "--protocol=lsp" },
     filetypes = { "dart" },
-    on_attach = on_attach,
-    capabilities = capabilities,
     init_options = {
         closingLabels = true,
         flutterOutline = true,
         onlyAnalyzeProjectsWithOpenFiles = true,
         outline = true,
         suggestFromUnimportedLibraries = true,
-    },
-    settings = {
-        dart = {
-            completeFunctionCalls = true,
-            showTodos = true,
-        },
     },
     on_attach = function(client, bufnr)
     end,
