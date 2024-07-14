@@ -158,7 +158,7 @@ require("lazy").setup({
 	{ "leoluz/nvim-dap-go", ft = "go" },
 	{ "mxsdev/nvim-dap-vscode-js", ft = "javascript" },
 	{ "mfussenegger/nvim-dap-python", ft = "python" },
-	{ "akinsho/flutter-tools.nvim", ft = "dart", event = "LspAttach" },
+	{ "akinsho/flutter-tools.nvim", ft = "dart" },
 	{ "nvimdev/lspsaga.nvim", event = "LspAttach" },
 	{ "is0n/jaq-nvim", event = "LspAttach" },
 	{ "j-hui/fidget.nvim", config = true, event = "LspAttach" },
@@ -327,7 +327,6 @@ vim.keymap.set("n", "<leader>n", "<cmd>Telescope lsp_references<CR>")
 vim.keymap.set("n", "<leader>m", "<cmd>Telescope diagnostics<CR>")
 vim.keymap.set("n", "<leader>x", "<cmd>Telescope lsp_document_symbols<CR>")
 vim.keymap.set("n", "<leader>f", "<cmd>Telescope file_browser<CR>")
-vim.keymap.set("n", "<leader>0", require("telescope").extensions.flutter.commands, { desc = "Open command Flutter" })
 
 local fb_actions = require("telescope").extensions.file_browser.actions
 local previewers = require("telescope.previewers")
@@ -390,10 +389,6 @@ require("mason-null-ls").setup({
 require("mason-nvim-dap").setup({
 	ensure_installed = {},
 	handlers = {},
-})
-require("lspconfig").sourcekit.setup({
-	cmd = { "/usr/bin/sourcekit-lsp" },
-	filetypes = { "swift" },
 })
 require("mason-lspconfig").setup()
 require("mason-lspconfig").setup_handlers({
@@ -512,6 +507,25 @@ require("dapui").setup({
 	},
 })
 
+--dap-flutter(debugger is included flutter-tools)
+local dap = require("dap")
+
+dap.adapters.flutter = {
+	type = "executable",
+	command = "flutter",
+	args = { "debug_adapter" },
+}
+
+dap.configurations.dart = {
+	{
+		type = "flutter",
+		request = "launch",
+		name = "Launch Flutter Program",
+		program = "${workspaceFolder}/lib/main.dart",
+		cwd = "${workspaceFolder}",
+	},
+}
+
 --nvim-dap-vscode-js
 local dap = require("dap")
 
@@ -581,17 +595,14 @@ require("flutter-tools").setup({
 		enabled = false,
 	},
 	debugger = {
-		enabled = false,
-		run_via_dap = false,
-		register_configurations = function(_)
-			require("dap").adapters.dart = {
-				type = "executable",
-				command = vim.fn.stdpath("data") .. "/mason/bin/dart-debug-adapter",
-				args = { "flutter" },
-			}
-		end,
+		enabled = true,
+		run_via_dap = true,
 	},
 })
+
+vim.keymap.set("n", "<leader>0", require("telescope").extensions.flutter.commands, { desc = "Open command Flutter" })
+vim.keymap.set("n", "<leader>r", ":FlutterReload<CR>", { silent = true, desc = "Flutter Reload" })
+vim.keymap.set("n", "<leader>R", ":FlutterRestart<CR>", { silent = true, desc = "Flutter Restart" })
 
 ---jaq-nvim
 require("jaq-nvim").setup({
@@ -607,7 +618,6 @@ require("jaq-nvim").setup({
 			ruby = "ruby %",
 			java = "java %",
 			javascript = "node %",
-			swift = "swift %",
 			dart = "dart %",
 		},
 	},
@@ -723,8 +733,11 @@ require("nvim-treesitter.configs").setup({
 			enable = true,
 		},
 	},
-	yati = {
+	indent = {
 		enable = true,
+	},
+	yati = {
+		enable = false,
 	},
 	matchup = {
 		enable = true,
