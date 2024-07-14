@@ -263,6 +263,7 @@ for_window [class="Qtconfig-qt4"] floating enable, resize set 1024 780
 for_window [class="kdeconnect.app"] floating enbale, resize set 1280 1024
 for_window [class="thunderbird"] floating enable, resize set 1440 1024
 for_window [class="Gnucash"] floating enable, resize set 1440 1024
+for_window [class="Emulator"] floating enable
 
 # ワークスペース指定一覧
 assign [class="discord"] workspace 3
