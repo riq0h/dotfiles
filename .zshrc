@@ -33,10 +33,10 @@ alias gp="git push"
 alias gr="git rebase"
 alias gl="git log"
 
-# ezaをls代わりにする
-alias ls="eza --icons -a"
-alias lsl="eza --icons -la"
-alias lsa="eza --icons -T -a"
+# # ezaをls代わりにする
+# alias ls="eza --icons -a"
+# alias lsl="eza --icons -la"
+# alias lsa="eza --icons -T -a"
 
 # batをcatの代わりにする
 alias cat="bat --color=always --style=plain"
@@ -45,7 +45,7 @@ alias cat="bat --color=always --style=plain"
 alias cls=clear
 
 # 天気情報
-alias wttr="() { curl -H 'Accept-Language: ${LANG%_ja}' wttr.in/'${1:-Saitama}' }"
+alias wttr="() { curl -H 'Accept-Language: ${LANG%_ja}' wttr.in/'${1:-Tokyo}' }"
 
 # BAT関連
 export BAT_THEME="TwoDark"
@@ -117,3 +117,6 @@ setopt hist_reduce_blanks # 余分なスペースを削除してヒストリに�
 
 ## rbenv
 eval "$(rbenv init - zsh)"
+
+## Flutter
+export CHROME_EXECUTABLE="/usr/bin/vivaldi"
