@@ -352,7 +352,7 @@ end
 --LSP
 require("lspsaga").setup({
 	symbol_in_winbar = {
-		enable = false,
+		enable = true,
 	},
 	ui = {
 		border = "single",
