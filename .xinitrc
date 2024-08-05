@@ -6,3 +6,7 @@ export QT_IM_MODULE=fcitx
 export DefaultIMModule=fcitx
 exec i3
 xset -b
+
+xset s off
+xset -dpms
+xset s noblank
