@@ -33,10 +33,10 @@ alias gp="git push"
 alias gr="git rebase"
 alias gl="git log"
 
-# # ezaをls代わりにする
-# alias ls="eza --icons -a"
-# alias lsl="eza --icons -la"
-# alias lsa="eza --icons -T -a"
+# ezaをls代わりにする
+alias ls="eza --icons -a"
+alias lsl="eza --icons -la"
+alias lsa="eza --icons -T -a"
 
 # batをcatの代わりにする
 alias cat="bat --color=always --style=plain"
