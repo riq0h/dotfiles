@@ -756,6 +756,16 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
 --rainbow-delimiters
 require("rainbow-delimiters.setup").setup()
 
+-- hlchunk
+require("hlchunk").setup({
+	chunk = {
+		enable = true,
+	},
+	indent = {
+		enable = true,
+	},
+})
+
 --dressing
 require("dressing").setup({
 	input = {
