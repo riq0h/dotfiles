@@ -362,7 +362,7 @@ require("lspsaga").setup({
 		enable = false,
 	},
 	diagnostic = {
-		diagnostic_only_current = true,
+		diagnostic_only_current = false,
 	},
 })
 
@@ -371,9 +371,9 @@ local on_attach = function(client, bufnr)
 	local set = vim.keymap.set
 	set("n", "K", "<cmd>Lspsaga hover_doc<CR>")
 	set("n", "<leader>1", "<cmd>Lspsaga finder<CR>")
-	set("n", "<leader>2", "<cmd>Lspsaga rename<CR>")
-	set("n", "<leader>3", "<cmd>Lspsaga code_action<CR>")
-	set("n", "<leader>4", "<cmd>Lspsaga show_line_diagnostics<CR>")
+	set("n", "<leader>r", "<cmd>Lspsaga rename<CR>")
+	set("n", "<leader>c", "<cmd>Lspsaga code_action<CR>")
+	set("n", "<leader>e", "<cmd>Lspsaga show_line_diagnostics<CR>")
 	set("n", "<leader>5", "<cmd>Lspsaga peek_definition<CR>")
 	set("n", "<leader>[", "<cmd>Lspsaga diagnostic_jump_prev<CR>")
 	set("n", "<leaaer>]", "<cmd>Lspsaga diagnostic_jump_next<CR>")
@@ -383,7 +383,7 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 require("mason").setup()
 require("mason-null-ls").setup({
-	ensure_installed = { "prettierd", "rubocop", "black", "goimports", "stylua", "shfmt" },
+	ensure_installed = { "prettierd", "rubocop", "phpstan", "phpcsfixer", "stylua", "shfmt" },
 	handlers = {},
 })
 require("mason-nvim-dap").setup({
@@ -405,20 +405,7 @@ local status, null_ls = pcall(require, "null-ls")
 if not status then
 	return
 end
-
-null_ls.setup({
-	sources = {
-		null_ls.builtins.formatting.prettierd,
-		null_ls.builtins.diagnostics.rubocop,
-		null_ls.builtins.formatting.rubocop,
-		null_ls.builtins.formatting.black,
-		null_ls.builtins.formatting.goimports,
-		null_ls.builtins.formatting.stylua,
-		null_ls.builtins.formatting.shfmt,
-	},
-	debug = false,
-})
-
+null_ls.setup()
 vim.keymap.set("n", "<leader>p", function()
 	vim.lsp.buf.format({ async = true })
 end)
@@ -507,85 +494,6 @@ require("dapui").setup({
 	},
 })
 
---dap-flutter(debugger is included flutter-tools)
-local dap = require("dap")
-
-dap.adapters.flutter = {
-	type = "executable",
-	command = "flutter",
-	args = { "debug_adapter" },
-}
-
-dap.configurations.dart = {
-	{
-		type = "flutter",
-		request = "launch",
-		name = "Launch Flutter Program",
-		program = "${workspaceFolder}/lib/main.dart",
-		cwd = "${workspaceFolder}",
-	},
-}
-
---nvim-dap-vscode-js
-local dap = require("dap")
-
-dap.adapters["pwa-node"] = {
-	type = "server",
-	host = "localhost",
-	port = "${port}",
-	executable = {
-		command = "node",
-		args = {
-			vim.fn.stdpath("data") .. "/mason/packages/js-debug-adapter/js-debug/src/dapDebugServer.js",
-			"${port}",
-		},
-		-- command = "js-debug-adapter",
-		-- args = { "${port}" },
-	},
-}
-
-for _, language in ipairs({ "typescript", "javascript" }) do
-	dap.configurations[language] = {
-		{
-			type = "pwa-node",
-			request = "launch",
-			name = "Launch Current File (pwa-node)",
-			cwd = "${workspaceFolder}",
-			args = { "${file}" },
-			sourceMaps = true,
-			protocol = "inspector",
-		},
-		{
-			type = "pwa-node",
-			request = "launch",
-			name = "Launch Current File (Typescript)",
-			cwd = "${workspaceFolder}",
-			runtimeArgs = { "--loader=ts-node/esm" },
-			program = "${file}",
-			runtimeExecutable = "node",
-			-- args = { '${file}' },
-			sourceMaps = true,
-			protocol = "inspector",
-			outFiles = { "${workspaceFolder}/**/**/*", "!**/node_modules/**" },
-			skipFiles = { "<node_internals>/**", "node_modules/**" },
-			resolveSourceMapLocations = {
-				"${workspaceFolder}/**",
-				"!**/node_modules/**",
-			},
-		},
-	}
-end
-
---nvim-dap-go
-require("dap-go").setup({
-	delve = {
-		path = ".local/share/nvim/mason/packages/delve/dlv",
-	},
-})
-
---nvim-dap-python
-require("dap-python").setup(vim.fn.stdpath("data") .. "/mason/packages/debugpy/venv/bin/python")
-
 --flutter-tools
 require("flutter-tools").setup({
 	ui = {
@@ -601,8 +509,8 @@ require("flutter-tools").setup({
 })
 
 vim.keymap.set("n", "<leader>0", require("telescope").extensions.flutter.commands, { desc = "Open command Flutter" })
-vim.keymap.set("n", "<leader>r", ":FlutterReload<CR>", { silent = true, desc = "Flutter Reload" })
-vim.keymap.set("n", "<leader>R", ":FlutterRestart<CR>", { silent = true, desc = "Flutter Restart" })
+vim.keymap.set("n", "<leader>2", ":FlutterReload<CR>", { silent = true, desc = "Flutter Reload" })
+vim.keymap.set("n", "<leader>3", ":FlutterRestart<CR>", { silent = true, desc = "Flutter Restart" })
 
 ---jaq-nvim
 require("jaq-nvim").setup({
@@ -612,13 +520,9 @@ require("jaq-nvim").setup({
 			vim = "source %",
 		},
 		external = {
-			python = "python3 %",
-			go = "go run %",
 			sh = "sh %",
 			ruby = "ruby %",
-			java = "java %",
-			javascript = "node %",
-			dart = "dart %",
+			php = "php %",
 		},
 	},
 
