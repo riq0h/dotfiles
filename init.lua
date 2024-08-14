@@ -157,7 +157,6 @@ require("lazy").setup({
 	{ "suketa/nvim-dap-ruby", config = true, ft = "ruby" },
 	{ "leoluz/nvim-dap-go", ft = "go" },
 	{ "mxsdev/nvim-dap-vscode-js", ft = "javascript" },
-	{ "mfussenegger/nvim-dap-python", ft = "python" },
 	{ "akinsho/flutter-tools.nvim", ft = "dart" },
 	{ "nvimdev/lspsaga.nvim", event = "LspAttach" },
 	{ "is0n/jaq-nvim", event = "LspAttach" },
@@ -523,6 +522,8 @@ require("jaq-nvim").setup({
 			sh = "sh %",
 			ruby = "ruby %",
 			php = "php %",
+      go = "go run %",
+      javascript = "node %"
 		},
 	},
 
