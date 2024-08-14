@@ -159,6 +159,7 @@ require("lazy").setup({
 	{ "mxsdev/nvim-dap-vscode-js", ft = "javascript" },
 	{ "akinsho/flutter-tools.nvim", ft = "dart" },
 	{ "nvimdev/lspsaga.nvim", event = "LspAttach" },
+	{ "Wansmer/treesj", event = "LspAttach" },
 	{ "is0n/jaq-nvim", event = "LspAttach" },
 	{ "j-hui/fidget.nvim", config = true, event = "LspAttach" },
 	{ "sainnhe/edge", event = "VeryLazy" },
@@ -323,8 +324,8 @@ vim.keymap.set("n", "<leader>b", "<cmd>Telescope buffers<CR>")
 vim.keymap.set("n", "<leader>h", "<cmd>Telescope help_tags<CR>")
 vim.keymap.set("n", "<leader>y", "<cmd>Telescope registers<CR>")
 vim.keymap.set("n", "<leader>n", "<cmd>Telescope lsp_references<CR>")
-vim.keymap.set("n", "<leader>m", "<cmd>Telescope diagnostics<CR>")
-vim.keymap.set("n", "<leader>x", "<cmd>Telescope lsp_document_symbols<CR>")
+vim.keymap.set("n", "<leader>j", "<cmd>Telescope diagnostics<CR>")
+vim.keymap.set("n", "<leader>s", "<cmd>Telescope lsp_document_symbols<CR>")
 vim.keymap.set("n", "<leader>f", "<cmd>Telescope file_browser<CR>")
 
 local fb_actions = require("telescope").extensions.file_browser.actions
@@ -369,11 +370,9 @@ local on_attach = function(client, bufnr)
 	client.server_capabilities.documentFormattingProvider = false
 	local set = vim.keymap.set
 	set("n", "K", "<cmd>Lspsaga hover_doc<CR>")
-	set("n", "<leader>1", "<cmd>Lspsaga finder<CR>")
 	set("n", "<leader>r", "<cmd>Lspsaga rename<CR>")
 	set("n", "<leader>c", "<cmd>Lspsaga code_action<CR>")
 	set("n", "<leader>e", "<cmd>Lspsaga show_line_diagnostics<CR>")
-	set("n", "<leader>5", "<cmd>Lspsaga peek_definition<CR>")
 	set("n", "<leader>[", "<cmd>Lspsaga diagnostic_jump_prev<CR>")
 	set("n", "<leaaer>]", "<cmd>Lspsaga diagnostic_jump_next<CR>")
 end
@@ -522,8 +521,8 @@ require("jaq-nvim").setup({
 			sh = "sh %",
 			ruby = "ruby %",
 			php = "php %",
-      go = "go run %",
-      javascript = "node %"
+			go = "go run %",
+			javascript = "node %",
 		},
 	},
 
@@ -558,7 +557,7 @@ require("jaq-nvim").setup({
 	},
 })
 
-vim.keymap.set("n", "<leader>j", ":<C-u>Jaq<CR>", { silent = true })
+vim.keymap.set("n", "<leader>x", ":<C-u>Jaq<CR>", { silent = true })
 
 --nvim-cmp
 local cmp = require("cmp")
@@ -657,6 +656,13 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
 	underline = true,
 	update_in_insert = true,
 })
+
+-- treesj
+local tsj = require("treesj")
+tsj.setup({
+	use_default_keymaps = false,
+})
+vim.keymap.set("n", "<leader>m", require("treesj").toggle)
 
 --rainbow-delimiters
 require("rainbow-delimiters.setup").setup()
