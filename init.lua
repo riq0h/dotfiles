@@ -65,6 +65,9 @@ vim.keymap.set("n", "Q", ":<C-u>quit!<CR>")
 vim.keymap.set("n", "<leader>q", ":<C-u>bd<CR>")
 vim.keymap.set("n", "<C-s>", ":<C-u>%s///cg<Left><Left><Left><Left>")
 vim.keymap.set("n", "<C-c>", ":<C-u>echo wordcount()['chars']<CR>")
+vim.keymap.set("n", "i<space>", "iW")
+vim.keymap.set("v", "i<space>", "iW")
+vim.keymap.set("n", "U", "<c-r>")
 
 --TAB
 vim.keymap.set("n", "<leader><TAB>", ":bprev<CR>", { silent = true })
@@ -93,6 +96,7 @@ vim.keymap.set("n", "<C-z>", "<Nop>")
 vim.keymap.set("n", "<F1>", "<Nop>")
 vim.keymap.set("n", "x", '"_x')
 vim.keymap.set("v", "x", '"_x')
+vim.keymap.set("n", "X", '"_D')
 vim.keymap.set("n", "s", '"_s')
 
 --MOVE
@@ -109,12 +113,15 @@ vim.keymap.set("n", "sH", "<C-w>H")
 vim.keymap.set("n", "sJ", "<C-w>J")
 vim.keymap.set("n", "sK", "<C-w>K")
 vim.keymap.set("n", "sL", "<C-w>L")
+vim.keymap.set("n", "M", "%")
 
 --COPY
 vim.keymap.set("n", "p", "]p")
 vim.keymap.set("n", "P", "]P")
 vim.keymap.set("n", "]p", "p")
 vim.keymap.set("n", "]P", "P")
+vim.keymap.set("v", "y", "myz`z")
+vim.keymap.set("v", "p", "P")
 
 ----PLUGINS
 
@@ -157,7 +164,6 @@ require("lazy").setup({
 	{ "suketa/nvim-dap-ruby", config = true, ft = "ruby" },
 	{ "leoluz/nvim-dap-go", ft = "go" },
 	{ "mxsdev/nvim-dap-vscode-js", ft = "javascript" },
-	{ "akinsho/flutter-tools.nvim", ft = "dart" },
 	{ "nvimdev/lspsaga.nvim", event = "LspAttach" },
 	{ "Wansmer/treesj", event = "LspAttach" },
 	{ "is0n/jaq-nvim", event = "LspAttach" },
@@ -381,7 +387,7 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 require("mason").setup()
 require("mason-null-ls").setup({
-	ensure_installed = { "prettierd", "rubocop", "phpstan", "phpcsfixer", "stylua", "shfmt" },
+	ensure_installed = { "prettierd", "rubocop", "stylua", "shfmt" },
 	handlers = {},
 })
 require("mason-nvim-dap").setup({
@@ -492,24 +498,6 @@ require("dapui").setup({
 	},
 })
 
---flutter-tools
-require("flutter-tools").setup({
-	ui = {
-		border = "none",
-	},
-	dev_log = {
-		enabled = false,
-	},
-	debugger = {
-		enabled = true,
-		run_via_dap = true,
-	},
-})
-
-vim.keymap.set("n", "<leader>0", require("telescope").extensions.flutter.commands, { desc = "Open command Flutter" })
-vim.keymap.set("n", "<leader>2", ":FlutterReload<CR>", { silent = true, desc = "Flutter Reload" })
-vim.keymap.set("n", "<leader>3", ":FlutterRestart<CR>", { silent = true, desc = "Flutter Restart" })
-
 ---jaq-nvim
 require("jaq-nvim").setup({
 	cmds = {
@@ -520,7 +508,6 @@ require("jaq-nvim").setup({
 		external = {
 			sh = "sh %",
 			ruby = "ruby %",
-			php = "php %",
 			go = "go run %",
 			javascript = "node %",
 		},
