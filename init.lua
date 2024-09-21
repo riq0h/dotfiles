@@ -120,7 +120,6 @@ vim.keymap.set("n", "p", "]p")
 vim.keymap.set("n", "P", "]P")
 vim.keymap.set("n", "]p", "p")
 vim.keymap.set("n", "]P", "P")
-vim.keymap.set("v", "y", "myz`z")
 vim.keymap.set("v", "p", "P")
 
 ----PLUGINS
