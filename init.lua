@@ -65,7 +65,6 @@ vim.keymap.set("n", "Q", ":<C-u>quit!<CR>")
 vim.keymap.set("n", "<leader>q", ":<C-u>bd<CR>")
 vim.keymap.set("n", "<C-s>", ":<C-u>%s///cg<Left><Left><Left><Left>")
 vim.keymap.set("n", "<C-c>", ":<C-u>echo wordcount()['chars']<CR>")
-vim.keymap.set("n", "i<space>", "iW")
 vim.keymap.set("v", "i<space>", "iW")
 vim.keymap.set("n", "U", "<c-r>")
 
