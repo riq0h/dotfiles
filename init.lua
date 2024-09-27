@@ -65,8 +65,26 @@ vim.keymap.set("n", "Q", ":<C-u>quit!<CR>")
 vim.keymap.set("n", "<leader>q", ":<C-u>bd<CR>")
 vim.keymap.set("n", "<C-s>", ":<C-u>%s///cg<Left><Left><Left><Left>")
 vim.keymap.set("n", "<C-c>", ":<C-u>echo wordcount()['chars']<CR>")
-vim.keymap.set("v", "i<space>", "iW")
+vim.keymap.set("v", "i<leader>", "iW")
+vim.keymap.set("o", "i<leader>", "iW")
 vim.keymap.set("n", "U", "<c-r>")
+vim.keymap.set("i", "<C-g><C-u>", "<esc>gUiwgi")
+vim.keymap.set("i", "<C-g><C-l>", "<esc>guiwgi")
+vim.keymap.set("i", "<C-g><C-k>", "<esc>bgUlgi")
+vim.keymap.set("n", "i", function()
+	return vim.fn.empty(vim.fn.getline(".")) == 1 and '"_cc' or "i"
+end, { expr = true, noremap = true })
+vim.keymap.set("n", "A", function()
+	return vim.fn.empty(vim.fn.getline(".")) == 1 and '"_cc' or "A"
+end, { expr = true, noremap = true })
+vim.keymap.set("n", "<C-k>", function()
+	return string.format("<Cmd>move-1-%d<CR>=l", vim.v.count1)
+end, { expr = true, noremap = true })
+vim.keymap.set("n", "<C-j>", function()
+	return string.format("<Cmd>move+%d<CR>=l", vim.v.count1)
+end, { expr = true, noremap = true })
+vim.keymap.set("v", "<C-k>", ":move'<-2<CR>gv=gv")
+vim.keymap.set("v", "<C-j>", ":move'>+1<CR>gv=gv")
 
 --TAB
 vim.keymap.set("n", "<leader><TAB>", ":bprev<CR>", { silent = true })
@@ -117,9 +135,12 @@ vim.keymap.set("n", "M", "%")
 --COPY
 vim.keymap.set("n", "p", "]p")
 vim.keymap.set("n", "P", "]P")
-vim.keymap.set("n", "]p", "p")
-vim.keymap.set("n", "]P", "P")
 vim.keymap.set("v", "p", "P")
+vim.keymap.set("v", "y", "mzy`z")
+vim.keymap.set("n", "<leader>o", "<Cmd>copy.<CR>")
+vim.keymap.set("n", "<leader>O", "<Cmd>copy-1<CR>")
+vim.keymap.set("v", "<leader>o", ":copy'<-1<CR>gv")
+vim.keymap.set("v", "<leader>O", ":copy'>+0<CR>gv")
 
 ----PLUGINS
 
