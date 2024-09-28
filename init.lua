@@ -202,6 +202,7 @@ require("lazy").setup({
 	{ "hrsh7th/vim-vsnip", event = "InsertEnter" },
 	{ "hrsh7th/vim-vsnip-integ", event = "InsertEnter" },
 	{ "rafamadriz/friendly-snippets", event = "InsertEnter" },
+	{ "zbirenbaum/copilot-cmp", config = true, event = "InsertEnter" },
 	{ "nvim-treesitter/nvim-treesitter", event = { "BufReadPost", "BufNewFile" } },
 	{ "nvim-treesitter/nvim-treesitter-refactor", event = "BufRead" },
 	{ "yioneko/nvim-yati", event = "BufRead" },
@@ -224,6 +225,8 @@ require("lazy").setup({
 	{ "nvim-zh/colorful-winsep.nvim", config = true, event = "WinNew" },
 	{ "kevinhwang91/nvim-bqf", ft = "qf" },
 	{ "vim-jp/vimdoc-ja", ft = "help" },
+	{ "zbirenbaum/copilot.lua", cmd = "Copilot" },
+	{ "CopilotC-Nvim/CopilotChat.nvim", build = "make tiktoken" },
 
 	--non-lazy
 	{ "vim-denops/denops.vim", lazy = false },
@@ -443,10 +446,10 @@ local function map(mode, lhs, rhs, opts)
 	vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
-map("n", "<leader>6", ":lua require'dap'.continue()<CR>", { silent = true })
-map("n", "<leader>7", ":lua require'dap'.step_over()<CR>", { silent = true })
-map("n", "<leader>8", ":lua require'dap'.step_into()<CR>", { silent = true })
-map("n", "<leader>9", ":lua require'dap'.step_out()<CR>", { silent = true })
+map("n", "<leader>1", ":lua require'dap'.continue()<CR>", { silent = true })
+map("n", "<leader>2", ":lua require'dap'.step_over()<CR>", { silent = true })
+map("n", "<leader>3", ":lua require'dap'.step_into()<CR>", { silent = true })
+map("n", "<leader>4", ":lua require'dap'.step_out()<CR>", { silent = true })
 map("n", "<leader>;", ":lua require'dap'.toggle_breakpoint()<CR>", { silent = true })
 map("n", "<leader>'", ":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>", { silent = true })
 map(
@@ -601,12 +604,14 @@ cmp.setup({
 			mode = "symbol",
 			maxwidth = 50,
 			ellipsis_char = "...",
+			symbol_map = { Copilot = "" },
 		}),
 	},
 
 	sources = cmp.config.sources({
 		{ name = "nvim_lsp", max_item_count = 15, keyword_length = 2 },
 		{ name = "vsnip", max_item_count = 15, keyword_length = 2 },
+		{ name = "copilot", max_item_count = 15, keyword_length = 2 },
 		{ name = "nvim_lsp_signature_help" },
 		{ name = "buffer", max_item_count = 15, keyword_length = 2 },
 	}),
@@ -632,6 +637,25 @@ cmp.setup.cmdline(":", {
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 vim.cmd("let g:vsnip_filetypes = {}")
+
+local has_words_before = function()
+	if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then
+		return false
+	end
+	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+	return col ~= 0 and vim.api.nvim_buf_get_text(0, line - 1, 0, line - 1, col, {})[1]:match("^%s*$") == nil
+end
+cmp.setup({
+	mapping = {
+		["<Tab>"] = vim.schedule_wrap(function(fallback)
+			if cmp.visible() and has_words_before() then
+				cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+			else
+				fallback()
+			end
+		end),
+	},
+})
 
 --nvim-treesitter
 require("nvim-treesitter.configs").setup({
@@ -916,6 +940,69 @@ vim.keymap.set("n", "<leader>gs", ":<C-u>GitStatus<CR>", { silent = true })
 vim.keymap.set("n", "<leader>ga", ":<C-u>Gin add .<CR>", { silent = true })
 vim.keymap.set("n", "<leader>gc", ":<C-u>Gin commit -m ")
 vim.keymap.set("n", "<leader>gp", ":<C-u>Gin push<CR>")
+
+--copilot
+local select = require("CopilotChat.select")
+
+require("copilot").setup({
+	suggestion = { enabled = false },
+	panel = { enabled = false },
+})
+
+require("CopilotChat").setup({
+	debug = true,
+
+	window = {
+		layout = "float",
+		relative = "editor",
+	},
+	prompts = {
+		Explain = {
+			prompt = "/COPILOT_EXPLAIN 選択されたコードの説明を段落をつけて書いてください。",
+		},
+		Review = {
+			prompt = "/COPILOT_REVIEW 選択されたコードをレビューしてください。",
+			callback = function(response, source) end,
+		},
+		Fix = {
+			prompt = "/COPILOT_FIX このコードには問題があります。バグを修正したコードに書き直してください。",
+		},
+		Optimize = {
+			prompt = "/COPILOT_REFACTOR 選択されたコードを最適化してパフォーマンスと可読性を向上させてください。",
+		},
+		Docs = {
+			prompt = "/COPILOT_DOCS 選択されたコードに対してドキュメンテーションコメントを追加してください。",
+		},
+		Tests = {
+			prompt = "/COPILOT_TESTS 選択されたコードの詳細な単体テスト関数を書いてください。",
+		},
+		FixDiagnostic = {
+			prompt = "ファイル内の次のような診断上の問題を解決してください:",
+			selection = select.diagnostics,
+		},
+	},
+})
+
+function CopilotChatBuffer()
+	local input = vim.fn.input("Quick Chat: ")
+	if input ~= "" then
+		require("CopilotChat").ask(input, { selection = require("CopilotChat.select").buffer })
+	end
+end
+
+vim.api.nvim_set_keymap("n", "<leader>9", "<cmd>lua CopilotChatBuffer()<cr>", { noremap = true, silent = true })
+
+function ShowCopilotChatActionPrompt()
+	local actions = require("CopilotChat.actions")
+	require("CopilotChat.integrations.telescope").pick(actions.prompt_actions())
+end
+
+vim.api.nvim_set_keymap(
+	"n",
+	"<leader>0",
+	"<cmd>lua ShowCopilotChatActionPrompt()<cr>",
+	{ noremap = true, silent = true }
+)
 
 --OTHER SETTINGS
 vim.cmd("colorscheme edge")
