@@ -222,6 +222,7 @@ require("lazy").setup({
 	{ "monaqa/dial.nvim", event = "VeryLazy" },
 	{ "tpope/vim-repeat", event = "VeryLazy" },
 	{ "nvim-zh/colorful-winsep.nvim", config = true, event = "WinNew" },
+	{ "kevinhwang91/nvim-bqf", ft = "qf" },
 	{ "vim-jp/vimdoc-ja", ft = "help" },
 
 	--non-lazy
@@ -663,7 +664,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
 	update_in_insert = true,
 })
 
--- treesj
+--treesj
 local tsj = require("treesj")
 tsj.setup({
 	use_default_keymaps = false,
@@ -673,7 +674,7 @@ vim.keymap.set("n", "<leader>m", require("treesj").toggle)
 --rainbow-delimiters
 require("rainbow-delimiters.setup").setup()
 
--- hlchunk
+--hlchunk
 require("hlchunk").setup({
 	chunk = {
 		enable = true,
@@ -682,6 +683,15 @@ require("hlchunk").setup({
 		enable = true,
 	},
 })
+
+--nvim-bqf
+require("bqf").setup({
+	preview = {
+		border = "single",
+	},
+})
+
+vim.keymap.set("n", "<leader>z", [[:vimgrep /\w\+/j % | copen<CR>]], { noremap = true, silent = true })
 
 --dressing
 require("dressing").setup({
