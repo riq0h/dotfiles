@@ -130,7 +130,7 @@ vim.keymap.set("n", "sH", "<C-w>H")
 vim.keymap.set("n", "sJ", "<C-w>J")
 vim.keymap.set("n", "sK", "<C-w>K")
 vim.keymap.set("n", "sL", "<C-w>L")
-vim.keymap.set("n", "M", "%")
+vim.keymap.set("n", "<leader>m", "<plug>(matchup-%)")
 
 --COPY
 vim.keymap.set("n", "p", "]p")
@@ -693,7 +693,7 @@ local tsj = require("treesj")
 tsj.setup({
 	use_default_keymaps = false,
 })
-vim.keymap.set("n", "<leader>m", require("treesj").toggle)
+vim.keymap.set("n", "<leader>z", require("treesj").toggle)
 
 --rainbow-delimiters
 require("rainbow-delimiters.setup").setup()
@@ -715,7 +715,7 @@ require("bqf").setup({
 	},
 })
 
-vim.keymap.set("n", "<leader>z", [[:vimgrep /\w\+/j % | copen<CR>]], { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>5", [[:vimgrep /\w\+/j % | copen<CR>]], { noremap = true, silent = true })
 
 --dressing
 require("dressing").setup({
