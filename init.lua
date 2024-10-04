@@ -317,6 +317,9 @@ require("lualine").setup({
 --telescope
 require("telescope").setup({
 	defaults = {
+		preview = {
+			treesitter = false,
+		},
 		borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
 		color_devicons = true,
 		file_ignore_patterns = { "node_modules", ".git", ".cache", ".svg", ".npm", "go" },
@@ -947,6 +950,10 @@ local select = require("CopilotChat.select")
 require("copilot").setup({
 	suggestion = { enabled = false },
 	panel = { enabled = false },
+	filetypes = {
+		markdown = false,
+		text = false,
+	},
 })
 
 require("CopilotChat").setup({
