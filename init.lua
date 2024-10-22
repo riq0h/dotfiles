@@ -78,10 +78,10 @@ vim.keymap.set("n", "A", function()
 	return vim.fn.empty(vim.fn.getline(".")) == 1 and '"_cc' or "A"
 end, { expr = true, noremap = true })
 vim.keymap.set("n", "<C-k>", function()
-	return string.format("<Cmd>move-1-%d<CR>=l", vim.v.count1)
+	return string.format("<cmd>move-1-%d<CR>=l", vim.v.count1)
 end, { expr = true, noremap = true })
 vim.keymap.set("n", "<C-j>", function()
-	return string.format("<Cmd>move+%d<CR>=l", vim.v.count1)
+	return string.format("<cmd>move+%d<CR>=l", vim.v.count1)
 end, { expr = true, noremap = true })
 vim.keymap.set("v", "<C-k>", ":move'<-2<CR>gv=gv")
 vim.keymap.set("v", "<C-j>", ":move'>+1<CR>gv=gv")
@@ -137,8 +137,8 @@ vim.keymap.set("n", "p", "]p")
 vim.keymap.set("n", "P", "]P")
 vim.keymap.set("v", "p", "P")
 vim.keymap.set("v", "y", "mzy`z")
-vim.keymap.set("n", "<leader>o", "<Cmd>copy.<CR>")
-vim.keymap.set("n", "<leader>O", "<Cmd>copy-1<CR>")
+vim.keymap.set("n", "<leader>o", "<cmd>copy.<CR>")
+vim.keymap.set("n", "<leader>O", "<cmd>copy-1<CR>")
 vim.keymap.set("v", "<leader>o", ":copy'<-1<CR>gv")
 vim.keymap.set("v", "<leader>O", ":copy'>+0<CR>gv")
 
@@ -192,7 +192,7 @@ require("lazy").setup({
 		"sainnhe/everforest",
 		event = "VeryLazy",
 		config = function()
-			vim.g.everforest_background = 'hard'
+			vim.g.everforest_background = "hard"
 		end,
 	},
 	{ "nvim-lua/plenary.nvim", event = "VeryLazy" },
@@ -769,13 +769,13 @@ local kopts = { noremap = true, silent = true }
 vim.keymap.set(
 	"n",
 	"n",
-	[[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]],
+	[[<cmd>execute('normal! ' . v:count1 . 'n')<CR><cmd>lua require('hlslens').start()<CR>]],
 	kopts
 )
 vim.keymap.set(
 	"n",
 	"N",
-	[[<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>]],
+	[[<cmd>execute('normal! ' . v:count1 . 'N')<CR><cmd>lua require('hlslens').start()<CR>]],
 	kopts
 )
 vim.keymap.set("n", "*", [[*<cmd>lua require('hlslens').start()<CR>]], kopts)
@@ -1004,7 +1004,7 @@ function CopilotChatBuffer()
 	end
 end
 
-vim.api.nvim_set_keymap("n", "<leader>9", "<cmd>lua CopilotChatBuffer()<cr>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>9", "<cmd>lua CopilotChatBuffer()<CR>", { noremap = true, silent = true })
 
 function ShowCopilotChatActionPrompt()
 	local actions = require("CopilotChat.actions")
@@ -1014,9 +1014,12 @@ end
 vim.api.nvim_set_keymap(
 	"n",
 	"<leader>0",
-	"<cmd>lua ShowCopilotChatActionPrompt()<cr>",
+	"<cmd>lua ShowCopilotChatActionPrompt()<CR>",
 	{ noremap = true, silent = true }
 )
 
 --OTHER SETTINGS
+vim.keymap.set("n", "<leader>7", "<cmd>colorscheme edge<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>8", "<cmd>colorscheme everforest<CR>", { noremap = true, silent = true })
+
 vim.cmd("colorscheme edge")
