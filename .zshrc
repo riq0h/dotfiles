@@ -48,7 +48,7 @@ alias cls=clear
 alias wttr="() { curl -H 'Accept-Language: ${LANG%_ja}' wttr.in/'${1:-Tokyo}' }"
 
 # BAT関連
-export BAT_THEME="TwoDark"
+export BAT_THEME="ansi"
 
 # Zoxide関連
 eval "$(zoxide init zsh)"

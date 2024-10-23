@@ -188,13 +188,8 @@ require("lazy").setup({
 	{ "is0n/jaq-nvim", event = "LspAttach" },
 	{ "j-hui/fidget.nvim", config = true, event = "LspAttach" },
 	{ "sainnhe/edge", event = "VeryLazy" },
-	{
-		"sainnhe/everforest",
-		event = "VeryLazy",
-		config = function()
-			vim.g.everforest_background = "hard"
-		end,
-	},
+	{ "neanias/everforest-nvim", event = "VeryLazy" },
+	{ "f4z3r/gruvbox-material.nvim", event = "VeryLazy" },
 	{ "nvim-lua/plenary.nvim", event = "VeryLazy" },
 	{ "stevearc/dressing.nvim", event = "VeryLazy" },
 	{ "hrsh7th/nvim-cmp", event = "VeryLazy" },
@@ -740,10 +735,10 @@ require("dressing").setup({
 --modes
 require("modes").setup({
 	colors = {
-		copy = "#FFEE55",
-		delete = "#DC669B",
-		insert = "#55AAEE",
-		visual = "#DD5522",
+		copy = "#DBBC7F",
+		delete = "#D699B6",
+		insert = "#7FBBB3",
+		visual = "#E67E80",
 	},
 })
 
@@ -751,7 +746,7 @@ require("modes").setup({
 require("colorful-winsep").setup({
 	highlight = {
 		bg = "",
-		fg = "#E8AEAA",
+		fg = "#D3C6AA",
 	},
 })
 
@@ -1018,8 +1013,21 @@ vim.api.nvim_set_keymap(
 	{ noremap = true, silent = true }
 )
 
---OTHER SETTINGS
-vim.keymap.set("n", "<leader>7", "<cmd>colorscheme edge<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>8", "<cmd>colorscheme everforest<CR>", { noremap = true, silent = true })
 
-vim.cmd("colorscheme edge")
+--COLORSCHEME
+vim.keymap.set("n", "<leader>8", "<cmd>colorscheme edge<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>7", "<cmd>colorscheme everforest<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>6", "<cmd>colorscheme gruvbox-material<CR>", { noremap = true, silent = true })
+
+require("gruvbox-material").setup({
+  contrast = "hard",
+})
+
+require("everforest").setup({
+  background = "hard",
+})
+
+vim.cmd("colorscheme everforest")
+
+
+--OTHER SETTINGS
