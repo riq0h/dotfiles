@@ -11,7 +11,7 @@
         "separator": "",
         "warning": {
             "fg": "#272E33",
-            "bg": "#E69875"
+            "bg": "#E67E80"
         },
         "critical": {
             "fg": "#272E33",
