@@ -323,7 +323,7 @@ require("telescope").setup({
 			treesitter = false,
 		},
 		borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
-		color_devicons = true,
+		color_devicons = false,
 		file_ignore_patterns = { "node_modules", ".git", ".cache", ".svg", ".npm", "go" },
 		mappings = {
 			i = {
@@ -386,7 +386,7 @@ end
 --LSP
 require("lspsaga").setup({
 	symbol_in_winbar = {
-		enable = true,
+		enable = false,
 	},
 	ui = {
 		border = "single",
@@ -1013,21 +1013,19 @@ vim.api.nvim_set_keymap(
 	{ noremap = true, silent = true }
 )
 
-
 --COLORSCHEME
 vim.keymap.set("n", "<leader>8", "<cmd>colorscheme edge<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>7", "<cmd>colorscheme everforest<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>6", "<cmd>colorscheme gruvbox-material<CR>", { noremap = true, silent = true })
 
 require("gruvbox-material").setup({
-  contrast = "hard",
+	contrast = "medium",
 })
 
 require("everforest").setup({
-  background = "hard",
+	background = "hard",
 })
 
 vim.cmd("colorscheme everforest")
-
 
 --OTHER SETTINGS

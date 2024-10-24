@@ -34,9 +34,9 @@ alias gr="git rebase"
 alias gl="git log"
 
 # ezaをls代わりにする
-alias ls="eza --icons -a"
-alias lsl="eza --icons -la"
-alias lsa="eza --icons -T -a"
+alias ls="eza -a"
+alias lsl="eza -la"
+alias lsa="eza -T -a"
 
 # batをcatの代わりにする
 alias cat="bat --color=always --style=plain"
@@ -65,9 +65,9 @@ export FZF_TMUX_OPTS="-p 50%"
 export FZF_CTRL_R_OPTS="--reverse --preview 'echo {}' --preview-window=border-sharp,down:3:hidden:wrap --bind '?:toggle-preview'"
 export FZF_DEFAULT_COMMAND="rg --files --hidden 2> /dev/null --follow --glob '!.git/*'"
 export FZF_DEFAULT_OPTS="--ansi --no-separator --no-scrollbar --reverse --border=none \
---color=bg+:#1c1e26,bg:#1c1e26,spinner:#ee64ac,hl:#e95678 \
---color=fg:#d5d8da,header:#e95678,info:#e95678,pointer:#ee64ac \
---color=marker:#ee64ac,fg+:#d5d8da,prompt:#e95678,hl+:#e95678"
+  --color=bg+:#272e33,bg:#272e33,spinner:#a7c080,hl:#a7c080 \
+--color=fg:#d3c6aa,header:#a7c080,info:#a7c080,pointer:#a7c080 \
+--color=marker:#a7c080,fg+:#d3c6aa,prompt:#dbbc7f,hl+:#a7c080"
 export FZF_CTRL_T_COMMAND="rg --files --hidden 2> /dev/null --follow --glob '!.git/*'"
 export FZF_CTRL_T_OPTS="--preview 'bat  --color=always --style=plain --line-range :100 {}' --preview-window=border-sharp,right:60%"
 export FZF_ALT_C_COMMAND="fd -t d --hidden"

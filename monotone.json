@@ -1,66 +1,66 @@
 {
     "icons": [ "awesome-fonts" ],
     "colors": [{
-        "red": "#BF616A",
-        "orange": "#F08080",
-        "yellow": "#EBCB8B",
-        "green": "#A3BE8C"
+        "red": "#E67E80",
+        "orange": "#E69875",
+        "yellow": "#DBBC7F",
+        "green": "#A7C080"
     }],
     "defaults": {
         "separator-block-width": 0,
         "separator": "",
         "warning": {
-            "fg": "#2B303B",
-            "bg": "#f08080"
+            "fg": "#272E33",
+            "bg": "#E69875"
         },
         "critical": {
-            "fg": "#2B303B",
-            "bg": "#BF616A"
+            "fg": "#272E33",
+            "bg": "#E67E80"
         }
     },
     "cycle": [
-        { "fg": "#C0C5CE", "bg": "#2B303B"}
+        { "fg": "#D3C6AA", "bg": "#272E33"}
     ],
     "dnf": {
         "good": {
-            "fg": "#A3BE8C",
-            "bg": "#2B303B"
+            "fg": "#A7C080",
+            "bg": "#272E33"
         }
     },
     "apt": {
         "good": {
-            "fg": "#A3BE8C",
-            "bg": "#2B303B"
+            "fg": "#A7C080",
+            "bg": "#272E33"
         }
     },
     "pacman": {
         "good": {
-            "fg": "#A3BE8C",
-            "bg": "#2B303B"
+            "fg": "#A7C080",
+            "bg": "#272E33"
         }
     },
     "battery": {
         "charged": {
-            "fg": "#2B303B",
-            "bg": "#A3BE8C"
+            "fg": "#272E33",
+            "bg": "#A7C080"
         },
         "charging": {
-            "fg": "#2B303B",
-            "bg": "#A3BE8C"
+            "fg": "#272E33",
+            "bg": "#A7C080"
         }
     },
     "pomodoro": {
         "paused": {
-            "fg": "#2B303B",
-            "bg": "#F08080"
+            "fg": "#272E33",
+            "bg": "#E67E80"
         },
         "work": {
-            "fg": "#2B303B",
-            "bg": "#EBCB8B"
+            "fg": "#272E33",
+            "bg": "#DBBC7F"
         },
         "break": {
-            "fg": "#A3BE8C",
-            "bg": "#2B303B"
+            "fg": "#A7C080",
+            "bg": "#272E33"
         }
     }
 

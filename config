@@ -156,17 +156,17 @@ mode "SHUTDOWN SEQUENCE"{
 }
 
 # ステータスバーの色
-set $background #2B303B
-set $foreground #C0C5CE
-set $lightred #BF616A
-set $lightgreen #A3BE8C
-set $lightyellow #EBCB8B
-set $lightblue #8FA1B3
-set $lightmagenta #B48EAD
-set $lightcyan #96B5B4
-set $lightwhite #C0C5CE
+set $background #272E33
+set $foreground #D3C6AA
+set $lightred #E67E80
+set $lightgreen #A7C080
+set $lightyellow #DBBC7F
+set $lightblue #83C092
+set $lightmagenta #D699B6
+set $lightcyan #7FBBB3
+set $lightwhite #D3C6AA
 set $pink #FFB6C1
-set $orange #F08080
+set $orange #E69875
 
 # ステータスバー関連
 bar {
@@ -183,7 +183,7 @@ bar {
         statusline $lightred
         focused_statusline $lightred
         # 左からborder, bg, fg
-        focused_workspace  $orange $orange $background
+        focused_workspace  $red $red $background
         active_workspace $background $background $foreground
         inactive_workspace $background $background $foreground
         urgent_workspace   $green $green $background
@@ -194,26 +194,26 @@ bar {
 }
 
 # i3wm全体の色
-set $bg           #1C1E27
-set $fg           #CACACC
-set $darkred      #D95882
-set $red          #E4436F
-set $darkgreen    #68DDC4
-set $green        #24E39D
-set $darkyellow   #E8AEAA
-set $yellow       #EDA685
-set $darkblue     #64A4BF
-set $blue         #2095B4
-set $darkmagenta  #B382CF
-set $darkcyan     #54AEB8
-set $cyan         #00A5AF
-set $darkwhite    #CACACC
-set $white        #CACACA
-set $darkgrey     #6C6F93
+set $bg           #272E33
+set $fg           #D3C6AA
+set $darkred      #E69875
+set $red          #E67E80
+set $darkgreen    #A7C080
+set $green        #A7C080
+set $darkyellow   #DBBC7F
+set $yellow       #DBBC7F
+set $darkblue     #83C092
+set $blue         #7FBBB3
+set $darkmagenta  #D699B6
+set $darkcyan     #7FBBB3
+set $cyan         #7FBBB3
+set $darkwhite    #D3C6AA
+set $white        #D3C6AA
+set $darkgrey     #9DA9AD
 
 # フォーカスカラー
 # class                     border      background      text        indicator       child_border
-client.focused              $bg         $darkgrey       $fg         $yellow         $darkyellow
+client.focused              $bg         $darkgrey       $fg         $yellow         $orange
 client.unfocused            $bg         $bg             $fg         $yellow         $bg
 
 # ウインドウの枠の太さ

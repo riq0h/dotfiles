@@ -1,58 +1,28 @@
-[colors.bright]
-black = "0x5b5858"
-blue = "0x3fc4de"
-cyan = "0x6be4e6"
-green = "0x3fdaa4"
-magenta = "0xf075b5"
-red = "0xec6a88"
-white = "0xd5d8da"
-yellow = "0xfbc3a7"
-
-[colors.cursor]
-cursor = "0x00ff00"
-
-[colors.normal]
-black = "0x16161c"
-blue = "0x26bbd9"
-cyan = "0x59e1e3"
-green = "0x29d398"
-magenta = "0xee64ac"
-red = "0xe95678"
-white = "0xd5d8da"
-yellow = "0xfab795"
-
 [colors.primary]
-background = "0x1c1e26"
-foreground = "0xe0e0e0"
+background = '#272E33'
+foreground = '#d3c6aa'
 
-[colors.vi_mode_cursor]
-cursor = "0x00ff00"
+# Normal colors
+[colors.normal]
+black   = '#414B50'
+red     = '#e67e80'
+green   = '#a7c080'
+yellow  = '#dbbc7f'
+blue    = '#7fbbb3'
+magenta = '#d699b6'
+cyan    = '#83c092'
+white   = '#d3c6aa'
 
-# [colors.primary]
-# background = '#2d353b'
-# foreground = '#d3c6aa'
-#
-# # Normal colors
-# [colors.normal]
-# black   = '#475258'
-# red     = '#e67e80'
-# green   = '#a7c080'
-# yellow  = '#dbbc7f'
-# blue    = '#7fbbb3'
-# magenta = '#d699b6'
-# cyan    = '#83c092'
-# white   = '#d3c6aa'
-#
-# # Bright colors
-# [colors.bright]
-# black   = '#475258'
-# red     = '#e67e80'
-# green   = '#a7c080'
-# yellow  = '#dbbc7f'
-# blue    = '#7fbbb3'
-# magenta = '#d699b6'
-# cyan    = '#83c092'
-# white   = '#d3c6aa'
+# Bright colors
+[colors.bright]
+black   = '#414B50'
+red     = '#e67e80'
+green   = '#a7c080'
+yellow  = '#dbbc7f'
+blue    = '#7fbbb3'
+magenta = '#d699b6'
+cyan    = '#83c092'
+white   = '#d3c6aa'
 
 [cursor]
 blink_interval = 470
@@ -84,14 +54,16 @@ style = "Italic"
 family = "UDEV Gothic 35NFLG"
 style = "Regular"
 
-[shell]
+[terminal.shell]
 args = ["--login"]
 program = "/usr/bin/zsh"
 
 [window]
 dynamic_padding = false
-opacity = 0.95
+opacity = 0.97
 
 [window.padding]
 x = 0
 y = 0
+
+[terminal]

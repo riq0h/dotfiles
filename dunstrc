@@ -1,5 +1,5 @@
 [global]
-font = Noto Sans CJK JP 12
+font = UDEV Gothic 35NFLG 12
 
 # Allow a small subset of html markup:
 #   <b>bold</b>
@@ -143,7 +143,7 @@ max_icon_size = 80
 icon_path = /usr/share/icons/Qogir/symbolic/status
 
 frame_width = 1
-frame_color = "#a3be8c"
+frame_color = "#a7c080"
 
 [shortcuts]
 
@@ -169,23 +169,23 @@ context = ctrl+shift+period
 [urgency_low]
 # IMPORTANT: colors have to be defined in quotation marks.
 # Otherwise the "#" and following would be interpreted as a comment.
-frame_color = "#2b303b"
-foreground = "#c0c5ce"
-background = "#2b303b"
+frame_color = "#272e33"
+foreground = "#d3c6aa"
+background = "#272e33"
 #background = "#2B313C"
 timeout = 3
 
 [urgency_normal]
-frame_color = "#a3be8c"
-foreground = "#c0c5ce"
-background = "#2b303b"
+frame_color = "#a7c080"
+foreground = "#d3c6aa"
+background = "#272e33"
 #background = "#2B313C"
 timeout = 3
 
 [urgency_critical]
-frame_color = "#f08080"
-foreground = "#c0c5ce"
-background = "#2b303b"
+frame_color = "#e67e80"
+foreground = "#d3c6aa"
+background = "#272e33"
 #background = "#2B313C"
 timeout = 5
 
