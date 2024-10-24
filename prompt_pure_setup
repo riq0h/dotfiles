@@ -827,7 +827,7 @@ prompt_pure_setup() {
 		host                 "#7A8478"
 		path                 "#A7C080"
 		prompt:error         "#E67E80"
-		prompt:success       "#D3C6AA"
+		prompt:success       "#E67E80"
 		prompt:continuation  "#7A8478"
 		suspended_jobs       "#E67E80"
 		user                 "#7A8478"

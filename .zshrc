@@ -67,7 +67,7 @@ export FZF_DEFAULT_COMMAND="rg --files --hidden 2> /dev/null --follow --glob '!.
 export FZF_DEFAULT_OPTS="--ansi --no-separator --no-scrollbar --reverse --border=none \
   --color=bg+:#272e33,bg:#272e33,spinner:#a7c080,hl:#a7c080 \
 --color=fg:#d3c6aa,header:#a7c080,info:#a7c080,pointer:#a7c080 \
---color=marker:#a7c080,fg+:#d3c6aa,prompt:#dbbc7f,hl+:#a7c080"
+--color=marker:#a7c080,fg+:#d3c6aa,prompt:#e67e80,hl+:#a7c080"
 export FZF_CTRL_T_COMMAND="rg --files --hidden 2> /dev/null --follow --glob '!.git/*'"
 export FZF_CTRL_T_OPTS="--preview 'bat  --color=always --style=plain --line-range :100 {}' --preview-window=border-sharp,right:60%"
 export FZF_ALT_C_COMMAND="fd -t d --hidden"
