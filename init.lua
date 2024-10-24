@@ -707,6 +707,10 @@ require("rainbow-delimiters.setup").setup()
 require("hlchunk").setup({
 	chunk = {
 		enable = true,
+		style = {
+			{ fg = "#D699B6" },
+			{ fg = "#E67E80" },
+		},
 	},
 	indent = {
 		enable = true,
@@ -737,7 +741,7 @@ require("modes").setup({
 	colors = {
 		copy = "#DBBC7F",
 		delete = "#D699B6",
-		insert = "#7FBBB3",
+		insert = "#83C092",
 		visual = "#E67E80",
 	},
 })
@@ -1024,6 +1028,7 @@ require("gruvbox-material").setup({
 
 require("everforest").setup({
 	background = "hard",
+	float_style = "dim",
 })
 
 vim.cmd("colorscheme everforest")
