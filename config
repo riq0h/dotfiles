@@ -190,7 +190,7 @@ bar {
         binding_mode       $green $green $background
     }
     status_command /usr/bin/bumblebee-status -m playerctl datetime \
-    -p playerctl.hide="true" playerctl.format="{{artist}} - {{title}}" playerctl.layout="playerctl.song" datetime.format="%m/%d %H:%M" -t monotone
+    -p playerctl.hide="true" playerctl.format="{{artist}} - {{title}}" playerctl.layout="playerctl.song" datetime.format="%m/%d %H:%M" -t everforest
 }
 
 # i3wm全体の色
