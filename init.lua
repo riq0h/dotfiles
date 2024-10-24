@@ -1028,7 +1028,6 @@ require("gruvbox-material").setup({
 
 require("everforest").setup({
 	background = "hard",
-	float_style = "dim",
 })
 
 vim.cmd("colorscheme everforest")
