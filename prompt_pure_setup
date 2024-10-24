@@ -824,15 +824,15 @@ prompt_pure_setup() {
 		git:branch:cached    "#E67E80"
 		git:action           "#DBBC7F"
 		git:dirty            "#D699B6"
-		host                 "#9DA9A0"
+		host                 "#7A8478"
 		path                 "#A7C080"
 		prompt:error         "#E67E80"
 		prompt:success       "#D3C6AA"
-		prompt:continuation  "#9DA9A0"
+		prompt:continuation  "#7A8478"
 		suspended_jobs       "#E67E80"
-		user                 "#9DA9A0"
+		user                 "#7A8478"
 		user:root            "default"
-		virtualenv           "#9DA9A0"
+		virtualenv           "#7A8478"
 	)
 	prompt_pure_colors=("${(@kv)prompt_pure_colors_default}")
 
