@@ -18,7 +18,6 @@ alias aaa="cd ../../../"
 
 # デフォルトエディタをVimにする
 export EDITOR=nvim
-alias sudo="sudo -E "
 alias v=nvim
 alias vim=nvim
 
@@ -34,9 +33,9 @@ alias gr="git rebase"
 alias gl="git log"
 
 # ezaをls代わりにする
-alias ls="eza -a"
-alias lsl="eza -la"
-alias lsa="eza -T -a"
+alias ls="eza --icons --color=never -a"
+alias lsl="eza --icons --color=never -la"
+alias lsa="eza --icons --color=never -T -a"
 
 # batをcatの代わりにする
 alias cat="bat --color=always --style=plain"
@@ -120,3 +119,12 @@ eval "$(rbenv init - zsh)"
 
 ## Flutter
 export CHROME_EXECUTABLE="/usr/bin/vivaldi"
+
+function ya() {
+tmp="$(mktemp -t "yazi-cwd.XXXXX")"
+yazi --cwd-file="$tmp"
+if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+  cd -- "$cwd"
+fi
+rm -f -- "$tmp"
+}
