@@ -120,7 +120,7 @@ eval "$(rbenv init - zsh)"
 ## Flutter
 export CHROME_EXECUTABLE="/usr/bin/vivaldi"
 
-function ya() {
+function yaz() {
 tmp="$(mktemp -t "yazi-cwd.XXXXX")"
 yazi --cwd-file="$tmp"
 if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
