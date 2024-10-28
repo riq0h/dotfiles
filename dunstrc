@@ -1,5 +1,5 @@
 [global]
-font = UDEV Gothic 35NFLG 12
+font = Noto Sans CJK JP 12
 
 # Allow a small subset of html markup:
 #   <b>bold</b>
