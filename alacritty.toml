@@ -1,0 +1,66 @@
+[colors.primary]
+background = '#272E33'
+foreground = '#d3c6aa'
+
+[colors.normal]
+black   = '#414B50'
+red     = '#e67e80'
+green   = '#a7c080'
+yellow  = '#dbbc7f'
+blue    = '#7fbbb3'
+magenta = '#d699b6'
+cyan    = '#83c092'
+white   = '#d3c6aa'
+
+# Bright colors
+[colors.bright]
+black   = '#414B50'
+red     = '#e67e80'
+green   = '#a7c080'
+yellow  = '#dbbc7f'
+blue    = '#7fbbb3'
+magenta = '#d699b6'
+cyan    = '#83c092'
+white   = '#d3c6aa'
+
+[cursor]
+blink_interval = 470
+unfocused_hollow = false
+
+[cursor.style]
+blinking = "Always"
+shape = "Underline"
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+size = 13
+
+[font.bold]
+family = "UDEV Gothic 35NFLG"
+style = "Bold"
+
+[font.bold_italic]
+family = "UDEV Gothic 35NFLG"
+style = "Bold Italic"
+
+[font.italic]
+family = "UDEV Gothic 35NFLG"
+style = "Italic"
+
+[font.normal]
+family = "UDEV Gothic 35NFLG"
+style = "Regular"
+
+[terminal.shell]
+args = ["-d", "Distrod"]
+program = "/Windows/System32/wsl.exe"
+
+[window]
+dynamic_padding = false
+opacity = 0.97
+
+[window.padding]
+x = 0
+y = 0
