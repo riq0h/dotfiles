@@ -190,7 +190,6 @@ require("lazy").setup({
 	{ "sainnhe/edge", event = "VeryLazy" },
 	{ "neanias/everforest-nvim", event = "VeryLazy" },
 	{ "f4z3r/gruvbox-material.nvim", event = "VeryLazy" },
-	{ "Verf/deepwhite.nvim", event = "VeryLazy" },
 	{ "nvim-lua/plenary.nvim", event = "VeryLazy" },
 	{ "stevearc/dressing.nvim", event = "VeryLazy" },
 	{ "hrsh7th/nvim-cmp", event = "VeryLazy" },

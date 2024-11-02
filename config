@@ -186,7 +186,7 @@ bar {
         focused_workspace  $red $red $background
         active_workspace $background $background $foreground
         inactive_workspace $background $background $foreground
-        urgent_workspace   $green $green $background
+        urgent_workspace   $darkblue $darkblue $background
         binding_mode       $green $green $background
     }
     status_command /usr/bin/bumblebee-status -m playerctl datetime \
