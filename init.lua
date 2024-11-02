@@ -65,6 +65,7 @@ vim.keymap.set("n", "Q", ":<C-u>quit!<CR>")
 vim.keymap.set("n", "<leader>q", ":<C-u>bd<CR>")
 vim.keymap.set("n", "<C-s>", ":<C-u>%s///cg<Left><Left><Left><Left>")
 vim.keymap.set("n", "<C-c>", ":<C-u>echo wordcount()['chars']<CR>")
+vim.keymap.set("n", "<C-d>", ":<C-u>lua print(genko())<CR>")
 vim.keymap.set("v", "i<leader>", "iW")
 vim.keymap.set("o", "i<leader>", "iW")
 vim.keymap.set("n", "U", "<c-r>")
@@ -1033,3 +1034,15 @@ require("everforest").setup({
 vim.cmd("colorscheme everforest")
 
 --OTHER SETTINGS
+function genko()
+	local line_count = 0
+	local num_lines = vim.api.nvim_buf_line_count(0)
+
+	for i = 1, num_lines do
+		local line = vim.api.nvim_buf_get_lines(0, i - 1, i, false)[1]
+		local s = math.ceil(vim.fn.strchars(line) / 20.0)
+		line_count = line_count + (s == 0 and 1 or s)
+	end
+
+	return line_count / 20.0
+end
