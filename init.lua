@@ -176,7 +176,13 @@ require("lazy").setup({
 	{ "jay-babu/mason-null-ls.nvim", event = "LspAttach" },
 	{ "jay-babu/mason-nvim-dap.nvim", event = "LspAttach" },
 	{ "neovim/nvim-lspconfig", event = "BufReadPre" },
-	{ "nvimtools/none-ls.nvim", event = "LspAttach" },
+	{
+		"nvimtools/none-ls.nvim",
+		dependencies = {
+			"nvimtools/none-ls-extras.nvim",
+		},
+		event = "LspAttach",
+	},
 	{ "mfussenegger/nvim-dap", event = "LspAttach" },
 	{ "rcarriga/nvim-dap-ui", event = "LspAttach" },
 	{ "nvim-neotest/nvim-nio", event = "LspAttach" },
@@ -434,11 +440,18 @@ require("mason-lspconfig").setup_handlers({
 })
 
 --none-ls
-local status, null_ls = pcall(require, "null-ls")
-if not status then
-	return
-end
-null_ls.setup()
+local null_ls = require("null-ls")
+
+null_ls.setup({
+	sources = {
+		null_ls.builtins.formatting.stylua,
+		null_ls.builtins.formatting.prettierd,
+		null_ls.builtins.diagnostics.rubocop,
+		null_ls.builtins.formatting.rubocop,
+		require("none-ls.diagnostics.eslint"),
+	},
+})
+
 vim.keymap.set("n", "<leader>p", function()
 	vim.lsp.buf.format({ async = true })
 end)
@@ -467,7 +480,7 @@ map(
 map("n", "<leader>d", ":lua require'dapui'.toggle()<CR>", { silent = true })
 map("n", "<leader><leader>d", ":lua require'dapui'.eval()<CR>", { silent = true })
 
----DAP-UI
+--DAP-UI
 require("dapui").setup({
 	icons = { expanded = "▾", collapsed = "▸", current_frame = "▸" },
 	mappings = {
@@ -527,7 +540,7 @@ require("dapui").setup({
 	},
 })
 
----jaq-nvim
+--jaq-nvim
 require("jaq-nvim").setup({
 	cmds = {
 		internal = {
@@ -666,7 +679,7 @@ cmp.setup({
 --nvim-treesitter
 require("nvim-treesitter.configs").setup({
 	highlight = {
-		enable = true,
+		enable = enable,
 		disable = { "help", "markdown", "toml" },
 	},
 	refactor = {
