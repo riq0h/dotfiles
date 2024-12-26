@@ -211,7 +211,6 @@ require("lazy").setup({
 	{ "hrsh7th/vim-vsnip", event = "InsertEnter" },
 	{ "hrsh7th/vim-vsnip-integ", event = "InsertEnter" },
 	{ "rafamadriz/friendly-snippets", event = "InsertEnter" },
-	{ "zbirenbaum/copilot-cmp", config = true, event = "InsertEnter" },
 	{ "nvim-treesitter/nvim-treesitter", event = { "BufReadPost", "BufNewFile" } },
 	{ "nvim-treesitter/nvim-treesitter-refactor", event = "BufRead" },
 	{ "yioneko/nvim-yati", event = "BufRead" },
@@ -623,14 +622,12 @@ cmp.setup({
 			mode = "symbol",
 			maxwidth = 50,
 			ellipsis_char = "...",
-			symbol_map = { Copilot = "" },
 		}),
 	},
 
 	sources = cmp.config.sources({
 		{ name = "nvim_lsp", max_item_count = 15, keyword_length = 2 },
 		{ name = "vsnip", max_item_count = 15, keyword_length = 2 },
-		{ name = "copilot", max_item_count = 15, keyword_length = 2 },
 		{ name = "nvim_lsp_signature_help" },
 		{ name = "buffer", max_item_count = 15, keyword_length = 2 },
 	}),
@@ -679,7 +676,7 @@ cmp.setup({
 --nvim-treesitter
 require("nvim-treesitter.configs").setup({
 	highlight = {
-		enable = enable,
+		enable = true,
 		disable = { "help", "markdown", "toml" },
 	},
 	refactor = {
