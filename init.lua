@@ -234,6 +234,7 @@ require("lazy").setup({
 	{ "kevinhwang91/nvim-bqf", ft = "qf" },
 	{ "vim-jp/vimdoc-ja", ft = "help" },
 	{ "sourcegraph/sg.nvim", event = "LspAttach" },
+	{ "kdheepak/lazygit.nvim", event = "LspAttach" },
 
 	--non-lazy
 	{ "vim-denops/denops.vim", lazy = false },
@@ -967,6 +968,10 @@ require("sg").setup()
 vim.keymap.set("n", "<leader>9", ":<C-u>CodyToggle<CR>", { silent = true })
 vim.keymap.set("v", "<leader>0", ":CodyTask ")
 vim.keymap.set("v", "<leader>-", ":CodyAsk ")
+
+--lazygit
+vim.keymap.set("n", "<leader>=", ":<C-u>LazyGit<CR>", { silent = true })
+vim.g.lazygit_floating_window_border_chars = { "", "", "", "", "", "", "", "" }
 
 --COLORSCHEME
 vim.keymap.set("n", "<leader>8", "<cmd>colorscheme edge<CR>", { noremap = true, silent = true })
