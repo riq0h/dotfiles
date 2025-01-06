@@ -235,6 +235,8 @@ require("lazy").setup({
 	{ "vim-jp/vimdoc-ja", ft = "help" },
 	{ "sourcegraph/sg.nvim", event = "LspAttach" },
 	{ "kdheepak/lazygit.nvim", event = "LspAttach" },
+	{ "ysmb-wtsg/in-and-out.nvim", event = "VeryLazy" },
+	{ "nacro90/numb.nvim", config = true, event = "BufRead" },
 
 	--non-lazy
 	{ "vim-denops/denops.vim", lazy = false },
@@ -972,6 +974,11 @@ vim.keymap.set("v", "<leader>-", ":CodyAsk ")
 --lazygit
 vim.keymap.set("n", "<leader>=", ":<C-u>LazyGit<CR>", { silent = true })
 vim.g.lazygit_floating_window_border_chars = { "", "", "", "", "", "", "", "" }
+
+--in-and-out
+vim.keymap.set("i", "<A-CR>", function()
+	require("in-and-out").in_and_out()
+end)
 
 --COLORSCHEME
 vim.keymap.set("n", "<leader>8", "<cmd>colorscheme edge<CR>", { noremap = true, silent = true })
