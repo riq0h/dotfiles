@@ -107,7 +107,6 @@ vim.keymap.set("i", "<3-MiddleMouse>", "<Nop>")
 vim.keymap.set("i", "<4-MiddleMouse>", "<Nop>")
 vim.keymap.set("n", "qq", "<Nop>")
 vim.keymap.set("v", "qq", "<Nop")
-vim.keymap.set("n", "gg", "<Nop>")
 vim.keymap.set("n", "ZZ", "<Nop>")
 vim.keymap.set("n", "ZQ", "<Nop>")
 vim.keymap.set("n", "<C-z>", "<Nop>")
@@ -602,10 +601,10 @@ cmp.setup({
 
 	window = {
 		completion = cmp.config.window.bordered({
-			border = "none",
+			border = "single",
 		}),
 		documentation = cmp.config.window.bordered({
-			border = "none",
+			border = "single",
 		}),
 	},
 
