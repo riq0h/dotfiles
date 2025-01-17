@@ -966,9 +966,9 @@ vim.keymap.set("n", "<leader>gp", ":<C-u>Gin push<CR>")
 
 --cody
 require("sg").setup()
-vim.keymap.set("n", "<leader>9", ":<C-u>CodyToggle<CR>", { silent = true })
-vim.keymap.set("v", "<leader>0", ":CodyTask ")
-vim.keymap.set("v", "<leader>-", ":CodyAsk ")
+vim.keymap.set("n", "<leader>6", ":<C-u>CodyToggle<CR>", { silent = true })
+vim.keymap.set("v", "<leader>7", ":CodyTask ")
+vim.keymap.set("v", "<leader>8", ":CodyAsk ")
 
 --lazygit
 vim.keymap.set("n", "<leader>=", ":<C-u>LazyGit<CR>", { silent = true })
@@ -978,11 +978,6 @@ vim.g.lazygit_floating_window_border_chars = { "", "", "", "", "", "", "", "" }
 vim.keymap.set("i", "<A-CR>", function()
 	require("in-and-out").in_and_out()
 end)
-
---COLORSCHEME
-vim.keymap.set("n", "<leader>8", "<cmd>colorscheme edge<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>7", "<cmd>colorscheme everforest<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>6", "<cmd>colorscheme gruvbox-material<CR>", { noremap = true, silent = true })
 
 require("gruvbox-material").setup({
 	contrast = "medium",
