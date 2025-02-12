@@ -468,6 +468,7 @@ map("n", "<leader>1", ":lua require'dap'.continue()<CR>", { silent = true })
 map("n", "<leader>2", ":lua require'dap'.step_over()<CR>", { silent = true })
 map("n", "<leader>3", ":lua require'dap'.step_into()<CR>", { silent = true })
 map("n", "<leader>4", ":lua require'dap'.step_out()<CR>", { silent = true })
+map("n", "<leader>5", ":lua require'dap'.terminate()<CR>", { silent = true })
 map("n", "<leader>;", ":lua require'dap'.toggle_breakpoint()<CR>", { silent = true })
 map("n", "<leader>d", ":lua require'dapui'.toggle()<CR>", { silent = true })
 map("n", "<leader><leader>d", ":lua require'dapui'.eval()<CR>", { silent = true })
@@ -736,7 +737,7 @@ require("bqf").setup({
 	},
 })
 
-vim.keymap.set("n", "<leader>5", [[:vimgrep /\w\+/j % | copen<CR>]], { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>9", [[:vimgrep /\w\+/j % | copen<CR>]], { noremap = true, silent = true })
 
 --dressing
 require("dressing").setup({
