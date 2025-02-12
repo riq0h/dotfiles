@@ -187,7 +187,6 @@ require("lazy").setup({
 	{ "nvim-neotest/nvim-nio", event = "LspAttach" },
 	{ "theHamsta/nvim-dap-virtual-text", config = true, event = "LspAttach" },
 	{ "suketa/nvim-dap-ruby", config = true, ft = "ruby" },
-	{ "leoluz/nvim-dap-go", ft = "go" },
 	{ "mxsdev/nvim-dap-vscode-js", ft = "javascript" },
 	{ "nvimdev/lspsaga.nvim", event = "LspAttach" },
 	{ "Wansmer/treesj", event = "LspAttach" },
@@ -470,13 +469,6 @@ map("n", "<leader>2", ":lua require'dap'.step_over()<CR>", { silent = true })
 map("n", "<leader>3", ":lua require'dap'.step_into()<CR>", { silent = true })
 map("n", "<leader>4", ":lua require'dap'.step_out()<CR>", { silent = true })
 map("n", "<leader>;", ":lua require'dap'.toggle_breakpoint()<CR>", { silent = true })
-map("n", "<leader>'", ":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>", { silent = true })
-map(
-	"n",
-	"<leader>i",
-	":lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>",
-	{ silent = true }
-)
 map("n", "<leader>d", ":lua require'dapui'.toggle()<CR>", { silent = true })
 map("n", "<leader><leader>d", ":lua require'dapui'.eval()<CR>", { silent = true })
 
@@ -550,7 +542,6 @@ require("jaq-nvim").setup({
 		external = {
 			sh = "sh %",
 			ruby = "ruby %",
-			go = "go run %",
 			javascript = "node %",
 		},
 	},
