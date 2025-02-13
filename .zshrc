@@ -53,9 +53,10 @@ export BAT_THEME="ansi"
 eval "$(zoxide init zsh)"
 zle -N zi
 bindkey "^z" zi
+alias zv="zi && nvim"
 
 # Tailscale関連
-alias tlsc="sudo tailscale up --exit-node-allow-lan-access --exit-node=mystech"
+alias tlsc="sudo tailscale up --exit-node=mystech --exit-node-allow-lan-access --ssh"
 alias tlscd="sudo tailscale down"
 
 # fzf関連
@@ -63,7 +64,7 @@ export FZF_TMUX="1"
 export FZF_TMUX_OPTS="-p 50%"
 export FZF_CTRL_R_OPTS="--reverse --preview 'echo {}' --preview-window=border-sharp,down:3:hidden:wrap --bind '?:toggle-preview'"
 export FZF_DEFAULT_COMMAND="rg --files --hidden 2> /dev/null --follow --glob '!.git/*'"
-export FZF_DEFAULT_OPTS="--ansi --no-separator --no-scrollbar --reverse --border=none \
+export FZF_DEFAULT_OPTS="--ansi --height 40% --no-separator --no-scrollbar --reverse --border=none \
   --color=bg+:#272e33,bg:#272e33,spinner:#a7c080,hl:#a7c080 \
 --color=fg:#d3c6aa,header:#a7c080,info:#a7c080,pointer:#a7c080 \
 --color=marker:#a7c080,fg+:#d3c6aa,prompt:#e67e80,hl+:#a7c080"
@@ -106,6 +107,9 @@ fman() {
 }
 export MANPAGER="sh -c 'col -bx | bat -l man -p --paging always'"
 
+# mise
+eval "$(mise activate zsh)"
+
 # 履歴関連
 HISTFILE=~/.zsh_history   # ヒストリを保存するファイル
 HISTSIZE=10000            # メモリに保存されるヒストリの件数
@@ -113,18 +117,3 @@ SAVEHIST=10000            # 保存されるヒストリの件数
 setopt bang_hist          # !を使ったヒストリ展開を行う(d)
 setopt extended_history   # ヒストリに実行時間も保存する
 setopt hist_reduce_blanks # 余分なスペースを削除してヒストリに保存する
-
-## rbenv
-eval "$(rbenv init - zsh)"
-
-## Flutter
-export CHROME_EXECUTABLE="/usr/bin/vivaldi"
-
-function yaz() {
-tmp="$(mktemp -t "yazi-cwd.XXXXX")"
-yazi --cwd-file="$tmp"
-if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-  cd -- "$cwd"
-fi
-rm -f -- "$tmp"
-}

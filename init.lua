@@ -411,12 +411,11 @@ local on_attach = function(client, bufnr)
 	local set = vim.keymap.set
 	set("n", "K", "<cmd>Lspsaga hover_doc<CR>")
 	set("n", "<leader>r", "<cmd>Lspsaga rename<CR>")
-	set("n", "<leader>c", "<cmd>Lspsaga code_action<CR>")
 	set("n", "<leader>e", "<cmd>Lspsaga show_line_diagnostics<CR>")
 	set("n", "<leader>[", "<cmd>Lspsaga diagnostic_jump_prev<CR>")
 	set("n", "<leaaer>]", "<cmd>Lspsaga diagnostic_jump_next<CR>")
 end
-vim.diagnostic.config({ virtual_text = false })
+vim.diagnostic.config({ virtual_text = false, severity_sort = true })
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 require("mason").setup()
@@ -443,10 +442,10 @@ local null_ls = require("null-ls")
 
 null_ls.setup({
 	sources = {
-		null_ls.builtins.formatting.stylua,
-		null_ls.builtins.formatting.prettierd,
 		null_ls.builtins.diagnostics.rubocop,
 		null_ls.builtins.formatting.rubocop,
+		null_ls.builtins.formatting.prettierd,
+		null_ls.builtins.formatting.stylua,
 		require("none-ls.diagnostics.eslint"),
 	},
 })
@@ -454,6 +453,23 @@ null_ls.setup({
 vim.keymap.set("n", "<leader>p", function()
 	vim.lsp.buf.format({ async = true })
 end)
+
+require("null-ls.client").notify_client = function(...)
+	---@type vim.lsp.protocol.Method|string, table
+	local method, params
+	if type((arg)[1]) == "table" then
+		_, method, params = unpack(arg)
+	else
+		method, params = unpack(arg)
+	end
+	if not client then
+		require("null-ls.logger"):debug(
+			string.format("unable to notify client for method %s (client not active): %s", method, vim.inspect(params))
+		)
+		return
+	end
+	client:notify(method, params)
+end
 
 --DAP
 local function map(mode, lhs, rhs, opts)
