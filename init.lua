@@ -411,6 +411,7 @@ local on_attach = function(client, bufnr)
 	local set = vim.keymap.set
 	set("n", "K", "<cmd>Lspsaga hover_doc<CR>")
 	set("n", "<leader>r", "<cmd>Lspsaga rename<CR>")
+	set("n", "<leader>c", "<cmd>Lspsaga code_action<CR>")
 	set("n", "<leader>e", "<cmd>Lspsaga show_line_diagnostics<CR>")
 	set("n", "<leader>[", "<cmd>Lspsaga diagnostic_jump_prev<CR>")
 	set("n", "<leaaer>]", "<cmd>Lspsaga diagnostic_jump_next<CR>")
