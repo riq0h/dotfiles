@@ -420,7 +420,7 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 require("mason").setup()
 require("mason-null-ls").setup({
-	ensure_installed = { "prettierd", "rubocop", "stylua", "shfmt" },
+	ensure_installed = { "prettierd", "rubocop", "erb_lint", "stylua", "shfmt" },
 	handlers = {},
 })
 require("mason-nvim-dap").setup({
@@ -433,6 +433,7 @@ require("mason-lspconfig").setup_handlers({
 		require("lspconfig")[server_name].setup({
 			on_attach = on_attach,
 			capabilities = capabilities,
+			single_file_support = true,
 		})
 	end,
 })
@@ -453,23 +454,6 @@ null_ls.setup({
 vim.keymap.set("n", "<leader>p", function()
 	vim.lsp.buf.format({ async = true })
 end)
-
-require("null-ls.client").notify_client = function(...)
-	---@type vim.lsp.protocol.Method|string, table
-	local method, params
-	if type((arg)[1]) == "table" then
-		_, method, params = unpack(arg)
-	else
-		method, params = unpack(arg)
-	end
-	if not client then
-		require("null-ls.logger"):debug(
-			string.format("unable to notify client for method %s (client not active): %s", method, vim.inspect(params))
-		)
-		return
-	end
-	client:notify(method, params)
-end
 
 --DAP
 local function map(mode, lhs, rhs, opts)
