@@ -167,6 +167,8 @@ require("lazy").setup({
 		cmd = "Telescope",
 	},
 	{ "nvim-telescope/telescope-file-browser.nvim", cmd = "Telescope file_browser" },
+	{ "danielfalk/smart-open.nvim", cmd = "Telescope smart_open" },
+	{ "kkharji/sqlite.lua", event = "VeryLazy" },
 	{ "lewis6991/gitsigns.nvim", config = true, event = "BufReadPre" },
 	{ "ryanoasis/vim-devicons", event = "UIEnter" },
 	{ "nvim-tree/nvim-web-devicons", event = "UIEnter" },
@@ -356,7 +358,7 @@ require("telescope").setup({
 	},
 })
 
-vim.keymap.set("n", "<leader>.", "<cmd>Telescope find_files hidden=true<CR>")
+vim.keymap.set("n", "<leader>.", "<cmd>Telescope smart_open<CR>")
 vim.keymap.set("n", "<leader>,", "<cmd>Telescope oldfiles<CR>")
 vim.keymap.set("n", "<leader>l", "<cmd>Telescope live_grep grep_open_files=true<CR>")
 vim.keymap.set("n", "<leader>k", "<cmd>Telescope live_grep<CR>")
@@ -371,6 +373,7 @@ vim.keymap.set("n", "<leader>d", "<cmd>Telescope diagnostics<CR>")
 vim.keymap.set("n", "<leader>s", "<cmd>Telescope lsp_document_symbols<CR>")
 vim.keymap.set("n", "<leader>f", "<cmd>Telescope file_browser<CR>")
 
+require("telescope").load_extension("smart_open")
 local fb_actions = require("telescope").extensions.file_browser.actions
 local previewers = require("telescope.previewers")
 local Job = require("plenary.job")
