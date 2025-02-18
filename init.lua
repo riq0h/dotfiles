@@ -358,8 +358,8 @@ require("telescope").setup({
 	},
 })
 
-vim.keymap.set("n", "<leader>.", "<cmd>Telescope smart_open<CR>")
-vim.keymap.set("n", "<leader>,", "<cmd>Telescope oldfiles<CR>")
+vim.keymap.set("n", "<leader>,", "<cmd>Telescope oldfiles<cr>")
+vim.keymap.set("n", "<leader>.", "<cmd>Telescope smart_open<cr>")
 vim.keymap.set("n", "<leader>l", "<cmd>Telescope live_grep grep_open_files=true<CR>")
 vim.keymap.set("n", "<leader>k", "<cmd>Telescope live_grep<CR>")
 vim.keymap.set("n", "<leader>i", "<cmd>Telescope lsp_incoming_calls<CR>")
@@ -553,6 +553,8 @@ require("jaq-nvim").setup({
 			sh = "sh %",
 			ruby = "ruby %",
 			javascript = "node %",
+			typescript = "deno %",
+			go = "go run %",
 		},
 	},
 
