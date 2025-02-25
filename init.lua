@@ -199,11 +199,13 @@ require("lazy").setup({
 	{ "f4z3r/gruvbox-material.nvim", event = "VeryLazy" },
 	{ "nvim-lua/plenary.nvim", event = "VeryLazy" },
 	{ "stevearc/dressing.nvim", event = "VeryLazy" },
+	{ "MunifTanjim/nui.nvim", event = "VeryLazy" },
 	{ "hrsh7th/nvim-cmp", event = "VeryLazy" },
 	{ "hrsh7th/cmp-nvim-lsp", event = "LspAttach" },
 	{ "hrsh7th/cmp-buffer", event = "InsertEnter" },
 	{ "hrsh7th/cmp-path", event = "InsertEnter" },
 	{ "hrsh7th/cmp-vsnip", event = "InsertEnter" },
+	{ "zbirenbaum/copilot-cmp", config = true, event = "InsertEnter" },
 	{ "hrsh7th/cmp-cmdline", event = "ModeChanged" },
 	{ "hrsh7th/cmp-nvim-lsp-signature-help", event = "LspAttach" },
 	{ "hrsh7th/cmp-nvim-lsp-document-symbol", event = "LspAttach" },
@@ -233,8 +235,9 @@ require("lazy").setup({
 	{ "nvim-zh/colorful-winsep.nvim", config = true, event = "WinNew" },
 	{ "kevinhwang91/nvim-bqf", ft = "qf" },
 	{ "vim-jp/vimdoc-ja", ft = "help" },
-	{ "sourcegraph/sg.nvim", event = "LspAttach" },
+	{ "yetone/avante.nvim", event = "VeryLazy" },
 	{ "kdheepak/lazygit.nvim", event = "LspAttach" },
+	{ "zbirenbaum/copilot.lua", event = "VeryLazy" },
 	{ "ysmb-wtsg/in-and-out.nvim", event = "VeryLazy" },
 	{ "nacro90/numb.nvim", config = true, event = "BufRead" },
 
@@ -626,7 +629,7 @@ cmp.setup({
 			mode = "symbol",
 			maxwidth = 50,
 			ellipsis_char = "...",
-			symbol_map = { Cody = "❄" },
+			symbol_map = { Copilot = "" },
 		}),
 	},
 
@@ -634,7 +637,7 @@ cmp.setup({
 		{ name = "nvim_lsp", max_item_count = 15, keyword_length = 2 },
 		{ name = "vsnip", max_item_count = 15, keyword_length = 2 },
 		{ name = "nvim_lsp_signature_help" },
-		{ name = "cody", keyword_length = 2 },
+		{ name = "copilot", keyword_length = 2 },
 		{ name = "buffer", max_item_count = 15, keyword_length = 2 },
 	}),
 })
@@ -974,11 +977,72 @@ vim.keymap.set("n", "<leader>ga", ":<C-u>Gin add .<CR>", { silent = true })
 vim.keymap.set("n", "<leader>gc", ":<C-u>Gin commit -m ")
 vim.keymap.set("n", "<leader>gp", ":<C-u>Gin push<CR>")
 
---cody
-require("sg").setup()
-vim.keymap.set("n", "<leader>6", ":<C-u>CodyToggle<CR>", { silent = true })
-vim.keymap.set("v", "<leader>7", ":CodyTask ")
-vim.keymap.set("v", "<leader>8", ":CodyAsk ")
+--copilot
+require("copilot").setup({
+	suggestion = { enabled = false },
+	panel = { enabled = false },
+})
+
+local has_words_before = function()
+	if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then
+		return false
+	end
+	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+	return col ~= 0 and vim.api.nvim_buf_get_text(0, line - 1, 0, line - 1, col, {})[1]:match("^%s*$") == nil
+end
+cmp.setup({
+	mapping = {
+		["<Tab>"] = vim.schedule_wrap(function(fallback)
+			if cmp.visible() and has_words_before() then
+				cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+			else
+				fallback()
+			end
+		end),
+	},
+})
+
+--avante
+require("avante_lib").load()
+require("avante").setup({
+	provider = "copilot",
+	copilot = {
+		model = "claude-3.7-sonnet",
+	},
+	auto_suggestions_provider = "copilot",
+	file_selector = {
+		provider = "telescope",
+	},
+	behaviour = {
+		auto_set_highlight_group = true,
+		auto_set_keymaps = true,
+		auto_apply_diff_after_generation = false,
+		support_paste_from_clipboard = true,
+		minimize_diff = true,
+	},
+	windows = {
+		position = "right",
+		wrap = true,
+		width = 30,
+		sidebar_header = {
+			enabled = true,
+			align = "right",
+			rounded = false,
+		},
+		input = {
+			height = 5,
+		},
+		edit = {
+			border = "single",
+			start_insert = true,
+		},
+		ask = {
+			floating = true,
+			start_insert = true,
+			border = "single",
+		},
+	},
+})
 
 --lazygit
 vim.keymap.set("n", "<leader>=", ":<C-u>LazyGit<CR>", { silent = true })
@@ -989,13 +1053,7 @@ vim.keymap.set("i", "<A-CR>", function()
 	require("in-and-out").in_and_out()
 end)
 
-require("gruvbox-material").setup({
-	contrast = "medium",
-})
-
-require("everforest").setup({
-	background = "hard",
-})
+--colorscheme
 
 vim.cmd("colorscheme everforest")
 
