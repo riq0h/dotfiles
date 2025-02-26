@@ -194,9 +194,7 @@ require("lazy").setup({
 	{ "Wansmer/treesj", event = "LspAttach" },
 	{ "is0n/jaq-nvim", event = "LspAttach" },
 	{ "j-hui/fidget.nvim", config = true, event = "LspAttach" },
-	{ "sainnhe/edge", event = "VeryLazy" },
 	{ "neanias/everforest-nvim", event = "VeryLazy" },
-	{ "f4z3r/gruvbox-material.nvim", event = "VeryLazy" },
 	{ "nvim-lua/plenary.nvim", event = "VeryLazy" },
 	{ "stevearc/dressing.nvim", event = "VeryLazy" },
 	{ "MunifTanjim/nui.nvim", event = "VeryLazy" },
@@ -1014,7 +1012,7 @@ require("avante").setup({
 		provider = "telescope",
 	},
 	behaviour = {
-		auto_set_highlight_group = true,
+		auto_set_highlight_group = false,
 		auto_set_keymaps = true,
 		auto_apply_diff_after_generation = false,
 		support_paste_from_clipboard = true,
