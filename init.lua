@@ -198,18 +198,8 @@ require("lazy").setup({
 	{ "nvim-lua/plenary.nvim", event = "VeryLazy" },
 	{ "stevearc/dressing.nvim", event = "VeryLazy" },
 	{ "MunifTanjim/nui.nvim", event = "VeryLazy" },
-	{ "hrsh7th/nvim-cmp", event = "VeryLazy" },
-	{ "hrsh7th/cmp-nvim-lsp", event = "LspAttach" },
-	{ "hrsh7th/cmp-buffer", event = "InsertEnter" },
-	{ "hrsh7th/cmp-path", event = "InsertEnter" },
-	{ "hrsh7th/cmp-vsnip", event = "InsertEnter" },
-	{ "zbirenbaum/copilot-cmp", config = true, event = "InsertEnter" },
-	{ "hrsh7th/cmp-cmdline", event = "ModeChanged" },
-	{ "hrsh7th/cmp-nvim-lsp-signature-help", event = "LspAttach" },
-	{ "hrsh7th/cmp-nvim-lsp-document-symbol", event = "LspAttach" },
-	{ "onsails/lspkind.nvim", event = "LspAttach" },
-	{ "hrsh7th/vim-vsnip", event = "InsertEnter" },
-	{ "hrsh7th/vim-vsnip-integ", event = "InsertEnter" },
+	{ "Saghen/blink.cmp", event = "InsertEnter" },
+	{ "fang2hou/blink-copilot", event = "InsertEnter" },
 	{ "rafamadriz/friendly-snippets", event = "InsertEnter" },
 	{ "nvim-treesitter/nvim-treesitter", event = { "BufReadPost", "BufNewFile" } },
 	{ "nvim-treesitter/nvim-treesitter-refactor", event = "BufRead" },
@@ -589,94 +579,75 @@ require("jaq-nvim").setup({
 		},
 	},
 })
-
 vim.keymap.set("n", "<leader>x", ":<C-u>Jaq<CR>", { silent = true })
 
---nvim-cmp
-local cmp = require("cmp")
-local lspkind = require("lspkind")
-
-cmp.setup({
-	snippet = {
-		expand = function(args)
-			vim.fn["vsnip#anonymous"](args.body)
+-- blink.cmp
+require("blink.cmp").setup({
+	keymap = {
+		preset = "enter",
+		["<Tab>"] = { "select_next", "fallback" },
+	},
+	completion = {
+		menu = {
+			border = "single",
+			winblend = 10,
+			draw = {
+				treesitter = { "lsp" },
+			},
+		},
+		list = {
+			selection = {
+				preselect = true,
+				auto_insert = true,
+			},
+		},
+		documentation = {
+			window = {
+				border = "single",
+				winblend = 10,
+			},
+		},
+	},
+	signature = {
+		enabled = true,
+		trigger = {
+			enabled = true,
+		},
+		window = {
+			border = "single",
+			winblend = 10,
+			treesitter_highlighting = true,
+			show_documentation = true,
+		},
+	},
+	snippets = {
+		expand = function(snippet)
+			vim.snippet.expand(snippet)
 		end,
 	},
-
-	window = {
-		completion = cmp.config.window.bordered({
-			border = "single",
-		}),
-		documentation = cmp.config.window.bordered({
-			border = "single",
-		}),
+	sources = {
+		default = { "copilot", "lsp", "snippets", "path", "buffer", "omni" },
+		providers = {
+			copilot = {
+				name = "copilot",
+				module = "blink-copilot",
+				score_offset = 100,
+				async = true,
+			},
+		},
+		min_keyword_length = 2,
 	},
-
-	mapping = cmp.mapping.preset.insert({
-		["<Tab>"] = cmp.mapping.select_next_item(),
-		["<C-p>"] = cmp.mapping.select_prev_item(),
-		["<C-b>"] = cmp.mapping.scroll_docs(-4),
-		["<C-f>"] = cmp.mapping.scroll_docs(4),
-		["<C-Space>"] = cmp.mapping.complete(),
-		["<C-e>"] = cmp.mapping.abort(),
-		["<CR>"] = cmp.mapping.confirm({ select = true }),
-	}),
-
-	formatting = {
-		format = lspkind.cmp_format({
-			mode = "symbol",
-			maxwidth = 50,
-			ellipsis_char = "...",
-			symbol_map = { Copilot = "" },
-		}),
-	},
-
-	sources = cmp.config.sources({
-		{ name = "nvim_lsp", max_item_count = 15, keyword_length = 2 },
-		{ name = "vsnip", max_item_count = 15, keyword_length = 2 },
-		{ name = "nvim_lsp_signature_help" },
-		{ name = "copilot", keyword_length = 2 },
-		{ name = "buffer", max_item_count = 15, keyword_length = 2 },
-	}),
-})
-
-cmp.setup.cmdline({ "/", "?" }, {
-	mapping = cmp.mapping.preset.cmdline(),
-	sources = cmp.config.sources({
-		{ name = "nvim_lsp_document_symbol" },
-	}, {
-		{ name = "buffer" },
-	}),
-})
-
-cmp.setup.cmdline(":", {
-	mapping = cmp.mapping.preset.cmdline(),
-	sources = cmp.config.sources({
-		{ name = "path" },
-	}, {
-		{ name = "cmdline", keyword_length = 2 },
-	}),
-})
-
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
-vim.cmd("let g:vsnip_filetypes = {}")
-
-local has_words_before = function()
-	if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then
-		return false
-	end
-	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-	return col ~= 0 and vim.api.nvim_buf_get_text(0, line - 1, 0, line - 1, col, {})[1]:match("^%s*$") == nil
-end
-cmp.setup({
-	mapping = {
-		["<Tab>"] = vim.schedule_wrap(function(fallback)
-			if cmp.visible() and has_words_before() then
-				cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
-			else
-				fallback()
-			end
-		end),
+	cmdline = {
+		completion = {
+			list = {
+				selection = {
+					preselect = false,
+				},
+			},
+			menu = {
+				auto_show = true,
+			},
+		},
 	},
 })
 
@@ -979,25 +950,6 @@ vim.keymap.set("n", "<leader>gp", ":<C-u>Gin push<CR>")
 require("copilot").setup({
 	suggestion = { enabled = false },
 	panel = { enabled = false },
-})
-
-local has_words_before = function()
-	if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then
-		return false
-	end
-	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-	return col ~= 0 and vim.api.nvim_buf_get_text(0, line - 1, 0, line - 1, col, {})[1]:match("^%s*$") == nil
-end
-cmp.setup({
-	mapping = {
-		["<Tab>"] = vim.schedule_wrap(function(fallback)
-			if cmp.visible() and has_words_before() then
-				cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
-			else
-				fallback()
-			end
-		end),
-	},
 })
 
 --avante
