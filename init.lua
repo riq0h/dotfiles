@@ -65,7 +65,7 @@ vim.keymap.set("n", "Q", ":<C-u>quit!<CR>")
 vim.keymap.set("n", "<leader>q", ":<C-u>bd<CR>")
 vim.keymap.set("n", "<C-s>", ":<C-u>%s///cg<Left><Left><Left><Left>")
 vim.keymap.set("n", "<C-c>", ":<C-u>echo wordcount()['chars']<CR>")
-vim.keymap.set("n", "<C-d>", ":<C-u>lua print(genko())<CR>")
+vim.keymap.set("n", "<C-=>", ":<C-u>lua print(genko())<CR>")
 vim.keymap.set("v", "i<leader>", "iW")
 vim.keymap.set("o", "i<leader>", "iW")
 vim.keymap.set("n", "U", "<c-r>")
@@ -198,8 +198,9 @@ require("lazy").setup({
 	{ "nvim-lua/plenary.nvim", event = "VeryLazy" },
 	{ "stevearc/dressing.nvim", event = "VeryLazy" },
 	{ "MunifTanjim/nui.nvim", event = "VeryLazy" },
-	{ "Saghen/blink.cmp", event = "InsertEnter" },
+	{ "Saghen/blink.cmp", event = { "InsertEnter", "CmdLineEnter" } },
 	{ "fang2hou/blink-copilot", event = "InsertEnter" },
+	{ "L3MON4D3/LuaSnip", event = "InsertEnter" },
 	{ "rafamadriz/friendly-snippets", event = "InsertEnter" },
 	{ "nvim-treesitter/nvim-treesitter", event = { "BufReadPost", "BufNewFile" } },
 	{ "nvim-treesitter/nvim-treesitter-refactor", event = "BufRead" },
@@ -586,6 +587,7 @@ require("blink.cmp").setup({
 	keymap = {
 		preset = "enter",
 		["<Tab>"] = { "select_next", "fallback" },
+		["<C-d>"] = { "show", "show_documentation", "hide_documentation" },
 	},
 	completion = {
 		menu = {
@@ -621,9 +623,7 @@ require("blink.cmp").setup({
 		},
 	},
 	snippets = {
-		expand = function(snippet)
-			vim.snippet.expand(snippet)
-		end,
+		preset = "luasnip",
 	},
 	sources = {
 		default = { "copilot", "lsp", "snippets", "path", "buffer", "omni" },
