@@ -200,8 +200,11 @@ require("lazy").setup({
 	{ "MunifTanjim/nui.nvim", event = "VeryLazy" },
 	{ "Saghen/blink.cmp", event = { "InsertEnter", "CmdLineEnter" } },
 	{ "fang2hou/blink-copilot", event = "InsertEnter" },
-	{ "L3MON4D3/LuaSnip", event = "InsertEnter" },
-	{ "rafamadriz/friendly-snippets", event = "InsertEnter" },
+	{
+		"L3MON4D3/LuaSnip",
+		dependencies = { "rafamadriz/friendly-snippets" },
+		event = "InsertEnter",
+	},
 	{ "nvim-treesitter/nvim-treesitter", event = { "BufReadPost", "BufNewFile" } },
 	{ "nvim-treesitter/nvim-treesitter-refactor", event = "BufRead" },
 	{ "yioneko/nvim-yati", event = "BufRead" },
@@ -650,6 +653,9 @@ require("blink.cmp").setup({
 		},
 	},
 })
+
+--luasnip
+require("luasnip.loaders.from_vscode").lazy_load()
 
 --nvim-treesitter
 require("nvim-treesitter.configs").setup({
