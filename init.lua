@@ -648,7 +648,9 @@ require("blink.cmp").setup({
 				},
 			},
 			menu = {
-				auto_show = true,
+				auto_show = function(ctx)
+					return vim.fn.getcmdtype() == ":"
+				end,
 			},
 		},
 	},
