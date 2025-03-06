@@ -1006,7 +1006,7 @@ require("avante").setup(avante_config)
 vim.g.current_copilot_model = "claude-3.7-sonnet"
 vim.keymap.set("n", "<leader>am", function()
 	if vim.g.current_copilot_model == "claude-3.7-sonnet" then
-		vim.g.current_copilot_model = "gpt-4o"
+		vim.g.current_copilot_model = "gemini-2.0-flash"
 	else
 		vim.g.current_copilot_model = "claude-3.7-sonnet"
 	end
