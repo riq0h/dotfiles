@@ -205,6 +205,7 @@ require("lazy").setup({
 		dependencies = { "rafamadriz/friendly-snippets" },
 		event = "InsertEnter",
 	},
+	{ "Kaiser-Yang/blink-cmp-avante", event = "InsertEnter" },
 	{ "nvim-treesitter/nvim-treesitter", event = { "BufReadPost", "BufNewFile" } },
 	{ "nvim-treesitter/nvim-treesitter-refactor", event = "BufRead" },
 	{ "yioneko/nvim-yati", event = "BufRead" },
@@ -227,7 +228,7 @@ require("lazy").setup({
 	{ "nvim-zh/colorful-winsep.nvim", config = true, event = "WinNew" },
 	{ "kevinhwang91/nvim-bqf", ft = "qf" },
 	{ "vim-jp/vimdoc-ja", ft = "help" },
-	{ "yetone/avante.nvim", event = "VeryLazy" },
+	{ "yetone/avante.nvim", build = "make", event = "VeryLazy" },
 	{ "kdheepak/lazygit.nvim", event = "LspAttach" },
 	{ "zbirenbaum/copilot.lua", event = "VeryLazy" },
 	{ "ysmb-wtsg/in-and-out.nvim", event = "VeryLazy" },
@@ -275,7 +276,14 @@ require("lualine").setup({
 		icons_enabled = true,
 		component_separators = { left = "", right = "" },
 		section_separators = { left = "", right = "" },
-		disabled_filetypes = { "TelescopePrompt" },
+		disabled_filetypes = {
+			winbar = {
+				"Avante",
+				"AvanteSelectedFiles",
+				"AvanteInput",
+			},
+			"TelescopePrompt",
+		},
 		always_divide_middle = true,
 		colored = false,
 		globalstatus = true,
@@ -629,8 +637,12 @@ require("blink.cmp").setup({
 		preset = "luasnip",
 	},
 	sources = {
-		default = { "copilot", "lsp", "snippets", "path", "buffer", "omni" },
+		default = { "avante", "copilot", "lsp", "snippets", "path", "buffer", "omni" },
 		providers = {
+			avante = {
+				module = "blink-cmp-avante",
+				name = "Avante",
+			},
 			copilot = {
 				name = "copilot",
 				module = "blink-copilot",
@@ -963,6 +975,7 @@ require("copilot").setup({
 --avante
 require("avante_lib").load()
 local avante_config = {
+	hints = { enabled = false },
 	provider = "copilot",
 	copilot = {
 		model = "claude-3.7-sonnet",
