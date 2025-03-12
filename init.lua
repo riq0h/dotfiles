@@ -600,6 +600,7 @@ require("blink.cmp").setup({
 		["<Tab>"] = { "select_next", "fallback" },
 		["<C-d>"] = { "show", "show_documentation", "hide_documentation" },
 	},
+	fuzzy = { implementation = "rust" },
 	completion = {
 		menu = {
 			border = "single",
