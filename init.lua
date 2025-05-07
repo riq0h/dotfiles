@@ -440,15 +440,6 @@ require("mason-nvim-dap").setup({
 	handlers = {},
 })
 require("mason-lspconfig").setup()
-require("mason-lspconfig").setup_handlers({
-	function(server_name)
-		require("lspconfig")[server_name].setup({
-			on_attach = on_attach,
-			capabilities = capabilities,
-			single_file_support = true,
-		})
-	end,
-})
 
 --none-ls
 local null_ls = require("null-ls")
@@ -638,7 +629,7 @@ require("blink.cmp").setup({
 		preset = "luasnip",
 	},
 	sources = {
-		default = { "avante", "copilot", "lsp", "snippets", "path", "buffer", "omni" },
+		default = { "avante", "copilot", "lsp", "snippets", "path", "buffer", "cmdline", "omni" },
 		providers = {
 			avante = {
 				module = "blink-cmp-avante",
