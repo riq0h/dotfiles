@@ -1008,17 +1008,6 @@ local avante_config = {
 }
 
 require("avante").setup(avante_config)
-vim.g.current_copilot_model = "claude-3.7-sonnet"
-vim.keymap.set("n", "<leader>am", function()
-	if vim.g.current_copilot_model == "claude-3.7-sonnet" then
-		vim.g.current_copilot_model = "gemini-2.0-flash"
-	else
-		vim.g.current_copilot_model = "claude-3.7-sonnet"
-	end
-	avante_config.copilot.model = vim.g.current_copilot_model
-	require("avante").setup(avante_config)
-	vim.notify("Copilot model changed to " .. vim.g.current_copilot_model, vim.log.levels.INFO)
-end)
 
 --lazygit
 vim.keymap.set("n", "<leader>=", ":<C-u>LazyGit<CR>", { silent = true })
@@ -1030,7 +1019,6 @@ vim.keymap.set("i", "<A-CR>", function()
 end)
 
 --colorscheme
-
 vim.cmd("colorscheme everforest")
 
 --OTHER SETTINGS
@@ -1045,4 +1033,18 @@ function genko()
 	end
 
 	return line_count / 20.0
+end
+
+vim.opt.cmdheight = 0
+local ok, extui = pcall(require, "vim._extui")
+if ok then
+	extui.enable({
+		enable = true,
+		msg = {
+			pos = "cmd",
+			box = {
+				timeout = 5000,
+			},
+		},
+	})
 end
