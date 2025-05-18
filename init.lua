@@ -970,11 +970,17 @@ local avante_config = {
 	hints = { enabled = false },
 	provider = "copilot",
 	copilot = {
-		model = "claude-3.7-sonnet",
+		model = "claude-3.5-sonnet",
 	},
 	auto_suggestions_provider = "copilot",
 	file_selector = {
 		provider = "telescope",
+		allow_insecure = false,
+		timeout = 10 * 60 * 1000,
+		temperature = 0,
+		max_completion_tokens = 80000,
+		max_tokens = 80000,
+		reasoning_effort = "high",
 	},
 	behaviour = {
 		auto_set_highlight_group = false,
@@ -982,6 +988,9 @@ local avante_config = {
 		auto_apply_diff_after_generation = false,
 		support_paste_from_clipboard = true,
 		minimize_diff = true,
+		enable_cursor_planning_mode = true,
+		enable_claude_text_editor_tool_mode = true,
+		enable_token_counting = false,
 	},
 	windows = {
 		position = "right",
