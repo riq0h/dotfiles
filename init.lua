@@ -415,18 +415,15 @@ require("lspsaga").setup({
 	},
 })
 
-local on_attach = function(client, bufnr)
-	client.server_capabilities.documentFormattingProvider = false
-	local set = vim.keymap.set
-	set("n", "K", "<cmd>Lspsaga hover_doc<CR>")
-	set("n", "<leader>r", "<cmd>Lspsaga rename<CR>")
-	set("n", "<leader>c", "<cmd>Lspsaga code_action<CR>")
-	set("n", "<leader>e", "<cmd>Lspsaga show_line_diagnostics<CR>")
-	set("n", "<leader>j", "<cmd>Lspsaga peek_definition<CR>")
-	set("n", "<leader>gj", "<cmd>Lspsaga goto_definition<CR>")
-	set("n", "<leader>[", "<cmd>Lspsaga diagnostic_jump_prev<CR>")
-	set("n", "<leaaer>]", "<cmd>Lspsaga diagnostic_jump_next<CR>")
-end
+local set = vim.keymap.set
+set("n", "K", "<cmd>Lspsaga hover_doc<CR>")
+set("n", "<leader>r", "<cmd>Lspsaga rename<CR>")
+set("n", "<leader>c", "<cmd>Lspsaga code_action<CR>")
+set("n", "<leader>e", "<cmd>Lspsaga show_line_diagnostics<CR>")
+set("n", "<leader>j", "<cmd>Lspsaga peek_definition<CR>")
+set("n", "<leader>gj", "<cmd>Lspsaga goto_definition<CR>")
+set("n", "<leader>[", "<cmd>Lspsaga diagnostic_jump_prev<CR>")
+set("n", "<leader>]", "<cmd>Lspsaga diagnostic_jump_next<CR>")
 vim.diagnostic.config({ virtual_text = false, severity_sort = true })
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -970,17 +967,13 @@ local avante_config = {
 	hints = { enabled = false },
 	provider = "copilot",
 	copilot = {
-		model = "claude-3.5-sonnet",
+		model = "claude-sonnet-4",
 	},
 	auto_suggestions_provider = "copilot",
 	file_selector = {
 		provider = "telescope",
-		allow_insecure = false,
-		timeout = 10 * 60 * 1000,
 		temperature = 0,
-		max_completion_tokens = 80000,
-		max_tokens = 80000,
-		reasoning_effort = "high",
+		-- reasoning_effort = "high",
 	},
 	behaviour = {
 		auto_set_highlight_group = false,
@@ -988,7 +981,6 @@ local avante_config = {
 		auto_apply_diff_after_generation = false,
 		support_paste_from_clipboard = true,
 		minimize_diff = true,
-		enable_cursor_planning_mode = true,
 		enable_claude_text_editor_tool_mode = true,
 		enable_token_counting = false,
 	},
