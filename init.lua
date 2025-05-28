@@ -197,6 +197,7 @@ require("lazy").setup({
 	{ "neanias/everforest-nvim", event = "VeryLazy" },
 	{ "nvim-lua/plenary.nvim", event = "VeryLazy" },
 	{ "stevearc/dressing.nvim", event = "VeryLazy" },
+	{ "nvim-flutter/flutter-tools.nvim", event = "LspAttach" },
 	{ "MunifTanjim/nui.nvim", event = "VeryLazy" },
 	{ "Saghen/blink.cmp", event = { "InsertEnter", "CmdLineEnter" } },
 	{ "fang2hou/blink-copilot", event = "InsertEnter" },
@@ -375,7 +376,6 @@ vim.keymap.set("n", "<leader>n", "<cmd>Telescope lsp_references<CR>")
 vim.keymap.set("n", "<leader>d", "<cmd>Telescope diagnostics<CR>")
 vim.keymap.set("n", "<leader>s", "<cmd>Telescope lsp_document_symbols<CR>")
 vim.keymap.set("n", "<leader>f", "<cmd>Telescope file_browser<CR>")
-
 require("telescope").load_extension("smart_open")
 local fb_actions = require("telescope").extensions.file_browser.actions
 local previewers = require("telescope.previewers")
@@ -472,6 +472,9 @@ map("n", "<leader>5", ":lua require'dap'.terminate()<CR>", { silent = true })
 map("n", "<leader>;", ":lua require'dap'.toggle_breakpoint()<CR>", { silent = true })
 map("n", "<leader>'", ":lua require'dapui'.toggle()<CR>", { silent = true })
 map("n", "<leader><leader>d", ":lua require'dapui'.eval()<CR>", { silent = true })
+
+--flutter-tools
+require("flutter-tools").setup({})
 
 --DAP-UI
 require("dapui").setup({
