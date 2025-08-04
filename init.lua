@@ -172,8 +172,8 @@ require("lazy").setup({
 	{ "lewis6991/gitsigns.nvim", config = true, event = "BufReadPre" },
 	{ "ryanoasis/vim-devicons", event = "UIEnter" },
 	{ "nvim-tree/nvim-web-devicons", event = "UIEnter" },
-	{ "mason-org/mason.nvim", event = "BufRead", cmd = { "Mason", "MasonInstall", "MasonUninstall" } },
-	{ "mason-org/mason-lspconfig.nvim", event = { "BufReadPre", "BufNewFile" } },
+	{ "mason-org/mason.nvim", event = "VeryLazy", cmd = { "Mason", "MasonInstall", "MasonUninstall" } },
+	{ "mason-org/mason-lspconfig.nvim", event = "VeryLazy" },
 	{ "jay-babu/mason-null-ls.nvim", event = "LspAttach" },
 	{ "jay-babu/mason-nvim-dap.nvim", event = "LspAttach" },
 	{ "neovim/nvim-lspconfig", event = "BufReadPre" },
@@ -234,15 +234,15 @@ require("lazy").setup({
 	{ "zbirenbaum/copilot.lua", event = "VeryLazy" },
 	{ "ysmb-wtsg/in-and-out.nvim", event = "VeryLazy" },
 	{ "nacro90/numb.nvim", config = true, event = "BufRead" },
+	{ "yuki-yano/fuzzy-motion.vim", keys = "S" },
+	{ "lambdalisue/gin.vim", cmd = { "Gin", "GitStatus" } },
+	{ "rbtnn/vim-ambiwidth", event = "VeryLazy" },
+	{ "lambdalisue/kensaku-search.vim", keys = { "/", "?" } },
+	{ "lambdalisue/kensaku.vim", event = "VeryLazy" },
+	{ "brenoprata10/nvim-highlight-colors", event = "BufReadPost" },
 
 	--non-lazy
 	{ "vim-denops/denops.vim", lazy = false },
-	{ "yuki-yano/fuzzy-motion.vim", lazy = false },
-	{ "lambdalisue/gin.vim", lazy = false },
-	{ "rbtnn/vim-ambiwidth", lazy = false },
-	{ "lambdalisue/kensaku-search.vim", lazy = false },
-	{ "lambdalisue/kensaku.vim", lazy = false },
-	{ "brenoprata10/nvim-highlight-colors", lazy = false },
 
 	--disable default plugins
 	performance = {
@@ -272,111 +272,150 @@ require("lazy").setup({
 })
 
 --lualine
-require("lualine").setup({
-	options = {
-		icons_enabled = true,
-		component_separators = { left = "", right = "" },
-		section_separators = { left = "", right = "" },
-		disabled_filetypes = {
-			winbar = {
-				"Avante",
-				"AvanteSelectedFiles",
-				"AvanteInput",
-			},
-			"TelescopePrompt",
-		},
-		always_divide_middle = true,
-		colored = false,
-		globalstatus = true,
-	},
-	sections = {
-		lualine_a = { "" },
-		lualine_b = { "branch", "diff" },
-		lualine_c = {
-			{
-				"filename",
-				path = 1,
-				file_status = true,
-				shorting_target = 40,
-				symbols = {
-					modified = "[+]",
-					readonly = "[RO]",
-					unnamed = "Untitled",
+vim.api.nvim_create_autocmd("UIEnter", {
+	once = true,
+	callback = function()
+		require("lualine").setup({
+			options = {
+				icons_enabled = true,
+				component_separators = { left = "", right = "" },
+				section_separators = { left = "", right = "" },
+				disabled_filetypes = {
+					winbar = {
+						"Avante",
+						"AvanteSelectedFiles",
+						"AvanteInput",
+					},
+					"TelescopePrompt",
 				},
+				always_divide_middle = true,
+				colored = false,
+				globalstatus = true,
 			},
-		},
-		lualine_x = { "filetype" },
-		lualine_y = {
-			{
-				"diagnostics",
-				source = { "nvim-lsp" },
+			sections = {
+				lualine_a = { "" },
+				lualine_b = { "branch", "diff" },
+				lualine_c = {
+					{
+						"filename",
+						path = 1,
+						file_status = true,
+						shorting_target = 40,
+						symbols = {
+							modified = "[+]",
+							readonly = "[RO]",
+							unnamed = "Untitled",
+						},
+					},
+				},
+				lualine_x = { "filetype" },
+				lualine_y = {
+					{
+						"diagnostics",
+						source = { "nvim-lsp" },
+					},
+					{ "progress" },
+					{ "location" },
+				},
+				lualine_z = { "" },
 			},
-			{ "progress" },
-			{ "location" },
-		},
-		lualine_z = { "" },
-	},
-	inactive_sections = {
-		lualine_a = {},
-		lualine_b = {},
-		lualine_c = { "filename" },
-		lualine_x = { "location" },
-		lualine_y = {},
-		lualine_z = {},
-	},
-	tabline = {},
-	extensions = {},
+			inactive_sections = {
+				lualine_a = {},
+				lualine_b = {},
+				lualine_c = { "filename" },
+				lualine_x = { "location" },
+				lualine_y = {},
+				lualine_z = {},
+			},
+			tabline = {},
+			extensions = {},
+		})
+	end,
 })
 
 --telescope
-require("telescope").setup({
-	defaults = {
-		preview = {
-			treesitter = false,
-		},
-		borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
-		color_devicons = false,
-		file_ignore_patterns = { "node_modules", ".git", ".cache", ".svg", ".npm", "go" },
-		mappings = {
-			i = {
-				["<esc>"] = require("telescope.actions").close,
+local telescope_setup = function()
+	require("telescope").setup({
+		defaults = {
+			preview = {
+				treesitter = false,
+			},
+			borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+			color_devicons = false,
+			file_ignore_patterns = { "node_modules", ".git", ".cache", ".svg", ".npm", "go" },
+			mappings = {
+				i = {
+					["<esc>"] = require("telescope.actions").close,
+				},
 			},
 		},
-	},
 
-	vimgrep_arguments = {
-		"rg",
-		"--color=never",
-		"--no-heading",
-		"--smart-case",
-		"-uu",
-	},
-
-	extensions = {
-		fzf = {
-			fuzzy = true,
-			override_generic_sorter = true,
-			override_file_sorter = true,
-			case_mode = "smart_case",
+		vimgrep_arguments = {
+			"rg",
+			"--color=never",
+			"--no-heading",
+			"--smart-case",
+			"-uu",
 		},
-	},
-})
 
-vim.keymap.set("n", "<leader>,", "<cmd>Telescope oldfiles<cr>")
-vim.keymap.set("n", "<leader>.", "<cmd>Telescope smart_open<cr>")
-vim.keymap.set("n", "<leader>l", "<cmd>Telescope live_grep grep_open_files=true<CR>")
-vim.keymap.set("n", "<leader>k", "<cmd>Telescope live_grep<CR>")
-vim.keymap.set("n", "<leader>i", "<cmd>Telescope lsp_incoming_calls<CR>")
-vim.keymap.set("n", "<leader>o", "<cmd>Telescope lsp_outgoing_calls<CR>")
-vim.keymap.set("n", "<leader>k", "<cmd>Telescope live_grep<CR>")
-vim.keymap.set("n", "<leader>b", "<cmd>Telescope buffers<CR>")
-vim.keymap.set("n", "<leader><leader>h", "<cmd>Telescope help_tags<CR>")
-vim.keymap.set("n", "<leader>y", "<cmd>Telescope registers<CR>")
-vim.keymap.set("n", "<leader>n", "<cmd>Telescope lsp_references<CR>")
-vim.keymap.set("n", "<leader>d", "<cmd>Telescope diagnostics<CR>")
-vim.keymap.set("n", "<leader>s", "<cmd>Telescope lsp_document_symbols<CR>")
-vim.keymap.set("n", "<leader>f", "<cmd>Telescope file_browser<CR>")
-require("telescope").load_extension("smart_open")
+		extensions = {
+			fzf = {
+				fuzzy = true,
+				override_generic_sorter = true,
+				override_file_sorter = true,
+				case_mode = "smart_case",
+			},
+		},
+	})
+end
+
+local telescope_keymaps = function()
+	vim.keymap.set("n", "<leader>,", "<cmd>Telescope oldfiles<cr>")
+	vim.keymap.set("n", "<leader>.", "<cmd>Telescope smart_open<cr>")
+	vim.keymap.set("n", "<leader>l", "<cmd>Telescope live_grep grep_open_files=true<CR>")
+	vim.keymap.set("n", "<leader>k", "<cmd>Telescope live_grep<CR>")
+	vim.keymap.set("n", "<leader>i", "<cmd>Telescope lsp_incoming_calls<CR>")
+	vim.keymap.set("n", "<leader>o", "<cmd>Telescope lsp_outgoing_calls<CR>")
+	vim.keymap.set("n", "<leader>k", "<cmd>Telescope live_grep<CR>")
+	vim.keymap.set("n", "<leader>b", "<cmd>Telescope buffers<CR>")
+	vim.keymap.set("n", "<leader><leader>h", "<cmd>Telescope help_tags<CR>")
+	vim.keymap.set("n", "<leader>y", "<cmd>Telescope registers<CR>")
+	vim.keymap.set("n", "<leader>n", "<cmd>Telescope lsp_references<CR>")
+	vim.keymap.set("n", "<leader>d", "<cmd>Telescope diagnostics<CR>")
+	vim.keymap.set("n", "<leader>s", "<cmd>Telescope lsp_document_symbols<CR>")
+	vim.keymap.set("n", "<leader>f", "<cmd>Telescope file_browser<CR>")
+	require("telescope").load_extension("smart_open")
+end
+
+local telescope_loaded = false
+local ensure_telescope = function()
+	if not telescope_loaded then
+		telescope_setup()
+		telescope_keymaps()
+		telescope_loaded = true
+	end
+end
+
+vim.keymap.set("n", "<leader>,", function()
+	ensure_telescope()
+	vim.cmd("Telescope oldfiles")
+end)
+vim.keymap.set("n", "<leader>.", function()
+	ensure_telescope()
+	vim.cmd("Telescope smart_open")
+end)
+vim.keymap.set("n", "<leader>l", function()
+	ensure_telescope()
+	vim.cmd("Telescope live_grep grep_open_files=true")
+end)
+vim.keymap.set("n", "<leader>k", function()
+	ensure_telescope()
+	vim.cmd("Telescope live_grep")
+end)
+vim.keymap.set("n", "<leader>b", function()
+	ensure_telescope()
+	vim.cmd("Telescope buffers")
+end)
 local fb_actions = require("telescope").extensions.file_browser.actions
 local previewers = require("telescope.previewers")
 local Job = require("plenary.job")
@@ -399,31 +438,41 @@ local new_maker = function(filepath, bufnr, opts)
 end
 
 --LSP
-require("lspsaga").setup({
-	symbol_in_winbar = {
-		enable = false,
-	},
-	ui = {
-		border = "single",
-		title = false,
-	},
-	lightbulb = {
-		enable = false,
-	},
-	diagnostic = {
-		diagnostic_only_current = false,
-	},
+vim.api.nvim_create_autocmd("LspAttach", {
+	once = true,
+	callback = function()
+		require("lspsaga").setup({
+			symbol_in_winbar = {
+				enable = false,
+			},
+			ui = {
+				border = "single",
+				title = false,
+			},
+			lightbulb = {
+				enable = false,
+			},
+			diagnostic = {
+				diagnostic_only_current = false,
+			},
+		})
+	end,
 })
 
-local set = vim.keymap.set
-set("n", "K", "<cmd>Lspsaga hover_doc<CR>")
-set("n", "<leader>r", "<cmd>Lspsaga rename<CR>")
-set("n", "<leader>c", "<cmd>Lspsaga code_action<CR>")
-set("n", "<leader>e", "<cmd>Lspsaga show_line_diagnostics<CR>")
-set("n", "<leader>j", "<cmd>Lspsaga peek_definition<CR>")
-set("n", "<leader>gj", "<cmd>Lspsaga goto_definition<CR>")
-set("n", "<leader>[", "<cmd>Lspsaga diagnostic_jump_prev<CR>")
-set("n", "<leader>]", "<cmd>Lspsaga diagnostic_jump_next<CR>")
+--LSP keymaps
+vim.api.nvim_create_autocmd("LspAttach", {
+	callback = function()
+		local set = vim.keymap.set
+		set("n", "K", "<cmd>Lspsaga hover_doc<CR>")
+		set("n", "<leader>r", "<cmd>Lspsaga rename<CR>")
+		set("n", "<leader>c", "<cmd>Lspsaga code_action<CR>")
+		set("n", "<leader>e", "<cmd>Lspsaga show_line_diagnostics<CR>")
+		set("n", "<leader>j", "<cmd>Lspsaga peek_definition<CR>")
+		set("n", "<leader>gj", "<cmd>Lspsaga goto_definition<CR>")
+		set("n", "<leader>[", "<cmd>Lspsaga diagnostic_jump_prev<CR>")
+		set("n", "<leader>]", "<cmd>Lspsaga diagnostic_jump_next<CR>")
+	end,
+})
 vim.diagnostic.config({ virtual_text = false, severity_sort = true })
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -585,106 +634,116 @@ require("jaq-nvim").setup({
 vim.keymap.set("n", "<leader>x", ":<C-u>Jaq<CR>", { silent = true })
 
 -- blink.cmp
-require("blink.cmp").setup({
-	keymap = {
-		preset = "enter",
-		["<Tab>"] = { "select_next", "fallback" },
-		["<C-d>"] = { "show", "show_documentation", "hide_documentation" },
-	},
-	fuzzy = { implementation = "rust" },
-	completion = {
-		menu = {
-			border = "single",
-			winblend = 10,
-			draw = {
-				treesitter = { "lsp" },
+vim.api.nvim_create_autocmd({ "InsertEnter", "CmdLineEnter" }, {
+	once = true,
+	callback = function()
+		require("blink.cmp").setup({
+			keymap = {
+				preset = "enter",
+				["<Tab>"] = { "select_next", "fallback" },
+				["<C-d>"] = { "show", "show_documentation", "hide_documentation" },
 			},
-		},
-		list = {
-			selection = {
-				preselect = true,
-				auto_insert = true,
-			},
-		},
-		documentation = {
-			window = {
-				border = "single",
-				winblend = 10,
-			},
-		},
-	},
-	signature = {
-		enabled = true,
-		trigger = {
-			enabled = true,
-		},
-		window = {
-			border = "single",
-			winblend = 10,
-			treesitter_highlighting = true,
-			show_documentation = true,
-		},
-	},
-	snippets = {
-		preset = "luasnip",
-	},
-	sources = {
-		default = { "avante", "copilot", "lsp", "snippets", "path", "buffer", "cmdline", "omni" },
-		providers = {
-			avante = {
-				module = "blink-cmp-avante",
-				name = "Avante",
-			},
-			copilot = {
-				name = "copilot",
-				module = "blink-copilot",
-				score_offset = 100,
-				async = true,
-			},
-		},
-		min_keyword_length = 2,
-	},
-	cmdline = {
-		completion = {
-			list = {
-				selection = {
-					preselect = false,
+			fuzzy = { implementation = "rust" },
+			completion = {
+				menu = {
+					border = "single",
+					winblend = 10,
+					draw = {
+						treesitter = { "lsp" },
+					},
+				},
+				list = {
+					selection = {
+						preselect = true,
+						auto_insert = true,
+					},
+				},
+				documentation = {
+					window = {
+						border = "single",
+						winblend = 10,
+					},
 				},
 			},
-			menu = {
-				auto_show = function(ctx)
-					return vim.fn.getcmdtype() == ":"
-				end,
+			signature = {
+				enabled = true,
+				trigger = {
+					enabled = true,
+				},
+				window = {
+					border = "single",
+					winblend = 10,
+					treesitter_highlighting = true,
+					show_documentation = true,
+				},
 			},
-		},
-	},
+			snippets = {
+				preset = "luasnip",
+			},
+			sources = {
+				default = { "avante", "copilot", "lsp", "snippets", "path", "buffer", "cmdline", "omni" },
+				providers = {
+					avante = {
+						module = "blink-cmp-avante",
+						name = "Avante",
+					},
+					copilot = {
+						name = "copilot",
+						module = "blink-copilot",
+						score_offset = 100,
+						async = true,
+					},
+				},
+				min_keyword_length = 2,
+			},
+			cmdline = {
+				completion = {
+					list = {
+						selection = {
+							preselect = false,
+						},
+					},
+					menu = {
+						auto_show = function(ctx)
+							return vim.fn.getcmdtype() == ":"
+						end,
+					},
+				},
+			},
+		})
+	end,
 })
 
 --luasnip
 require("luasnip.loaders.from_vscode").lazy_load()
 
 --nvim-treesitter
-require("nvim-treesitter.configs").setup({
-	highlight = {
-		enable = true,
-		disable = { "help", "markdown", "toml" },
-	},
-	refactor = {
-		highlight_defintions = {
-			enable = true,
-		},
-	},
-	indent = {
-		enable = true,
-	},
-	yati = {
-		enable = false,
-	},
-	matchup = {
-		enable = true,
-		enable_quotes = true,
-	},
-	ensure_installed = "all",
+vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
+	once = true,
+	callback = function()
+		require("nvim-treesitter.configs").setup({
+			highlight = {
+				enable = true,
+				disable = { "help", "markdown", "toml" },
+			},
+			refactor = {
+				highlight_defintions = {
+					enable = true,
+				},
+			},
+			indent = {
+				enable = true,
+			},
+			yati = {
+				enable = false,
+			},
+			matchup = {
+				enable = true,
+				enable_quotes = true,
+			},
+			ensure_installed = "all",
+		})
+	end,
 })
 
 --nvim-ts-autotag
@@ -796,7 +855,14 @@ vim.keymap.set("n", "S", "<cmd>FuzzyMotion<CR>")
 vim.cmd("let g:fuzzy_motion_matchers = ['kensaku', 'fzf']")
 
 --kensaku-search
-vim.keymap.set("c", "<CR>", "<Plug>(kensaku-search-replace)<CR>")
+vim.keymap.set("c", "<CR>", function()
+	local cmdtype = vim.fn.getcmdtype()
+	if cmdtype == "/" or cmdtype == "?" then
+		return "<Plug>(kensaku-search-replace)<CR>"
+	else
+		return "<CR>"
+	end
+end, { expr = true })
 
 --clever-f
 vim.cmd("let g:clever_f_across_no_line = 1")
@@ -1045,10 +1111,8 @@ if ok then
 	extui.enable({
 		enable = true,
 		msg = {
-			pos = "cmd",
-			box = {
-				timeout = 5000,
-			},
+			target = "cmd",
+			timeout = 5000,
 		},
 	})
 end
