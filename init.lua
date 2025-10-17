@@ -65,7 +65,6 @@ vim.keymap.set("n", "Q", ":<C-u>quit!<CR>")
 vim.keymap.set("n", "<leader>q", ":<C-u>bd<CR>")
 vim.keymap.set("n", "<C-s>", ":<C-u>%s///cg<Left><Left><Left><Left>")
 vim.keymap.set("n", "<C-c>", ":<C-u>echo wordcount()['chars']<CR>")
-vim.keymap.set("n", "<C-=>", ":<C-u>lua print(genko())<CR>")
 vim.keymap.set("v", "i<leader>", "iW")
 vim.keymap.set("o", "i<leader>", "iW")
 vim.keymap.set("n", "U", "<c-r>")
@@ -369,29 +368,19 @@ local telescope_setup = function()
 	})
 end
 
-local telescope_keymaps = function()
-	vim.keymap.set("n", "<leader>,", "<cmd>Telescope oldfiles<cr>")
-	vim.keymap.set("n", "<leader>.", "<cmd>Telescope smart_open<cr>")
-	vim.keymap.set("n", "<leader>l", "<cmd>Telescope live_grep grep_open_files=true<CR>")
-	vim.keymap.set("n", "<leader>k", "<cmd>Telescope live_grep<CR>")
-	vim.keymap.set("n", "<leader>i", "<cmd>Telescope lsp_incoming_calls<CR>")
-	vim.keymap.set("n", "<leader>o", "<cmd>Telescope lsp_outgoing_calls<CR>")
-	vim.keymap.set("n", "<leader>k", "<cmd>Telescope live_grep<CR>")
-	vim.keymap.set("n", "<leader>b", "<cmd>Telescope buffers<CR>")
-	vim.keymap.set("n", "<leader><leader>h", "<cmd>Telescope help_tags<CR>")
-	vim.keymap.set("n", "<leader>y", "<cmd>Telescope registers<CR>")
-	vim.keymap.set("n", "<leader>n", "<cmd>Telescope lsp_references<CR>")
-	vim.keymap.set("n", "<leader>d", "<cmd>Telescope diagnostics<CR>")
-	vim.keymap.set("n", "<leader>s", "<cmd>Telescope lsp_document_symbols<CR>")
-	vim.keymap.set("n", "<leader>f", "<cmd>Telescope file_browser<CR>")
-	require("telescope").load_extension("smart_open")
-end
-
 local telescope_loaded = false
 local ensure_telescope = function()
 	if not telescope_loaded then
 		telescope_setup()
-		telescope_keymaps()
+		require("telescope").load_extension("smart_open")
+		require("telescope").load_extension("file_browser")
+		vim.keymap.set("n", "<leader>i", "<cmd>Telescope lsp_incoming_calls<CR>")
+		vim.keymap.set("n", "<leader>o", "<cmd>Telescope lsp_outgoing_calls<CR>")
+		vim.keymap.set("n", "<leader><leader>h", "<cmd>Telescope help_tags<CR>")
+		vim.keymap.set("n", "<leader>y", "<cmd>Telescope registers<CR>")
+		vim.keymap.set("n", "<leader>n", "<cmd>Telescope lsp_references<CR>")
+		vim.keymap.set("n", "<leader>d", "<cmd>Telescope diagnostics<CR>")
+		vim.keymap.set("n", "<leader>s", "<cmd>Telescope lsp_document_symbols<CR>")
 		telescope_loaded = true
 	end
 end
@@ -415,6 +404,10 @@ end)
 vim.keymap.set("n", "<leader>b", function()
 	ensure_telescope()
 	vim.cmd("Telescope buffers")
+end)
+vim.keymap.set("n", "<leader>f", function()
+	ensure_telescope()
+	vim.cmd("Telescope file_browser")
 end)
 local fb_actions = require("telescope").extensions.file_browser.actions
 local previewers = require("telescope.previewers")
@@ -598,6 +591,7 @@ require("jaq-nvim").setup({
 			javascript = "node %",
 			typescript = "deno %",
 			go = "go run %",
+			java = "java %",
 		},
 	},
 
@@ -1036,7 +1030,7 @@ local avante_config = {
 	hints = { enabled = false },
 	provider = "copilot",
 	copilot = {
-		model = "claude-sonnet-4",
+		model = "claude-sonnet-4.5",
 	},
 	auto_suggestions_provider = "copilot",
 	file_selector = {
@@ -1098,11 +1092,14 @@ function genko()
 
 	for i = 1, num_lines do
 		local line = vim.api.nvim_buf_get_lines(0, i - 1, i, false)[1]
-		local s = math.ceil(vim.fn.strchars(line) / 20.0)
-		line_count = line_count + (s == 0 and 1 or s)
+		if line then
+			local chars = vim.fn.strchars(line)
+			local s = math.ceil(chars / 20.0)
+			line_count = line_count + (s == 0 and 1 or s)
+		end
 	end
 
-	return line_count / 20.0
+	return string.format("%.2f", line_count / 20.0)
 end
 
 vim.opt.cmdheight = 0
