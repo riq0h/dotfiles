@@ -225,7 +225,6 @@ require("lazy").setup({
 	{ "mvllow/modes.nvim", event = "VeryLazy" },
 	{ "monaqa/dial.nvim", event = "VeryLazy" },
 	{ "tpope/vim-repeat", event = "VeryLazy" },
-	{ "nvim-zh/colorful-winsep.nvim", config = true, event = "WinNew" },
 	{ "kevinhwang91/nvim-bqf", ft = "qf" },
 	{ "vim-jp/vimdoc-ja", ft = "help" },
 	{ "yetone/avante.nvim", build = "make", event = "VeryLazy" },
@@ -804,14 +803,6 @@ require("modes").setup({
 		delete = "#D699B6",
 		insert = "#83C092",
 		visual = "#E67E80",
-	},
-})
-
---colorful-winsep
-require("colorful-winsep").setup({
-	highlight = {
-		bg = "",
-		fg = "#D3C6AA",
 	},
 })
 
