@@ -174,6 +174,11 @@ require("lazy").setup({
 	{ "nacro90/numb.nvim", config = true, event = "BufRead" },
 	{ "rbtnn/vim-ambiwidth", event = "VeryLazy" },
 	{ "vim-jp/vimdoc-ja", ft = "help" },
+	{ "MunifTanjim/nui.nvim", event = "VeryLazy" },
+	{ "folke/noice.nvim", event = "VeryLazy" },
+
+	--non-lazy
+	{ "folke/snacks.nvim", priority = 1000, lazy = false },
 
 	--disable default plugins
 	performance = {
@@ -275,6 +280,97 @@ vim.keymap.set("n", "<leader>k", function()
 	ensure_telescope()
 	vim.cmd("Telescope live_grep")
 end)
+
+----SNACKS
+require("snacks").setup({
+	animate = { enabled = false },
+	bigfile = { enabled = true },
+	bufdelete = { enabled = true },
+	dashboard = { enabled = false },
+	debug = { enabled = false },
+	dim = { enabled = false },
+	explorer = { enabled = false },
+	gh = { enabled = false },
+	git = { enabled = false },
+	gitbrowse = { enabled = false },
+	image = { enabled = false },
+	indent = { enabled = false },
+	input = {
+		enabled = true,
+		icon = " ",
+		icon_pos = "left",
+		win = {
+			border = "single",
+			relative = "cursor",
+			row = -3,
+			col = 0,
+		},
+	},
+	lazygit = { enabled = false },
+	notifier = {
+		enabled = true,
+		style = "compact",
+	},
+	notify = { enabled = false },
+	picker = { enabled = false },
+	profiler = { enabled = false },
+	quickfile = { enabled = true },
+	rename = { enabled = false },
+	scope = { enabled = false },
+	scroll = { enabled = false },
+	statuscolumn = { enabled = false },
+	terminal = { enabled = false },
+	toggle = { enabled = false },
+	words = { enabled = true },
+	zen = { enabled = false },
+	styles = {
+		input = {
+			border = "single",
+		},
+		notification = {
+			border = "single",
+		},
+	},
+})
+
+----NOICE
+require("noice").setup({
+	lsp = {
+		override = {
+			["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+			["vim.lsp.util.stylize_markdown"] = true,
+			["cmp.entry.get_documentation"] = true,
+		},
+	},
+	presets = {
+		bottom_search = false,
+		command_palette = false,
+		long_message_to_split = true,
+		lsp_doc_border = true,
+	},
+	views = {
+		cmdline_popup = {
+			border = {
+				style = "single",
+			},
+		},
+		popupmenu = {
+			border = {
+				style = "single",
+			},
+		},
+		confirm = {
+			border = {
+				style = "single",
+			},
+		},
+		hover = {
+			border = {
+				style = "single",
+			},
+		},
+	},
+})
 
 ----MODES
 require("modes").setup({
