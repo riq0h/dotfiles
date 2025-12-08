@@ -31,7 +31,7 @@ opt.confirm = true
 opt.pumblend = 0
 opt.winblend = 0
 opt.mouse = "a"
-opt.cmdheight = 2
+opt.cmdheight = 0
 opt.timeout = true
 opt.ttimeout = true
 opt.ttimeoutlen = 10
@@ -43,7 +43,7 @@ opt.backup = false
 opt.swapfile = false
 opt.encoding = "utf-8"
 opt.fileencodings = { "utf-8", "iso-2022-jp", "cp932", "euc-jp", "sjis" }
-vim.opt.shortmess:append("I")
+vim.opt.shortmess:append("IcC")
 vim.cmd("set completeopt-=preview")
 
 ----ADVANCED SETTINGS
@@ -195,7 +195,6 @@ require("lazy").setup({
 	{ "j-hui/fidget.nvim", config = true, event = "LspAttach" },
 	{ "neanias/everforest-nvim", event = "VeryLazy" },
 	{ "nvim-lua/plenary.nvim", event = "VeryLazy" },
-	{ "stevearc/dressing.nvim", event = "VeryLazy" },
 	{ "nvim-flutter/flutter-tools.nvim", event = "LspAttach" },
 	{ "MunifTanjim/nui.nvim", event = "VeryLazy" },
 	{ "Saghen/blink.cmp", event = { "InsertEnter", "CmdLineEnter" } },
@@ -228,18 +227,18 @@ require("lazy").setup({
 	{ "kevinhwang91/nvim-bqf", ft = "qf" },
 	{ "vim-jp/vimdoc-ja", ft = "help" },
 	{ "yetone/avante.nvim", build = "make", event = "VeryLazy" },
-	{ "kdheepak/lazygit.nvim", event = "LspAttach" },
 	{ "zbirenbaum/copilot.lua", event = "VeryLazy" },
 	{ "ysmb-wtsg/in-and-out.nvim", event = "VeryLazy" },
 	{ "nacro90/numb.nvim", config = true, event = "BufRead" },
 	{ "yuki-yano/fuzzy-motion.vim", keys = "S" },
-	{ "lambdalisue/gin.vim", cmd = { "Gin", "GitStatus" } },
 	{ "rbtnn/vim-ambiwidth", event = "VeryLazy" },
 	{ "lambdalisue/kensaku-search.vim", keys = { "/", "?" } },
 	{ "lambdalisue/kensaku.vim", event = "VeryLazy" },
 	{ "brenoprata10/nvim-highlight-colors", event = "BufReadPost" },
+	{ "folke/noice.nvim", event = "VeryLazy" },
 
 	--non-lazy
+	{ "folke/snacks.nvim", priority = 1000, lazy = false },
 	{ "vim-denops/denops.vim", lazy = false },
 
 	--disable default plugins
@@ -791,18 +790,93 @@ require("bqf").setup({
 
 vim.keymap.set("n", "<leader>9", [[:vimgrep /\w\+/j % | copen<CR>]], { noremap = true, silent = true })
 
---dressing
-require("dressing").setup({
+--snacks
+require("snacks").setup({
+	bigfile = { enabled = false },
+	bufdelete = { enabled = true },
+	dashboard = { enabled = false },
+	debug = { enabled = false },
+	dim = { enabled = false },
+	explorer = { enabled = false },
+	gh = { enabled = false },
+	git = { enabled = false },
+	gitbrowse = { enabled = false },
+	image = { enabled = false },
+	indent = { enabled = false },
 	input = {
-		border = "single",
-		get_config = function()
-			if vim.bo.filetype == "TelescopePrompt" then
-				return { enabled = false }
-			end
-		end,
+		enabled = true,
+		icon = " ",
+		icon_pos = "left",
+		win = {
+			border = "single",
+			relative = "cursor",
+			row = -3,
+			col = 0,
+		},
 	},
-	builtin = {
-		border = "single",
+	lazygit = { enabled = true },
+	notifier = {
+		enabled = true,
+		style = "compact",
+	},
+	notify = { enabled = false },
+	picker = { enabled = false },
+	profiler = { enabled = false },
+	quickfile = { enabled = true },
+	rename = { enabled = false },
+	scope = { enabled = false },
+	scroll = { enabled = false },
+	statuscolumn = { enabled = false },
+	terminal = { enabled = false },
+	toggle = { enabled = false },
+	words = { enabled = true },
+	zen = { enabled = false },
+	styles = {
+		input = {
+			border = "single",
+		},
+		notification = {
+			border = "single",
+		},
+	},
+})
+
+--noice
+require("noice").setup({
+	lsp = {
+		override = {
+			["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+			["vim.lsp.util.stylize_markdown"] = true,
+			["cmp.entry.get_documentation"] = true,
+		},
+	},
+	presets = {
+		bottom_search = false,
+		command_palette = false,
+		long_message_to_split = true,
+		lsp_doc_border = true,
+	},
+	views = {
+		cmdline_popup = {
+			border = {
+				style = "single",
+			},
+		},
+		popupmenu = {
+			border = {
+				style = "single",
+			},
+		},
+		confirm = {
+			border = {
+				style = "single",
+			},
+		},
+		hover = {
+			border = {
+				style = "single",
+			},
+		},
 	},
 })
 
@@ -1013,12 +1087,6 @@ vim.keymap.set("v", "<C-x>", require("dial.map").dec_visual(), { noremap = true 
 vim.keymap.set("v", "g<C-a>", require("dial.map").inc_gvisual(), { noremap = true })
 vim.keymap.set("v", "g<C-x>", require("dial.map").dec_gvisual(), { noremap = true })
 
---gin
-vim.keymap.set("n", "<leader>gs", ":<C-u>GitStatus<CR>", { silent = true })
-vim.keymap.set("n", "<leader>ga", ":<C-u>Gin add .<CR>", { silent = true })
-vim.keymap.set("n", "<leader>gc", ":<C-u>Gin commit -m ")
-vim.keymap.set("n", "<leader>gp", ":<C-u>Gin push<CR>")
-
 --copilot
 require("copilot").setup({
 	suggestion = { enabled = false },
@@ -1030,14 +1098,9 @@ require("avante_lib").load()
 local avante_config = {
 	hints = { enabled = false },
 	provider = "copilot",
-	copilot = {
-		model = "claude-sonnet-4.5",
-	},
 	auto_suggestions_provider = "copilot",
 	file_selector = {
 		provider = "telescope",
-		temperature = 0,
-		-- reasoning_effort = "high",
 	},
 	behaviour = {
 		auto_set_highlight_group = false,
@@ -1047,6 +1110,13 @@ local avante_config = {
 		minimize_diff = true,
 		enable_claude_text_editor_tool_mode = true,
 		enable_token_counting = false,
+	},
+	providers = {
+		copilot = {
+			endpoint = "https://api.githubcopilot.com",
+			model = "claude-sonnet-4.5",
+			timeout = 30000,
+		},
 	},
 	windows = {
 		position = "right",
@@ -1075,8 +1145,9 @@ local avante_config = {
 require("avante").setup(avante_config)
 
 --lazygit
-vim.keymap.set("n", "<leader>=", ":<C-u>LazyGit<CR>", { silent = true })
-vim.g.lazygit_floating_window_border_chars = { "", "", "", "", "", "", "", "" }
+vim.keymap.set("n", "<leader>=", function()
+	Snacks.lazygit()
+end, { silent = true })
 
 --in-and-out
 vim.keymap.set("i", "<A-CR>", function()
@@ -1101,16 +1172,4 @@ function genko()
 	end
 
 	return string.format("%.2f", line_count / 20.0)
-end
-
-vim.opt.cmdheight = 0
-local ok, extui = pcall(require, "vim._extui")
-if ok then
-	extui.enable({
-		enable = true,
-		msg = {
-			target = "cmd",
-			timeout = 5000,
-		},
-	})
 end
