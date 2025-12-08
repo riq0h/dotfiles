@@ -792,7 +792,8 @@ vim.keymap.set("n", "<leader>9", [[:vimgrep /\w\+/j % | copen<CR>]], { noremap =
 
 --snacks
 require("snacks").setup({
-	bigfile = { enabled = false },
+	animate = { enabled = false },
+	bigfile = { enabled = true },
 	bufdelete = { enabled = true },
 	dashboard = { enabled = false },
 	debug = { enabled = false },
