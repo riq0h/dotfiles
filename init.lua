@@ -363,6 +363,11 @@ local telescope_setup = function()
 				override_file_sorter = true,
 				case_mode = "smart_case",
 			},
+			file_browser = {
+				hijack_netrw = true,
+				respect_gitignore = false,
+				auto_depth = false,
+			},
 		},
 	})
 end
@@ -790,6 +795,11 @@ vim.keymap.set("n", "<leader>9", [[:vimgrep /\w\+/j % | copen<CR>]], { noremap =
 require("dressing").setup({
 	input = {
 		border = "single",
+		get_config = function()
+			if vim.bo.filetype == "TelescopePrompt" then
+				return { enabled = false }
+			end
+		end,
 	},
 	builtin = {
 		border = "single",
