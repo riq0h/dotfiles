@@ -156,6 +156,8 @@ require("lazy").setup({
 	{ "lewis6991/gitsigns.nvim", config = true, event = "BufReadPre" },
 	{ "neanias/everforest-nvim", event = "VeryLazy" },
 	{ "nvim-lua/plenary.nvim", event = "VeryLazy" },
+	{ "ryanoasis/vim-devicons", event = "UIEnter" },
+	{ "nvim-tree/nvim-web-devicons", event = "UIEnter" },
 	{ "windwp/nvim-autopairs", config = true, event = "InsertEnter" },
 	{ "lambdalisue/suda.vim", cmd = { "SudaWrite", "SudaRead" } },
 	{ "jghauser/mkdir.nvim", event = "ModeChanged" },
