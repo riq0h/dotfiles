@@ -224,7 +224,6 @@ require("lazy").setup({
 	{ "mvllow/modes.nvim", event = "VeryLazy" },
 	{ "monaqa/dial.nvim", event = "VeryLazy" },
 	{ "tpope/vim-repeat", event = "VeryLazy" },
-	{ "kevinhwang91/nvim-bqf", ft = "qf" },
 	{ "vim-jp/vimdoc-ja", ft = "help" },
 	{ "yetone/avante.nvim", build = "make", event = "VeryLazy" },
 	{ "zbirenbaum/copilot.lua", event = "VeryLazy" },
@@ -780,15 +779,6 @@ require("hlchunk").setup({
 		enable = true,
 	},
 })
-
---nvim-bqf
-require("bqf").setup({
-	preview = {
-		border = "single",
-	},
-})
-
-vim.keymap.set("n", "<leader>9", [[:vimgrep /\w\+/j % | copen<CR>]], { noremap = true, silent = true })
 
 --snacks
 require("snacks").setup({

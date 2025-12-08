@@ -53,17 +53,81 @@ vim.g.loaded_perl_provider = 0
 vim.g.loaded_node_provider = 0
 
 ----KEYMAPS
-vim.keymap.set("n", "j", "gj")
+vim.keymap.set("n", "ew", ":<C-u>w<CR>")
+vim.keymap.set("n", "eq", ":<C-u>wq<CR>")
+vim.keymap.set("n", "Q", ":<C-u>quit!<CR>")
+vim.keymap.set("n", "<leader>q", ":<C-u>bd<CR>")
+vim.keymap.set("n", "<C-s>", ":<C-u>%s///cg<Left><Left><Left><Left>")
+vim.keymap.set("n", "<C-c>", ":<C-u>echo wordcount()['chars']<CR>")
+vim.keymap.set("v", "i<leader>", "iW")
+vim.keymap.set("o", "i<leader>", "iW")
+vim.keymap.set("n", "U", "<c-r>")
+vim.keymap.set("i", "<C-g><C-u>", "<esc>gUiwgi")
+vim.keymap.set("i", "<C-g><C-l>", "<esc>guiwgi")
+vim.keymap.set("i", "<C-g><C-k>", "<esc>bgUlgi")
+vim.keymap.set("n", "i", function()
+	return vim.fn.empty(vim.fn.getline(".")) == 1 and '"_cc' or "i"
+end, { expr = true, noremap = true })
+vim.keymap.set("n", "A", function()
+	return vim.fn.empty(vim.fn.getline(".")) == 1 and '"_cc' or "A"
+end, { expr = true, noremap = true })
+vim.keymap.set("n", "<C-k>", function()
+	return string.format("<cmd>move-1-%d<CR>=l", vim.v.count1)
+end, { expr = true, noremap = true })
+vim.keymap.set("n", "<C-j>", function()
+	return string.format("<cmd>move+%d<CR>=l", vim.v.count1)
+end, { expr = true, noremap = true })
+vim.keymap.set("v", "<C-k>", ":move'<-2<CR>gv=gv")
+vim.keymap.set("v", "<C-j>", ":move'>+1<CR>gv=gv")
+vim.keymap.set("n", "<leader><TAB>", ":bprev<CR>", { silent = true })
+vim.keymap.set("n", "<leader>t", ":tabclose<CR>", { silent = true })
+vim.keymap.set("n", "]b", ":bnext<CR>", { silent = true })
+vim.keymap.set("n", "sv", ":<C-u>vsplit<CR>", { silent = true })
+vim.keymap.set("n", "sp", ":<C-u>split<CR>", { silent = true })
+vim.keymap.set("n", "<MiddleMouse>", "<Nop>")
+vim.keymap.set("n", "<2-MiddleMouse>", "<Nop>")
+vim.keymap.set("n", "<3-MiddleMouse>", "<Nop>")
+vim.keymap.set("n", "<4-MiddleMouse>", "<Nop>")
+vim.keymap.set("i", "<1-MiddleMouse>", "<Nop>")
+vim.keymap.set("i", "<2-MiddleMouse>", "<Nop>")
+vim.keymap.set("i", "<3-MiddleMouse>", "<Nop>")
+vim.keymap.set("i", "<4-MiddleMouse>", "<Nop>")
+vim.keymap.set("n", "qq", "<Nop>")
+vim.keymap.set("v", "qq", "<Nop")
+vim.keymap.set("n", "ZZ", "<Nop>")
+vim.keymap.set("n", "ZQ", "<Nop>")
+vim.keymap.set("n", "<C-z>", "<Nop>")
+vim.keymap.set("n", "<F1>", "<Nop>")
+vim.keymap.set("n", "x", '"_x')
+vim.keymap.set("v", "x", '"_x')
+vim.keymap.set("n", "X", '"_D')
+vim.keymap.set("n", "s", '"_s')
 vim.keymap.set("n", "k", "gk")
+vim.keymap.set("n", "j", "gj")
+vim.keymap.set("n", "<UP>", "gk")
+vim.keymap.set("n", "<DOWN>", "gj")
+vim.keymap.set("n", "O", ":<C-u>call append(expand('.'), '')<CR>j")
+vim.keymap.set("n", "sh", "<C-w>h")
+vim.keymap.set("n", "sj", "<C-w>j")
+vim.keymap.set("n", "sk", "<C-w>k")
+vim.keymap.set("n", "sl", "<C-w>l")
+vim.keymap.set("n", "sH", "<C-w>H")
+vim.keymap.set("n", "sJ", "<C-w>J")
+vim.keymap.set("n", "sK", "<C-w>K")
+vim.keymap.set("n", "sL", "<C-w>L")
+vim.keymap.set("n", "<leader>m", "<plug>(matchup-%)")
+vim.keymap.set("n", "p", "]p")
+vim.keymap.set("n", "P", "]P")
+vim.keymap.set("v", "p", "P")
+vim.keymap.set("v", "y", "mzy`z")
+vim.keymap.set("n", "<leader>u", "<cmd>copy.<CR>")
+vim.keymap.set("n", "<leader>U", "<cmd>copy-1<CR>")
+vim.keymap.set("v", "<leader>u", ":copy'<-1<CR>gv")
+vim.keymap.set("v", "<leader>U", ":copy'>+0<CR>gv")
 vim.keymap.set("n", "<Esc><Esc>", "<cmd>nohlsearch<CR>")
 vim.keymap.set("i", "jj", "<Esc>")
-vim.keymap.set("n", "<C-h>", "<C-w>h")
-vim.keymap.set("n", "<C-j>", "<C-w>j")
-vim.keymap.set("n", "<C-k>", "<C-w>k")
-vim.keymap.set("n", "<C-l>", "<C-w>l")
 vim.keymap.set("n", "<Tab>", "<cmd>bnext<CR>")
 vim.keymap.set("n", "<S-Tab>", "<cmd>bprevious<CR>")
-vim.keymap.set("n", "<leader>q", "<cmd>bdelete<CR>")
 vim.keymap.set("n", "<leader>w", "<cmd>w<CR>")
 vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
@@ -104,6 +168,10 @@ require("lazy").setup({
 	{ "monaqa/dial.nvim", event = "VeryLazy" },
 	{ "tpope/vim-repeat", event = "VeryLazy" },
 	{ "brenoprata10/nvim-highlight-colors", event = "BufReadPost" },
+	{ "ysmb-wtsg/in-and-out.nvim", event = "VeryLazy" },
+	{ "nacro90/numb.nvim", config = true, event = "BufRead" },
+	{ "rbtnn/vim-ambiwidth", event = "VeryLazy" },
+	{ "vim-jp/vimdoc-ja", ft = "help" },
 
 	--disable default plugins
 	performance = {
@@ -175,6 +243,8 @@ local ensure_telescope = function()
 		telescope_setup()
 		require("telescope").load_extension("smart_open")
 		require("telescope").load_extension("file_browser")
+		vim.keymap.set("n", "<leader><leader>h", "<cmd>Telescope help_tags<CR>")
+		vim.keymap.set("n", "<leader>y", "<cmd>Telescope registers<CR>")
 		telescope_loaded = true
 	end
 end
@@ -194,6 +264,14 @@ end)
 vim.keymap.set("n", "<leader>.", function()
 	ensure_telescope()
 	vim.cmd("Telescope smart_open")
+end)
+vim.keymap.set("n", "<leader>l", function()
+	ensure_telescope()
+	vim.cmd("Telescope live_grep grep_open_files=true")
+end)
+vim.keymap.set("n", "<leader>k", function()
+	ensure_telescope()
+	vim.cmd("Telescope live_grep")
 end)
 
 ----MODES
@@ -241,6 +319,7 @@ vim.keymap.set("n", "*", [[*<Cmd>lua require('hlslens').start()<CR>]], kopts)
 vim.keymap.set("n", "#", [[#<Cmd>lua require('hlslens').start()<CR>]], kopts)
 vim.keymap.set("n", "g*", [[g*<Cmd>lua require('hlslens').start()<CR>]], kopts)
 vim.keymap.set("n", "g#", [[g#<Cmd>lua require('hlslens').start()<CR>]], kopts)
+vim.keymap.set("n", "<ESC>", ":nohl<CR><ESC>", kopts)
 
 ----AUTOCMDS
 vim.api.nvim_create_autocmd("FileType", {
@@ -285,3 +364,8 @@ vim.api.nvim_create_autocmd("TextChangedI", {
 		end
 	end,
 })
+
+----IN-AND-OUT
+vim.keymap.set("i", "<A-CR>", function()
+	require("in-and-out").in_and_out()
+end)
