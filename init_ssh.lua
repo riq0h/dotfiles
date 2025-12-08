@@ -87,6 +87,8 @@ require("lazy").setup({
 	defaults = { lazy = true },
 	{ "nvim-telescope/telescope.nvim", cmd = "Telescope" },
 	{ "nvim-telescope/telescope-file-browser.nvim", cmd = "Telescope file_browser" },
+	{ "danielfalk/smart-open.nvim", cmd = "Telescope smart_open" },
+	{ "kkharji/sqlite.lua", event = "VeryLazy" },
 	{ "lewis6991/gitsigns.nvim", config = true, event = "BufReadPre" },
 	{ "neanias/everforest-nvim", event = "VeryLazy" },
 	{ "nvim-lua/plenary.nvim", event = "VeryLazy" },
@@ -99,6 +101,7 @@ require("lazy").setup({
 	{ "echasnovski/mini.surround", event = "ModeChanged" },
 	{ "echasnovski/mini.ai", event = "ModeChanged" },
 	{ "mvllow/modes.nvim", event = "VeryLazy" },
+	{ "monaqa/dial.nvim", event = "VeryLazy" },
 	{ "tpope/vim-repeat", event = "VeryLazy" },
 	{ "brenoprata10/nvim-highlight-colors", event = "BufReadPost" },
 
@@ -170,6 +173,7 @@ local telescope_loaded = false
 local ensure_telescope = function()
 	if not telescope_loaded then
 		telescope_setup()
+		require("telescope").load_extension("smart_open")
 		require("telescope").load_extension("file_browser")
 		telescope_loaded = true
 	end
@@ -182,6 +186,14 @@ end)
 vim.keymap.set("n", "<leader>f", function()
 	ensure_telescope()
 	vim.cmd("Telescope file_browser")
+end)
+vim.keymap.set("n", "<leader>,", function()
+	ensure_telescope()
+	vim.cmd("Telescope oldfiles")
+end)
+vim.keymap.set("n", "<leader>.", function()
+	ensure_telescope()
+	vim.cmd("Telescope smart_open")
 end)
 
 ----MODES
@@ -198,6 +210,14 @@ require("modes").setup({
 	set_number = true,
 	ignore_filetypes = { "NvimTree", "TelescopePrompt" },
 })
+
+----DIAL
+vim.keymap.set("n", "<C-a>", require("dial.map").inc_normal(), { noremap = true })
+vim.keymap.set("n", "<C-x>", require("dial.map").dec_normal(), { noremap = true })
+vim.keymap.set("v", "<C-a>", require("dial.map").inc_visual(), { noremap = true })
+vim.keymap.set("v", "<C-x>", require("dial.map").dec_visual(), { noremap = true })
+vim.keymap.set("v", "g<C-a>", require("dial.map").inc_gvisual(), { noremap = true })
+vim.keymap.set("v", "g<C-x>", require("dial.map").dec_gvisual(), { noremap = true })
 
 ----HLSLENS
 require("hlslens").setup({
@@ -250,3 +270,18 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 })
 
 vim.keymap.set("n", "<leader>9", [[:vimgrep /\w\+/j % | copen<CR>]], { noremap = true, silent = true })
+
+----NATIVE COMPLETION
+vim.api.nvim_create_autocmd("TextChangedI", {
+	pattern = "*",
+	callback = function()
+		if vim.fn.pumvisible() == 0 then
+			local col = vim.fn.col(".")
+			local line = vim.fn.getline(".")
+			local before_cursor = line:sub(1, col - 1)
+			if before_cursor:match("%w%w$") then
+				vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<C-n>", true, false, true), "n")
+			end
+		end
+	end,
+})
