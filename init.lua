@@ -174,7 +174,6 @@ require("lazy").setup({
 	{ "mason-org/mason.nvim", event = "VeryLazy", cmd = { "Mason", "MasonInstall", "MasonUninstall" } },
 	{ "mason-org/mason-lspconfig.nvim", event = "VeryLazy" },
 	{ "jay-babu/mason-null-ls.nvim", event = "LspAttach" },
-	{ "jay-babu/mason-nvim-dap.nvim", event = "LspAttach" },
 	{ "neovim/nvim-lspconfig", event = "BufReadPre" },
 	{
 		"nvimtools/none-ls.nvim",
@@ -183,12 +182,6 @@ require("lazy").setup({
 		},
 		event = "LspAttach",
 	},
-	{ "mfussenegger/nvim-dap", event = "LspAttach" },
-	{ "rcarriga/nvim-dap-ui", event = "LspAttach" },
-	{ "nvim-neotest/nvim-nio", event = "LspAttach" },
-	{ "theHamsta/nvim-dap-virtual-text", config = true, event = "LspAttach" },
-	{ "suketa/nvim-dap-ruby", config = true, ft = "ruby" },
-	{ "mxsdev/nvim-dap-vscode-js", ft = "javascript" },
 	{ "nvimdev/lspsaga.nvim", event = "LspAttach" },
 	{ "Wansmer/treesj", event = "LspAttach" },
 	{ "is0n/jaq-nvim", event = "LspAttach" },
@@ -476,10 +469,6 @@ require("mason-null-ls").setup({
 	ensure_installed = { "prettierd", "rubocop", "erb_lint", "stylua", "shfmt" },
 	handlers = {},
 })
-require("mason-nvim-dap").setup({
-	ensure_installed = {},
-	handlers = {},
-})
 require("mason-lspconfig").setup()
 
 --none-ls
@@ -499,86 +488,8 @@ vim.keymap.set("n", "<leader>p", function()
 	vim.lsp.buf.format({ async = true })
 end)
 
---DAP
-local function map(mode, lhs, rhs, opts)
-	local options = { noremap = true }
-	if opts then
-		options = vim.tbl_extend("force", options, opts)
-	end
-	vim.api.nvim_set_keymap(mode, lhs, rhs, options)
-end
-
-map("n", "<leader>1", ":lua require'dap'.continue()<CR>", { silent = true })
-map("n", "<leader>2", ":lua require'dap'.step_over()<CR>", { silent = true })
-map("n", "<leader>3", ":lua require'dap'.step_into()<CR>", { silent = true })
-map("n", "<leader>4", ":lua require'dap'.step_out()<CR>", { silent = true })
-map("n", "<leader>5", ":lua require'dap'.terminate()<CR>", { silent = true })
-map("n", "<leader>;", ":lua require'dap'.toggle_breakpoint()<CR>", { silent = true })
-map("n", "<leader>'", ":lua require'dapui'.toggle()<CR>", { silent = true })
-map("n", "<leader><leader>d", ":lua require'dapui'.eval()<CR>", { silent = true })
-
 --flutter-tools
 require("flutter-tools").setup({})
-
---DAP-UI
-require("dapui").setup({
-	icons = { expanded = "▾", collapsed = "▸", current_frame = "▸" },
-	mappings = {
-		expand = { "<CR>", "<2-LeftMouse>" },
-		open = "o",
-		remove = "d",
-		edit = "e",
-		repl = "r",
-		toggle = "t",
-	},
-	expand_lines = vim.fn.has("nvim-0.7") == 1,
-	layouts = {
-		{
-			elements = {
-				{ id = "scopes", size = 0.25 },
-				"breakpoints",
-				"stacks",
-				"watches",
-			},
-			size = 40,
-			position = "left",
-		},
-		{
-			elements = {
-				"repl",
-			},
-			size = 0.25,
-			position = "bottom",
-		},
-	},
-	controls = {
-		enabled = true,
-		element = "repl",
-		icons = {
-			pause = "",
-			play = "",
-			step_into = "",
-			step_over = "",
-			step_out = "",
-			step_back = "",
-			run_last = "↻",
-			terminate = "□",
-		},
-	},
-	floating = {
-		max_height = nil,
-		max_width = nil,
-		border = "single",
-		mappings = {
-			close = { "q", "<Esc>" },
-		},
-	},
-	windows = { indent = 1 },
-	render = {
-		max_type_length = nil,
-		max_value_lines = 100,
-	},
-})
 
 --jaq-nvim
 require("jaq-nvim").setup({
