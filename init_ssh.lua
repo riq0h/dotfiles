@@ -25,7 +25,7 @@ opt.autoread = true
 opt.hlsearch = true
 opt.backspace:append({ "indent", "eol", "start" })
 opt.showtabline = 1
-opt.laststatus = 3
+opt.laststatus = 0
 opt.ambiwidth = "single"
 opt.confirm = true
 opt.pumblend = 0
@@ -154,6 +154,7 @@ require("lazy").setup({
 	{ "danielfalk/smart-open.nvim", cmd = "Telescope smart_open" },
 	{ "kkharji/sqlite.lua", event = "VeryLazy" },
 	{ "lewis6991/gitsigns.nvim", config = true, event = "BufReadPre" },
+	{ "b0o/incline.nvim", event = "UIEnter" },
 	{ "neanias/everforest-nvim", event = "VeryLazy" },
 	{ "nvim-lua/plenary.nvim", event = "VeryLazy" },
 	{ "ryanoasis/vim-devicons", event = "UIEnter" },
@@ -208,6 +209,95 @@ require("lazy").setup({
 })
 
 vim.cmd.colorscheme("everforest")
+
+----INCLINE.NVIM
+vim.api.nvim_create_autocmd("UIEnter", {
+	once = true,
+	callback = function()
+		require("incline").setup({
+			window = {
+				padding = 0,
+				margin = { horizontal = 1, vertical = 1 },
+			},
+			render = function(props)
+				local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":~:.")
+				if filename == "" then
+					filename = "[No Name]"
+				end
+				local ft_icon, ft_color = require("nvim-web-devicons").get_icon_color(filename)
+				local modified = vim.bo[props.buf].modified
+
+				-- gitsigns integration
+				local function get_git_branch()
+					local signs = vim.b[props.buf].gitsigns_status_dict
+					if signs and signs.head and signs.head ~= "" then
+						return { signs.head .. " ", group = "String" }
+					end
+					return {}
+				end
+
+				local function get_git_diff()
+					local icons = { removed = "➖", changed = "🔄", added = "➕" }
+					local signs = vim.b[props.buf].gitsigns_status_dict
+					local labels = {}
+					if signs == nil then
+						return labels
+					end
+					for name, icon in pairs(icons) do
+						if tonumber(signs[name]) and signs[name] > 0 then
+							table.insert(labels, { icon .. signs[name] .. " ", group = "Diff" .. name })
+						end
+					end
+					if #labels > 0 then
+						table.insert(labels, { "┊ " })
+					end
+					return labels
+				end
+
+				local function get_diagnostic_label()
+					local icons = { error = "⛔", warn = "⚡", info = "💡", hint = "✨" }
+					local label = {}
+
+					for severity, icon in pairs(icons) do
+						local severity_level = vim.diagnostic.severity[string.upper(severity)]
+						local diagnostics = vim.diagnostic.get(props.buf, { severity = severity_level })
+						local count = #diagnostics
+
+						if count > 0 then
+							local severity_capitalized = string.upper(severity:sub(1, 1)) .. severity:sub(2)
+							local group = "DiagnosticSign" .. severity_capitalized
+							table.insert(label, { icon .. count .. " ", group = group })
+						end
+					end
+
+					if #label > 0 then
+						table.insert(label, { "┊ " })
+					end
+
+					return label
+				end
+
+				local function get_location()
+					local line = vim.api.nvim_win_get_cursor(props.win)[1]
+					local total_lines = vim.api.nvim_buf_line_count(props.buf)
+					local percentage = math.floor((line / total_lines) * 100)
+					return string.format("%d%%", percentage)
+				end
+
+				local buffer = {
+					{ get_git_branch() },
+					{ get_diagnostic_label() },
+					{ get_git_diff() },
+					{ (ft_icon or "") .. " " },
+					{ filename .. " ", gui = modified and "bold,italic" or "bold" },
+					{ modified and " ●" or "" },
+					{ " " .. get_location() },
+				}
+				return buffer
+			end,
+		})
+	end,
+})
 
 ----TELESCOPE
 local telescope_setup = function()
@@ -376,15 +466,12 @@ require("noice").setup({
 require("modes").setup({
 	colors = {
 		copy = "#DBBC7F",
-		delete = "#D699B6",
-		insert = "#A7C080",
-		visual = "#7FBBB3",
+		visual = "#D699B6",
+		replace = "#E9967A",
+		insert = "#83C092",
+		delete = "#E67E80",
 	},
-	line_opacity = 0.15,
-	set_cursor = true,
-	set_cursorline = true,
-	set_number = true,
-	ignore_filetypes = { "NvimTree", "TelescopePrompt" },
+	line_opacity = 0.3,
 })
 
 ----DIAL

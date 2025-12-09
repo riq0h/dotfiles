@@ -25,7 +25,7 @@ opt.autoread = true
 opt.hlsearch = true
 opt.backspace:append({ "indent", "eol", "start" })
 opt.showtabline = 1
-opt.laststatus = 3
+opt.laststatus = 0
 opt.ambiwidth = "single"
 opt.confirm = true
 opt.pumblend = 0
@@ -158,7 +158,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
 	defaults = { lazy = true },
-	{ "nvim-lualine/lualine.nvim", event = "UIEnter" },
+	{ "b0o/incline.nvim", event = "UIEnter" },
 	{ "nvim-telescope/telescope.nvim", cmd = "Telescope" },
 	{
 		"nvim-telescope/telescope-fzf-native.nvim",
@@ -260,64 +260,90 @@ require("lazy").setup({
 	},
 })
 
---lualine
+--incline
 vim.api.nvim_create_autocmd("UIEnter", {
 	once = true,
 	callback = function()
-		require("lualine").setup({
-			options = {
-				icons_enabled = true,
-				component_separators = { left = "", right = "" },
-				section_separators = { left = "", right = "" },
-				disabled_filetypes = {
-					winbar = {
-						"Avante",
-						"AvanteSelectedFiles",
-						"AvanteInput",
-					},
-					"TelescopePrompt",
-				},
-				always_divide_middle = true,
-				colored = false,
-				globalstatus = true,
+		require("incline").setup({
+			window = {
+				padding = 0,
+				margin = { horizontal = 1, vertical = 1 },
 			},
-			sections = {
-				lualine_a = { "" },
-				lualine_b = { "branch", "diff" },
-				lualine_c = {
-					{
-						"filename",
-						path = 1,
-						file_status = true,
-						shorting_target = 40,
-						symbols = {
-							modified = "[+]",
-							readonly = "[RO]",
-							unnamed = "Untitled",
-						},
-					},
-				},
-				lualine_x = { "filetype" },
-				lualine_y = {
-					{
-						"diagnostics",
-						source = { "nvim-lsp" },
-					},
-					{ "progress" },
-					{ "location" },
-				},
-				lualine_z = { "" },
-			},
-			inactive_sections = {
-				lualine_a = {},
-				lualine_b = {},
-				lualine_c = { "filename" },
-				lualine_x = { "location" },
-				lualine_y = {},
-				lualine_z = {},
-			},
-			tabline = {},
-			extensions = {},
+			render = function(props)
+				local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":~:.")
+				if filename == "" then
+					filename = "[No Name]"
+				end
+				local ft_icon, ft_color = require("nvim-web-devicons").get_icon_color(filename)
+				local modified = vim.bo[props.buf].modified
+
+				local function get_git_branch()
+					local signs = vim.b[props.buf].gitsigns_status_dict
+					if signs and signs.head and signs.head ~= "" then
+						return { signs.head .. " ", group = "String" }
+					end
+					return {}
+				end
+
+				local function get_git_diff()
+					local icons = { removed = "➖", changed = "🔄", added = "➕" }
+					local signs = vim.b[props.buf].gitsigns_status_dict
+					local labels = {}
+					if signs == nil then
+						return labels
+					end
+					for name, icon in pairs(icons) do
+						if tonumber(signs[name]) and signs[name] > 0 then
+							table.insert(labels, { icon .. signs[name] .. " ", group = "Diff" .. name })
+						end
+					end
+					if #labels > 0 then
+						table.insert(labels, { "┊ " })
+					end
+					return labels
+				end
+
+				local function get_diagnostic_label()
+					local icons = { error = "⛔", warn = "⚡", info = "💡", hint = "✨" }
+					local label = {}
+
+					for severity, icon in pairs(icons) do
+						local severity_level = vim.diagnostic.severity[string.upper(severity)]
+						local diagnostics = vim.diagnostic.get(props.buf, { severity = severity_level })
+						local count = #diagnostics
+
+						if count > 0 then
+							local severity_capitalized = string.upper(severity:sub(1, 1)) .. severity:sub(2)
+							local group = "DiagnosticSign" .. severity_capitalized
+							table.insert(label, { icon .. count .. " ", group = group })
+						end
+					end
+
+					if #label > 0 then
+						table.insert(label, { "┊ " })
+					end
+
+					return label
+				end
+
+				local function get_location()
+					local line = vim.api.nvim_win_get_cursor(props.win)[1]
+					local total_lines = vim.api.nvim_buf_line_count(props.buf)
+					local percentage = math.floor((line / total_lines) * 100)
+					return string.format("%d%%", percentage)
+				end
+
+				local buffer = {
+					{ get_git_branch() },
+					{ get_diagnostic_label() },
+					{ get_git_diff() },
+					{ (ft_icon or "") .. " " },
+					{ filename .. " ", gui = modified and "bold,italic" or "bold" },
+					{ modified and " ●" or "" },
+					{ " " .. get_location() },
+				}
+				return buffer
+			end,
 		})
 	end,
 })
@@ -786,10 +812,12 @@ require("noice").setup({
 require("modes").setup({
 	colors = {
 		copy = "#DBBC7F",
-		delete = "#D699B6",
+		visual = "#D699B6",
+		replace = "#E9967A",
 		insert = "#83C092",
-		visual = "#E67E80",
+		delete = "#E67E80",
 	},
+	line_opacity = 0.3,
 })
 
 --nvim-highlight-colors
