@@ -263,7 +263,7 @@ for_window [class="Blueman-manager"] floating enable, resize set 800 600
 for_window [class="Mousepad"] floating enable, resize set 800 600
 for_window [class="qt5ct"] floating enable, resize set 800 600
 for_window [class="Qtconfig-qt4"] floating enable, resize set 800 600
-for_window [class="thunderbird"] floating enable, resize set 1440 1024
+for_window [class="org.mozilla.Thunderbird"] floating enable, resize set 1440 1024
 for_window [class="Emulator"] floating enable
 
 # ワークスペース指定一覧
