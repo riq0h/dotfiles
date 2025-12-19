@@ -537,7 +537,7 @@ require("jaq-nvim").setup({
 			sh = "sh %",
 			ruby = "ruby %",
 			javascript = "node %",
-			typescript = "deno %",
+			typescript = "node %",
 			go = "go run %",
 			java = "java %",
 		},
