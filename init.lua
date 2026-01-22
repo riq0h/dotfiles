@@ -64,7 +64,7 @@ vim.keymap.set("n", "eq", ":<C-u>wq<CR>")
 vim.keymap.set("n", "Q", ":<C-u>quit!<CR>")
 vim.keymap.set("n", "<leader>q", ":<C-u>bd<CR>")
 vim.keymap.set("n", "<C-s>", ":<C-u>%s///cg<Left><Left><Left><Left>")
-vim.keymap.set("n", "<C-c>", ":<C-u>echo wordcount()['chars']<CR>")
+vim.keymap.set("n", "<C-c>", ":<C-u>Genko<CR>")
 vim.keymap.set("v", "i<leader>", "iW")
 vim.keymap.set("o", "i<leader>", "iW")
 vim.keymap.set("n", "U", "<c-r>")
@@ -190,13 +190,11 @@ require("lazy").setup({
 	{ "nvim-flutter/flutter-tools.nvim", event = "LspAttach" },
 	{ "MunifTanjim/nui.nvim", event = "VeryLazy" },
 	{ "Saghen/blink.cmp", event = { "InsertEnter", "CmdLineEnter" } },
-	{ "fang2hou/blink-copilot", event = "InsertEnter" },
 	{
 		"L3MON4D3/LuaSnip",
 		dependencies = { "rafamadriz/friendly-snippets" },
 		event = "InsertEnter",
 	},
-	{ "Kaiser-Yang/blink-cmp-avante", event = "InsertEnter" },
 	{ "nvim-treesitter/nvim-treesitter", event = { "BufReadPost", "BufNewFile" } },
 	{ "nvim-treesitter/nvim-treesitter-refactor", event = "BufRead" },
 	{ "yioneko/nvim-yati", event = "BufReadPost" },
@@ -227,8 +225,6 @@ require("lazy").setup({
 	},
 	{ "tpope/vim-repeat", keys = "." },
 	{ "vim-jp/vimdoc-ja", ft = "help" },
-	{ "yetone/avante.nvim", build = "make", event = "InsertEnter" },
-	{ "zbirenbaum/copilot.lua", event = "InsertEnter" },
 	{ "ysmb-wtsg/in-and-out.nvim", keys = { { "<A-CR>", mode = "i" } } },
 	{ "nacro90/numb.nvim", config = true, event = "BufRead" },
 	{ "yuki-yano/fuzzy-motion.vim", keys = "S" },
@@ -537,7 +533,7 @@ require("jaq-nvim").setup({
 			sh = "sh %",
 			ruby = "ruby %",
 			javascript = "node %",
-			typescript = "node %",
+			typescript = "deno %",
 			go = "go run %",
 			java = "java %",
 		},
@@ -623,19 +619,7 @@ vim.api.nvim_create_autocmd({ "InsertEnter", "CmdLineEnter" }, {
 				preset = "luasnip",
 			},
 			sources = {
-				default = { "avante", "copilot", "lsp", "snippets", "path", "buffer", "cmdline", "omni" },
-				providers = {
-					avante = {
-						module = "blink-cmp-avante",
-						name = "Avante",
-					},
-					copilot = {
-						name = "copilot",
-						module = "blink-copilot",
-						score_offset = 100,
-						async = true,
-					},
-				},
+				default = { "lsp", "snippets", "path", "buffer", "cmdline", "omni" },
 				min_keyword_length = 2,
 			},
 			cmdline = {
@@ -1026,63 +1010,6 @@ vim.keymap.set("v", "<C-x>", require("dial.map").dec_visual(), { noremap = true 
 vim.keymap.set("v", "g<C-a>", require("dial.map").inc_gvisual(), { noremap = true })
 vim.keymap.set("v", "g<C-x>", require("dial.map").dec_gvisual(), { noremap = true })
 
---copilot
-require("copilot").setup({
-	suggestion = { enabled = false },
-	panel = { enabled = false },
-})
-
---avante
-require("avante_lib").load()
-local avante_config = {
-	hints = { enabled = false },
-	provider = "copilot",
-	auto_suggestions_provider = "copilot",
-	file_selector = {
-		provider = "telescope",
-	},
-	behaviour = {
-		auto_set_highlight_group = false,
-		auto_set_keymaps = true,
-		auto_apply_diff_after_generation = false,
-		support_paste_from_clipboard = true,
-		minimize_diff = true,
-		enable_claude_text_editor_tool_mode = true,
-		enable_token_counting = false,
-	},
-	providers = {
-		copilot = {
-			endpoint = "https://api.githubcopilot.com",
-			model = "claude-sonnet-4.5",
-			timeout = 30000,
-		},
-	},
-	windows = {
-		position = "right",
-		wrap = true,
-		width = 30,
-		sidebar_header = {
-			enabled = true,
-			align = "right",
-			rounded = false,
-		},
-		input = {
-			height = 5,
-		},
-		edit = {
-			border = "single",
-			start_insert = true,
-		},
-		ask = {
-			floating = true,
-			start_insert = true,
-			border = "single",
-		},
-	},
-}
-
-require("avante").setup(avante_config)
-
 --lazygit
 vim.keymap.set("n", "<leader>=", function()
 	Snacks.lazygit()
@@ -1097,18 +1024,33 @@ end)
 vim.cmd("colorscheme everforest")
 
 --OTHER SETTINGS
-function genko()
-	local line_count = 0
-	local num_lines = vim.api.nvim_buf_line_count(0)
+local function genko()
+	local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+	local total_lines = 0
+	local total_lines_20 = 0
+	local total_chars = 0
 
-	for i = 1, num_lines do
-		local line = vim.api.nvim_buf_get_lines(0, i - 1, i, false)[1]
-		if line then
-			local chars = vim.fn.strchars(line)
-			local s = math.ceil(chars / 20.0)
-			line_count = line_count + (s == 0 and 1 or s)
+	for _, line in ipairs(lines) do
+		local char_count = vim.fn.strchars(line)
+		total_chars = total_chars + char_count
+
+		if char_count == 0 then
+			total_lines = total_lines + 1
+			total_lines_20 = total_lines_20 + 1
+		else
+			total_lines = total_lines + math.ceil(char_count / 40)
+			total_lines_20 = total_lines_20 + math.ceil(char_count / 20)
 		end
 	end
 
-	return string.format("%.2f", line_count / 20.0)
+	local pages = total_lines / 40
+	local pages_400 = total_lines_20 / 20
+
+	print(string.format("総文字数: %d文字", total_chars))
+	print(string.format("総行数: %d行 (40字/行換算)", total_lines))
+	print(string.format("枚数: %.2f枚 (40字×40行)", pages))
+	print(string.format("枚数(切り上げ): %d枚", math.ceil(pages)))
+	print(string.format("400字詰: %.2f枚 (20字×20行) / 切り上げ: %d枚", pages_400, math.ceil(pages_400)))
 end
+
+vim.api.nvim_create_user_command("Genko", genko, {})
