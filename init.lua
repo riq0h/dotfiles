@@ -52,7 +52,7 @@ vim.cmd("set completeopt-=preview")
 vim.api.nvim_create_autocmd({ "BufReadPost" }, {
 	pattern = { "*" },
 	callback = function()
-		vim.api.nvim_exec('silent! normal! g`"zv', false)
+		vim.cmd('silent! normal! g`"zv')
 	end,
 })
 
@@ -145,7 +145,7 @@ vim.keymap.set("v", "<leader>U", ":copy'>+0<CR>gv")
 
 --MANAGER
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
 	vim.fn.system({
 		"git",
 		"clone",
@@ -492,9 +492,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		set("n", "<leader>]", "<cmd>Lspsaga diagnostic_jump_next<CR>")
 	end,
 })
-vim.diagnostic.config({ virtual_text = false, severity_sort = true })
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
+vim.diagnostic.config({ virtual_text = false, severity_sort = true, underline = true, update_in_insert = true })
 require("mason").setup()
 require("mason-null-ls").setup({
 	ensure_installed = { "prettierd", "rubocop", "erb_lint", "stylua", "shfmt" },
@@ -650,7 +648,7 @@ vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
 		require("nvim-treesitter.configs").setup({
 			highlight = {
 				enable = true,
-				disable = { "help", "markdown", "toml" },
+				disable = { "help", "toml" },
 			},
 			refactor = {
 				highlight_defintions = {
@@ -674,10 +672,6 @@ vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
 
 --nvim-ts-autotag
 require("nvim-ts-autotag").setup()
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-	underline = true,
-	update_in_insert = true,
-})
 
 --treesj
 local tsj = require("treesj")
