@@ -125,3 +125,6 @@ setopt bang_hist          # !を使ったヒストリ展開を行う(d)
 setopt extended_history   # ヒストリに実行時間も保存する
 setopt hist_reduce_blanks # 余分なスペースを削除してヒストリに保存する
 export PATH="$HOME/.local/bin:$PATH"
+
+# LLM
+export CLAUDE_CODE_EFFORT_LEVEL=max
