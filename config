@@ -267,4 +267,4 @@ for_window [class="Emulator"] floating enable
 
 # ワークスペース指定一覧
 assign [class="discord"] workspace 3
-assign [class="Slack"] workspace 3
+assign [class="slack"] workspace 3
