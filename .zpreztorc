@@ -14,7 +14,8 @@ zstyle ':prezto:load' pmodule \
   'completion' \
   'syntax-highlighting' \
   'history-substring-search' \
-  'prompt'
+  'prompt' \
+  'tmux'
 
 # キーマップ
 zstyle ':prezto:module:editor' key-bindings 'emacs'
@@ -29,11 +30,10 @@ zstyle ':prezto:module:syntax-highlighting' highlighters \
   'brackets' \
   'pattern'
 
-# Herdrへの自動アタッチ (旧: prezto tmux module の auto-start local 'yes' 相当)
-# ローカルログイン時のみ、"0"という名前のセッションへアタッチ/新規作成する
-if [[ -z "$HERDR_ENV" && -z "$SSH_CONNECTION" ]] && (( $+commands[herdr] )); then
-  exec herdr --session 0
-fi
+# tmux
+zstyle ':prezto:module:tmux:auto-start' local 'yes'
+zstyle ':prezto:module:tmux:session' name '0'
+zstyle ':prezto:module:tmux:alias' skip 'yes'
 
 # 途中まで打ったコマンドの履歴を検索
 zstyle ':prezto:module:history-substring-search' case-sensitive 'yes'
