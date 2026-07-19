@@ -1,0 +1,82 @@
+# herdr configuration — tmux.conf からの移行版
+# 元: ~/.tmux.conf (Everforest配色, prefix=M-a, vi風ペイン操作)
+
+[theme]
+# terminal = ホストターミナル(Alacritty、Everforest配色済み)のANSIパレットを
+# そのまま使う。手動でのEverforest色指定(theme.custom)が不要になった
+name = "terminal"
+auto_switch = false
+
+[terminal]
+# tmuxの default-shell/default-command 相当
+default_shell = "zsh"
+
+[keys]
+# tmuxの `set -g prefix M-a` 相当
+# alt+ をprefixにするのは公式に「動作は端末依存」と明記されているため要検証
+prefix = "alt+a"
+
+# tmuxで q に kill-window を割り当てていたため、
+# デフォルトの detach (prefix+q) は prefix+d へ退避
+detach = "prefix+d"
+close_tab = "prefix+q"
+
+# bind-key Space copy-mode 相当
+copy_mode = "prefix+space"
+
+# M-C new-session / M-L,M-H switch-client 相当 (workspace = tmuxのsession)
+new_workspace = "alt+shift+c"
+next_workspace = "alt+shift+l"
+previous_workspace = "alt+shift+h"
+
+# M-w new-window / M-Tab select-window -t :+ / M-1..9 相当
+new_tab = "alt+w"
+next_tab = "alt+tab"
+switch_tab = "alt+1..9"
+
+# M-s split -v(下に積む) / M-v split -h(左右) 相当
+# ※ pane_current_pathの引き継ぎは [terminal] new_cwd = "follow" が既定値のため設定不要
+split_horizontal = "alt+s"
+split_vertical = "alt+v"
+
+# M-矢印 / M-hjkl ペインフォーカス相当
+focus_pane_left = ["alt+h", "alt+left"]
+focus_pane_right = ["alt+l", "alt+right"]
+focus_pane_up = ["alt+k", "alt+up"]
+focus_pane_down = ["alt+j", "alt+down"]
+
+# M-q kill-pane 相当
+close_pane = "alt+q"
+
+[ui.sidebar.spaces]
+# ブランチ/git状態はプロンプト(pure)側で表示済みのため出さない
+rows = [["state_icon", "workspace"]]
+
+[ui]
+# mouse on 相当(デフォルトで既にtrueだが明示)
+mouse_capture = true
+copy_on_select = true
+
+# pane-border-lines single 相当(オン/オフのみ、線種選択は不可)
+pane_borders = true
+
+# tmuxは何も確認せず即座にpane/windowを閉じる運用だったため、
+# 同じ挙動に合わせて確認プロンプトを無効化
+confirm_close = false
+prompt_new_tab_name = false
+
+accent = "#A7C080"
+
+show_agent_labels_on_pane_borders = false
+[experimental]
+# fcitx5(日本語入力)使用時、TUIが自前カーソルを描画するアプリで
+# IME候補ウィンドウの位置がズレる場合に試す設定。
+# 公式コメント上はmacOS想定の記述が中心でLinux/X11での効果は未確認。
+# reveal_hidden_cursor_for_cjk_ime = true
+# cjk_ime_agents = ["claude"]
+
+[ui.sound]
+enabled = false
+
+[ui.toast]
+delivery = "system"

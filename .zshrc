@@ -7,6 +7,9 @@ fi
 [ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
 [ -f /usr/share/fzf/completion.zsh ] && source /usr/share/fzf/completion.zsh
 
+# Herdrタブに実行中プロセス名を表示する(tmuxのautomatic-rename相当)
+[[ -n "$HERDR_ENV" ]] && source ~/tab-process-name/shell/hook.zsh
+
 # ロケール
 export LC_ALL=ja_JP.UTF-8
 export LANG=ja_JP.UTF-8
@@ -56,7 +59,8 @@ bindkey "^z" zi
 alias zv="zi && nvim"
 
 # Tailscale関連
-alias tlsc="sudo tailscale up --exit-node=mystech --exit-node-allow-lan-access --ssh"
+alias tlsc="sudo tailscale up --exit-node=archer --exit-node-allow-lan-access --accept-routes --ssh"
+alias tlsc2="sudo tailscale up --exit-node=mystech --exit-node-allow-lan-access --accept-routes --ssh"
 alias tlscd="sudo tailscale down"
 
 # fzf関連
